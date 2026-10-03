@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="asserts/favicon_v2.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Caveat:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <title>Recipes — SPICE ROUTE</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.js"></script>
+
+  <style>
+    :root, html[data-theme='light'] {
+      --bg:            #FDF8F0;
+      --bg-subtle:     #F7EEDD;
+      --surface:       #FFFFFF;
+      --text:          #2B1E12;
+      --text-muted:    #6B4F38;
+      --text-subtle:   #9B7B63;
+      --border:        #EADBCB;
+      --border-strong: #DBC8B2;
+      --brand:         #C1440E;
+      --brand-hover:   #A33A0C;
+      --brand-soft:    #FDF0E8;
+      --olive:         #6B7A3F;
+      --olive-soft:    #EEF1E1;
+      --amber:         #D97706;
+      --amber-soft:    #FEF3C7;
+      --nav-hover:     #F7EEDD;
+      --footer-bg:     #2B1E12;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #C4A68B;
+    }
+    html[data-theme='dark'] {
+      --bg:            #19120B;
+      --bg-subtle:     #221810;
+      --surface:       #221810;
+      --text:          #F5EDE6;
+      --text-muted:    #C4A68B;
+      --text-subtle:   #9B7B63;
+      --border:        #3A2818;
+      --border-strong: #553A22;
+      --brand:         #E05E2A;
+      --brand-hover:   #F07545;
+      --brand-soft:    #3D1E0E;
+      --olive:         #A8B87A;
+      --olive-soft:    #2C3320;
+      --amber:         #F59E0B;
+      --amber-soft:    #3A2E10;
+      --nav-hover:     #33221A;
+      --footer-bg:     #0A0603;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #9B7B63;
+    }
+
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', 'Plus Jakarta Sans', serif;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .t-text { color: var(--text); }
+    .t-muted { color: var(--text-muted); }
+    .t-subtle { color: var(--text-subtle); }
+    .t-brand { color: var(--brand); }
+    .t-olive { color: var(--olive); }
+    .bg-app { background-color: var(--bg); }
+    .bg-app-subtle { background-color: var(--bg-subtle); }
+    .bg-surface { background-color: var(--surface); }
+    .bg-nav-hover { background-color: var(--nav-hover); }
+    .bg-brand-soft { background-color: var(--brand-soft); }
+    .border-app { border-color: var(--border); }
+    .border-strong { border-color: var(--border-strong); }
+
+    .brand-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; transition: opacity 0.2s ease; }
+    .brand-lockup:hover { opacity: 0.85; }
+    .brand-mark {
+      position: relative; width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--brand) 0%, var(--brand-hover) 100%);
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 4px 14px -4px rgba(193, 68, 14, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .brand-mark::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, 0.4); }
+    .brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    .brand-wordmark { white-space: nowrap;
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px;
+      letter-spacing: -0.02em; line-height: 1; color: var(--text);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .brand-wordmark .sub {
+      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 9px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle);
+    }
+
+    #main-header {
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    html[data-theme='dark'] #main-header {
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+    }
+
+    .nav-link {
+      position: relative; display: inline-flex; align-items: center;
+      padding: 10px 18px; font-size: 15.5px; font-weight: 500; color: var(--text);
+      border-radius: 10px; text-decoration: none;
+      transition: color 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--brand); background: var(--nav-hover); }
+    .nav-link.is-active { color: var(--brand); font-weight: 600; }
+    .nav-link.is-active::after {
+      content: ''; position: absolute; left: 18px; right: 18px; bottom: 3px;
+      height: 2px; background: var(--brand); border-radius: 2px;
+    }
+
+    .dd { position: relative; }
+    .dd-menu {
+      position: absolute; top: calc(100% + 6px); left: 0; min-width: 180px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: 0 12px 32px -8px rgba(43, 30, 18, 0.14), 0 4px 12px -2px rgba(43, 30, 18, 0.06);
+      padding: 6px; opacity: 0; visibility: hidden; transform: translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 100;
+    }
+    .dd:hover .dd-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dd-menu a {
+      display: block; padding: 10px 14px; font-size: 14.5px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-radius: 8px;
+      transition: background 0.14s ease, color 0.14s ease; white-space: nowrap;
+    }
+    .dd-menu a:hover { background: var(--nav-hover); color: var(--brand); }
+    .dd-chevron { width: 12px; height: 12px; margin-left: 5px; transition: transform 0.2s ease; }
+    .dd:hover .dd-chevron { transform: rotate(180deg); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 11px 24px; border-radius: 11px; border: 1px solid transparent;
+      cursor: pointer; text-decoration: none; transition: all 0.18s ease;
+      white-space: nowrap; line-height: 1;
+    }
+    .btn-primary {
+      background: var(--brand); color: #fff;
+      box-shadow: 0 1px 2px rgba(43, 30, 18, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    .btn-primary:hover {
+      background: var(--brand-hover);
+      box-shadow: 0 8px 20px -6px rgba(193, 68, 14, 0.5);
+      transform: translateY(-1px);
+    }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
+    .btn-ghost:hover { background: var(--nav-hover); border-color: var(--text-subtle); }
+    .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; border-radius: 11px; color: var(--text-muted);
+      background: transparent; border: 1px solid var(--border); cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .btn-icon:hover { background: var(--nav-hover); color: var(--brand); border-color: var(--border-strong); }
+    .btn-icon svg { width: 19px; height: 19px; }
+
+    #site-footer { background: var(--footer-bg); color: var(--footer-text); }
+    #site-footer .foot-brand-mark {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #E05E2A 0%, #C1440E 100%);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px -4px rgba(224, 94, 42, 0.55); position: relative;
+    }
+    #site-footer .foot-brand-mark::before {
+      content: ''; position: absolute; inset: 6px; border-radius: 50%;
+      border: 1.5px dashed rgba(255, 255, 255, 0.4);
+    }
+    #site-footer .foot-brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    #site-footer .foot-wordmark {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px;
+      letter-spacing: -0.02em; color: #fff;
+    }
+    #site-footer .foot-tagline {
+      font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--footer-muted); font-weight: 500; margin-top: 4px;
+    }
+    .foot-heading {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin-bottom: 20px;
+    }
+    .foot-link {
+      display: inline-block; font-size: 15px; font-weight: 400;
+      color: var(--footer-muted); text-decoration: none; padding: 6px 0;
+      transition: color 0.16s ease, transform 0.16s ease;
+    }
+    .foot-link:hover { color: #E05E2A; transform: translateX(3px); }
+    .foot-social {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 11px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #F5EDE6; font-size: 15px; text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .foot-social:hover { background: #E05E2A; border-color: #E05E2A; color: #fff; transform: translateY(-2px); }
+    #site-footer .foot-input {
+      width: 100%; padding: 12px 16px; font-size: 15px; color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 11px; outline: none;
+      transition: all 0.18s ease;
+    }
+    #site-footer .foot-input::placeholder { color: var(--footer-muted); }
+    #site-footer .foot-input:focus {
+      background: rgba(255, 255, 255, 0.08); border-color: #E05E2A;
+      box-shadow: 0 0 0 3px rgba(224, 94, 42, 0.15);
+    }
+    .foot-contact {
+      display: flex; align-items: center; gap: 12px; font-size: 14.5px;
+      color: var(--footer-muted); text-decoration: none; padding: 5px 0;
+      transition: color 0.16s ease;
+    }
+    .foot-contact:hover { color: #E05E2A; }
+    .foot-contact i { color: #E05E2A; width: 16px; font-size: 14px; }
+    .foot-bottom { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+
+    #drawer-panel { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .mob-link {
+      display: block; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border);
+      transition: color 0.15s ease;
+    }
+    .mob-link:hover { color: var(--brand); }
+    .mob-accordion {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 100%; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); background: none; border: none;
+      border-bottom: 1px solid var(--border); cursor: pointer; text-align: left;
+    }
+    .mob-accordion:hover { color: var(--brand); }
+
+    html { scroll-behavior: smooth; }
+
+    /* ══════════════ RECIPES PAGE UNIQUE STYLES ══════════════ */
+
+    .recipe-body {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-size: 15.5px;
+    }
+    .recipe-body strong {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .hand {
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+      color: var(--brand);
+      line-height: 1.1;
+    }
+
+    .small-caps {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+
+    .recipe-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 32px 28px 28px;
+      box-shadow: 0 2px 8px rgba(43, 30, 18, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .recipe-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -16px rgba(43, 30, 18, 0.25);
+    }
+    .recipe-card::before {
+      content: '';
+      position: absolute;
+      top: 52px;
+      left: 20px;
+      right: 20px;
+      height: 1px;
+      background: var(--border);
+    }
+    .recipe-card::after {
+      content: '';
+      position: absolute;
+      bottom: 24px;
+      left: 20px;
+      right: 20px;
+      height: 1px;
+      background: repeating-linear-gradient(90deg, var(--border) 0 6px, transparent 6px 12px);
+    }
+    .recipe-card .corner-tape {
+      position: absolute;
+      top: -8px;
+      left: 20px;
+      width: 70px;
+      height: 22px;
+      background: rgba(217, 119, 6, 0.32);
+      transform: rotate(-4deg);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .recipe-card .corner-tape::before,
+    .recipe-card .corner-tape::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 6px;
+      background: repeating-linear-gradient(45deg, rgba(255,255,255,0.5) 0 2px, transparent 2px 4px);
+    }
+    .recipe-card .corner-tape::before { left: -5px; }
+    .recipe-card .corner-tape::after { right: -5px; }
+
+    .recipe-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .recipe-img {
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: linear-gradient(140deg, var(--brand-soft) 0%, var(--bg-subtle) 100%);
+      aspect-ratio: 4 / 3;
+    }
+    .recipe-img img {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+    }
+    .recipe-card:hover .recipe-img img { transform: scale(1.05); }
+
+    .ingredient-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .ingredient-list li {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      align-items: baseline;
+    }
+    .ingredient-list li:last-child { border-bottom: none; }
+    .ingredient-list .qty {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--brand);
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .method-step {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .method-step:last-child { border-bottom: none; }
+    .method-step .step-num {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 2.5rem;
+      line-height: 1;
+      color: var(--brand);
+      text-align: center;
+    }
+
+    .filter-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .filter-tab:hover { border-color: var(--brand); color: var(--brand); }
+    .filter-tab.is-active {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: #fff;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--brand);
+    }
+    .ornament::before,
+    .ornament::after {
+      content: '';
+      height: 1px;
+      width: 70px;
+      background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+    }
+
+    /* Fade-in for expanded recipe list */
+    #extra-recipes {
+      animation: fadeSlideIn 0.45s ease forwards;
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <nav class="flex items-center justify-between h-[76px]">
+        <a href="index.html" class="brand-lockup" aria-label="SPICE ROUTE Home">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+
+        <div class="hidden xl:flex items-center gap-1">
+          <div class="dd">
+            <button class="nav-link" id="nav-home-btn">
+              Home 1
+              <svg class="dd-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="dd-menu">
+              <a href="index.html">Home 1</a>
+              <a href="home2.html">Home 2</a>
+            </div>
+          </div>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="recipes.html" class="nav-link">Recipes</a>
+          <a href="journal.html" class="nav-link">Journal</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="hidden xl:flex items-center gap-2.5">
+          <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme">
+            <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+          <button id="lang-icon" class="btn-icon" aria-label="Toggle direction">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+          </button>
+          <a href="login.html" class="btn btn-primary ml-2">Sign In</a>
+        </div>
+
+        <button id="mobile-menu-open" class="xl:hidden btn-icon" aria-label="Open menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="h-[76px]"></div>
+
+  <main class="flex-grow">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 1 — HERO
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-12 md:py-16 bg-app relative overflow-hidden">
+
+      <div class="absolute top-20 -left-24 w-96 h-96 rounded-full pointer-events-none opacity-30"
+           style="background: radial-gradient(circle, rgba(193,68,14,0.28) 0%, transparent 70%); filter: blur(80px);"></div>
+      <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none opacity-20"
+           style="background: radial-gradient(circle, rgba(217,119,6,0.3) 0%, transparent 70%); filter: blur(90px);"></div>
+
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-center">
+
+          <div class="relative order-2 lg:order-1">
+            <div class="rounded-3xl overflow-hidden relative" style="border: 1px solid var(--border); aspect-ratio: 5/4; background: linear-gradient(150deg, #C1440E 0%, #7A1E08 100%);">
+              <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                <i class="fa-solid fa-bowl-food text-white" style="font-size: 10rem;"></i>
+              </div>
+              <img src="asserts/recipes1.avif"
+                   alt="Slow-cooked dal makhani in a clay pot"
+                   class="w-full h-full object-cover relative z-10"
+                   onerror="this.style.display='none'">
+              <div class="absolute inset-0 z-20" style="background: linear-gradient(170deg, rgba(43,30,18,0.05) 0%, rgba(43,30,18,0.55) 100%); pointer-events: none;"></div>
+            </div>
+
+            <!-- <div class="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-surface border border-app rounded-2xl px-5 py-4 shadow-xl max-w-[220px] rotate-[3deg]">
+              <p class="hand text-2xl t-brand leading-tight">today's page</p>
+              <p class="text-xs t-subtle mt-1">— page 42 of the notebook —</p>
+            </div> -->
+
+            <div class="absolute bottom-5 left-5 bg-surface rounded-2xl px-5 py-3 shadow-lg flex items-center gap-3 z-30">
+              <span class="recipe-number">01</span>
+              <div>
+                <p class="text-[10px] t-subtle uppercase tracking-wider">Recipe No.</p>
+                <p class="text-sm font-semibold">Slow-Cooked Dal Makhani</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 max-w-xl">
+
+            <div class="flex items-center gap-3 mb-6">
+              <span class="small-caps">The Kitchen Notebook</span>
+              <span class="h-px w-12" style="background: var(--border-strong);"></span>
+              <span class="small-caps">Page 42</span>
+            </div>
+
+            <p class="hand text-3xl mb-4">from the notebook,</p>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl leading-[1.03] mb-6">
+              Recipes kept
+              <span class="italic t-brand">alive</span><br>
+              for four generations.
+            </h1>
+
+            <p class="recipe-body text-lg leading-relaxed mb-8">
+              Twenty-two recipes from our ledger — some written on the back of
+              receipts, some handed down by voice, all tested in the workshop.
+              Cook them as written, or adjust for your own table.
+            </p>
+
+            <div class="flex flex-wrap gap-3 mb-10">
+              <a href="#index" class="btn btn-primary">
+                <i class="fa-solid fa-book-open text-xs"></i>
+                Browse the index
+              </a>
+              <a href="products.html" class="btn btn-ghost">
+                <i class="fa-solid fa-jar text-xs"></i>
+                Shop the blends
+              </a>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6 pt-8 border-t border-app max-w-md">
+              <div>
+                <p class="text-2xl font-bold t-brand" style="font-family:'Playfair Display',serif;">22</p>
+                <p class="text-[10px] t-subtle uppercase tracking-wider mt-1">Recipes on file</p>
+              </div>
+              <div>
+                <p class="text-2xl font-bold" style="font-family:'Playfair Display',serif; color: var(--olive);">6</p>
+                <p class="text-[10px] t-subtle uppercase tracking-wider mt-1">Categories</p>
+              </div>
+              <div>
+                <p class="text-2xl font-bold" style="font-family:'Playfair Display',serif; color: var(--amber);">1998</p>
+                <p class="text-[10px] t-subtle uppercase tracking-wider mt-1">First entry</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 2 — FEATURED RECIPE
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-16 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <span class="small-caps block mb-3">Recipe No. 01 · Featured</span>
+            <h2 class="text-3xl md:text-4xl leading-tight max-w-2xl">
+              The
+              <span class="italic t-brand">first</span>
+              recipe in the notebook.
+            </h2>
+          </div>
+          <p class="text-sm t-muted max-w-xs">
+            Rukmini wrote this one in pencil, on a page now stained with
+            turmeric. It hasn't changed since.
+          </p>
+        </div>
+
+        <div class="recipe-card">
+          <div class="corner-tape"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-14 items-start">
+
+            <div>
+              <div class="recipe-img" style="background: linear-gradient(140deg, #C1440E 0%, #7A1E08 100%);">
+                <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                  <i class="fa-solid fa-bowl-food text-white" style="font-size: 5rem;"></i>
+                </div>
+                <img src="asserts/recipes2.avif"
+                     alt="Slow-cooked dal makhani in a clay pot"
+                     onerror="this.style.display='none'">
+              </div>
+
+              <div class="mt-6 grid grid-cols-3 gap-3">
+                <div class="text-center p-3 rounded-lg border border-app">
+                  <p class="small-caps mb-1">Prep</p>
+                  <p class="text-sm font-semibold">15 min</p>
+                </div>
+                <div class="text-center p-3 rounded-lg border border-app">
+                  <p class="small-caps mb-1">Cook</p>
+                  <p class="text-sm font-semibold">45 min</p>
+                </div>
+                <div class="text-center p-3 rounded-lg border border-app">
+                  <p class="small-caps mb-1">Serves</p>
+                  <p class="text-sm font-semibold">4</p>
+                </div>
+              </div>
+
+              <div class="mt-6 rounded-2xl border border-app bg-app-subtle p-5">
+                <p class="small-caps mb-3">Best served with</p>
+                <ul class="flex flex-col gap-2.5 mb-5">
+                  <li class="flex items-center gap-3 text-sm">
+                    <i class="fa-solid fa-check text-xs t-brand"></i>
+                    <span class="t-muted">Fresh tandoori roti, straight off the flame</span>
+                  </li>
+                  <li class="flex items-center gap-3 text-sm">
+                    <i class="fa-solid fa-check text-xs t-brand"></i>
+                    <span class="t-muted">Steamed basmati rice with a spoon of ghee</span>
+                  </li>
+                  <li class="flex items-center gap-3 text-sm">
+                    <i class="fa-solid fa-check text-xs t-brand"></i>
+                    <span class="t-muted">A side of pickled onion and green chili</span>
+                  </li>
+                </ul>
+                <p class="hand text-2xl pt-4 border-t border-app">— best with fresh roti —</p>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center gap-4 mb-5">
+                <span class="recipe-number">01</span>
+                <div>
+                  <p class="small-caps">Main · Vegetarian</p>
+                </div>
+              </div>
+
+              <h3 class="text-3xl md:text-4xl mb-3 leading-tight">Slow-Cooked Dal Makhani</h3>
+              <p class="recipe-body italic mb-8" style="font-family:'Lora',serif;">
+                Black lentils simmered overnight, finished with a spoon of
+                Garuda Masala at the very end to keep its aroma intact.
+              </p>
+
+              <h4 class="small-caps mb-4">Ingredients</h4>
+              <ul class="ingredient-list mb-10">
+                <li><span class="qty">1 cup</span><span>Whole black urad dal, soaked overnight</span></li>
+                <li><span class="qty">¼ cup</span><span>Rajma (kidney beans), soaked overnight</span></li>
+                <li><span class="qty">2 tbsp</span><span>Ghee or unsalted butter</span></li>
+                <li><span class="qty">1 tsp</span><span>Cumin seeds</span></li>
+                <li><span class="qty">2 tsp</span><span>Garuda Masala (our signature blend)</span></li>
+                <li><span class="qty">½ cup</span><span>Fresh cream, plus extra for serving</span></li>
+                <li><span class="qty">to taste</span><span>Salt and a pinch of sugar</span></li>
+              </ul>
+
+              <h4 class="small-caps mb-2">Method</h4>
+              <div>
+                <div class="method-step">
+                  <span class="step-num">i.</span>
+                  <p class="recipe-body">
+                    Drain the soaked dal and rajma. Pressure cook with 4 cups
+                    of water and a pinch of salt for 8–10 whistles until
+                    completely soft.
+                  </p>
+                </div>
+                <div class="method-step">
+                  <span class="step-num">ii.</span>
+                  <p class="recipe-body">
+                    In a heavy pot, heat the ghee and add cumin seeds. Once
+                    they crackle, add the cooked dal and mash lightly with
+                    the back of a spoon.
+                  </p>
+                </div>
+                <div class="method-step">
+                  <span class="step-num">iii.</span>
+                  <p class="recipe-body">
+                    Simmer on low for 45 minutes, stirring occasionally.
+                    The dal should darken and thicken — this is the whole
+                    point of the recipe.
+                  </p>
+                </div>
+                <div class="method-step">
+                  <span class="step-num">iv.</span>
+                  <p class="recipe-body">
+                    <strong>Take off the heat.</strong> Stir in the Garuda
+                    Masala and cream. Serve immediately with a swirl of
+                    extra cream on top.
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-8 pt-6 border-t border-app flex items-center justify-between flex-wrap gap-4">
+                <p class="hand text-3xl">— Rukmini's note: add the masala last —</p>
+                <a href="products.html" class="btn btn-primary">
+                  <i class="fa-solid fa-jar text-xs"></i>
+                  Buy Garuda Masala
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3 — RECIPE INDEX (with expandable list)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section id="index" class="py-20 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="small-caps block mb-3">The Index</span>
+          <h2 class="text-3xl md:text-4xl leading-tight mb-4">
+            Six recipes from
+            <span class="italic t-brand">this week</span>.
+          </h2>
+          <div class="ornament my-6">
+            <i class="fa-solid fa-utensils text-sm"></i>
+          </div>
+          <p class="recipe-body">
+            Filter by what you're cooking. Every recipe uses one of our jars —
+            click through to buy the exact blend.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2.5 mb-12 w-fit mx-auto">
+          <button class="filter-tab is-active"><i class="fa-solid fa-star text-[10px]"></i> All recipes</button>
+          <button class="filter-tab"><i class="fa-solid fa-bowl-food text-[10px]"></i> Mains</button>
+          <button class="filter-tab"><i class="fa-solid fa-carrot text-[10px]"></i> Sides</button>
+          <button class="filter-tab"><i class="fa-solid fa-mug-hot text-[10px]"></i> Drinks</button>
+          <button class="filter-tab"><i class="fa-solid fa-cookie-bite text-[10px]"></i> Sweets</button>
+          <button class="filter-tab"><i class="fa-solid fa-jar text-[10px]"></i> Preserves</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+
+          <!-- Recipe 2 -->
+          <article class="recipe-card">
+            <div class="corner-tape" style="background: rgba(107,122,63,0.32);"></div>
+            <div class="flex items-center gap-4 mb-4">
+              <span class="recipe-number" style="background: var(--olive);">02</span>
+              <p class="small-caps">Side · 30 min</p>
+            </div>
+            <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #6B7A3F 0%, #3F5220 100%);">
+              <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                <i class="fa-solid fa-carrot text-white" style="font-size: 5rem;"></i>
+              </div>
+              <img src="asserts/recipes3.webp"
+                   alt="Spiced roasted root vegetables" onerror="this.style.display='none'">
+            </div>
+            <h3 class="text-2xl mb-2 min-h-[64px]">Spiced Roast Roots</h3>
+            <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+              Carrots, beets, and sweet potato tossed in olive oil and a
+              heavy dusting of Garuda before roasting.
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+              <span class="small-caps">4 ingredients · 6 steps</span>
+              <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                Read <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Recipe 3 -->
+          <article class="recipe-card">
+            <div class="corner-tape" style="background: rgba(193,68,14,0.32);"></div>
+            <div class="flex items-center gap-4 mb-4">
+              <span class="recipe-number">03</span>
+              <p class="small-caps">Drink · 10 min</p>
+            </div>
+            <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #C1440E 0%, #7A1E08 100%);">
+              <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                <i class="fa-solid fa-mug-hot text-white" style="font-size: 5rem;"></i>
+              </div>
+              <img src="asserts/recipes4.avif"
+                   alt="Evening masala chai in clay cups" onerror="this.style.display='none'">
+            </div>
+            <h3 class="text-2xl mb-2 min-h-[64px]">Evening Masala Chai</h3>
+            <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+              Assam black tea, full-fat milk, and a quarter spoon of Garuda
+              simmered low — our most-brewed house recipe.
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+              <span class="small-caps">5 ingredients · 4 steps</span>
+              <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                Read <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Recipe 4 -->
+          <article class="recipe-card">
+            <div class="corner-tape" style="background: rgba(217,119,6,0.32);"></div>
+            <div class="flex items-center gap-4 mb-4">
+              <span class="recipe-number" style="background: var(--amber);">04</span>
+              <p class="small-caps">Main · 40 min</p>
+            </div>
+            <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #D97706 0%, #B26A05 100%);">
+              <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                <i class="fa-solid fa-bowl-food text-white" style="font-size: 5rem;"></i>
+              </div>
+              <img src="asserts/recipes5.avif"
+                   alt="Turmeric coconut curry in a bowl" onerror="this.style.display='none'">
+            </div>
+            <h3 class="text-2xl mb-2 min-h-[64px]">Turmeric Coconut Curry</h3>
+            <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+              A bright, one-pot curry built around our Haldi Gold blend.
+              Ready in the time it takes rice to cook.
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+              <span class="small-caps">8 ingredients · 5 steps</span>
+              <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                Read <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Recipe 5 -->
+          <article class="recipe-card">
+            <div class="corner-tape" style="background: rgba(193,68,14,0.32);"></div>
+            <div class="flex items-center gap-4 mb-4">
+              <span class="recipe-number">05</span>
+              <p class="small-caps">Preserve · 2 hours</p>
+            </div>
+            <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #C1440E 0%, #7A1E08 100%);">
+              <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                <i class="fa-solid fa-jar text-white" style="font-size: 5rem;"></i>
+              </div>
+              <img src="asserts/recipes6.avif"
+                   alt="Homemade tomato chutney in glass jars"
+                   onerror="this.style.display='none'">
+            </div>
+            <h3 class="text-2xl mb-2 min-h-[64px]">Home Tomato Chutney</h3>
+            <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+              The same recipe we use at the workshop, scaled down for a
+              home kitchen. Makes four 240g jars.
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+              <span class="small-caps">9 ingredients · 7 steps</span>
+              <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                Read <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Recipe 6 -->
+          <article class="recipe-card">
+            <div class="corner-tape" style="background: rgba(107,122,63,0.32);"></div>
+            <div class="flex items-center gap-4 mb-4">
+              <span class="recipe-number" style="background: var(--olive);">06</span>
+              <p class="small-caps">Sweet · 1 hour</p>
+            </div>
+            <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #6B7A3F 0%, #3F5220 100%);">
+              <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                <i class="fa-solid fa-ice-cream text-white" style="font-size: 5rem;"></i>
+              </div>
+              <img src="asserts/recipes7.avif"
+                   alt="Cardamom rice pudding in clay bowls" onerror="this.style.display='none'">
+            </div>
+            <h3 class="text-2xl mb-2 min-h-[64px]">Cardamom Rice Pudding</h3>
+            <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+              Rice simmered low in milk, cardamom, and a spoon of Chai
+              Cardamom blend. Cooled and served cold.
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+              <span class="small-caps">6 ingredients · 5 steps</span>
+              <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                Read <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Recipe 7 -->
+          <article class="recipe-card">
+            <div class="corner-tape" style="background: rgba(217,119,6,0.32);"></div>
+            <div class="flex items-center gap-4 mb-4">
+              <span class="recipe-number" style="background: var(--amber);">07</span>
+              <p class="small-caps">Side · 15 min</p>
+            </div>
+            <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #D97706 0%, #B26A05 100%);">
+              <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                <i class="fa-solid fa-leaf text-white" style="font-size: 5rem;"></i>
+              </div>
+              <img src="asserts/recipes8.avif"
+                   alt="Fresh cucumber raita with herbs" onerror="this.style.display='none'">
+            </div>
+            <h3 class="text-2xl mb-2 min-h-[64px]">Cooling Cucumber Raita</h3>
+            <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+              Yogurt, cucumber, and a pinch of Garuda — the antidote to
+              anything spicy on the table.
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+              <span class="small-caps">5 ingredients · 3 steps</span>
+              <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                Read <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Hidden extra recipes -->
+        <div id="extra-recipes" class="hidden mt-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+
+            <!-- Recipe 8 -->
+            <article class="recipe-card">
+              <div class="corner-tape" style="background: rgba(193,68,14,0.32);"></div>
+              <div class="flex items-center gap-4 mb-4">
+                <span class="recipe-number">08</span>
+                <p class="small-caps">Main · 35 min</p>
+              </div>
+              <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #C1440E 0%, #7A1E08 100%);">
+                <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                  <i class="fa-solid fa-bowl-food text-white" style="font-size: 5rem;"></i>
+                </div>
+                <img src="asserts/recipes9.avif"
+                     alt="Spiced chickpea curry" onerror="this.style.display='none'">
+              </div>
+              <h3 class="text-2xl mb-2 min-h-[64px]">Chickpea Masala</h3>
+              <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+                A weeknight favourite. Chickpeas simmered in a tomato base
+                with a heavy spoon of Garuda Masala.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+                <span class="small-caps">7 ingredients · 5 steps</span>
+                <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                  Read <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- Recipe 9 -->
+            <article class="recipe-card">
+              <div class="corner-tape" style="background: rgba(107,122,63,0.32);"></div>
+              <div class="flex items-center gap-4 mb-4">
+                <span class="recipe-number" style="background: var(--olive);">09</span>
+                <p class="small-caps">Preserve · 3 hours</p>
+              </div>
+              <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #6B7A3F 0%, #3F5220 100%);">
+                <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                  <i class="fa-solid fa-jar text-white" style="font-size: 5rem;"></i>
+                </div>
+                <img src="asserts/recipes10.avif"
+                     alt="Mango chutney in jars" onerror="this.style.display='none'">
+              </div>
+              <h3 class="text-2xl mb-2 min-h-[64px]">Raw Mango Chutney</h3>
+              <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+                Sharp green mangoes cooked down with fenugreek and mustard
+                seeds. The bright side of a summer pantry.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+                <span class="small-caps">8 ingredients · 6 steps</span>
+                <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                  Read <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- Recipe 10 -->
+            <article class="recipe-card">
+              <div class="corner-tape" style="background: rgba(217,119,6,0.32);"></div>
+              <div class="flex items-center gap-4 mb-4">
+                <span class="recipe-number" style="background: var(--amber);">10</span>
+                <p class="small-caps">Drink · 5 min</p>
+              </div>
+              <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #D97706 0%, #B26A05 100%);">
+                <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                  <i class="fa-solid fa-mug-hot text-white" style="font-size: 5rem;"></i>
+                </div>
+                <img src="asserts/recipes11.avif"
+                     alt="Iced turmeric latte" onerror="this.style.display='none'">
+              </div>
+              <h3 class="text-2xl mb-2 min-h-[64px]">Iced Haldi Latte</h3>
+              <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+                Cold milk, a pinch of Haldi Gold, honey, and ice. The summer
+                version of our everyday turmeric drink.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+                <span class="small-caps">4 ingredients · 3 steps</span>
+                <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                  Read <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- Recipe 11 -->
+            <article class="recipe-card">
+              <div class="corner-tape" style="background: rgba(193,68,14,0.32);"></div>
+              <div class="flex items-center gap-4 mb-4">
+                <span class="recipe-number">11</span>
+                <p class="small-caps">Sweet · 45 min</p>
+              </div>
+              <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #C1440E 0%, #7A1E08 100%);">
+                <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                  <i class="fa-solid fa-cookie-bite text-white" style="font-size: 5rem;"></i>
+                </div>
+                <img src="asserts/recipes12.avif"
+                     alt="Cardamom shortbread cookies" onerror="this.style.display='none'">
+              </div>
+              <h3 class="text-2xl mb-2 min-h-[64px]">Cardamom Shortbread</h3>
+              <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+                Buttery shortbread scented with freshly ground cardamom.
+                Best with a cup of black tea.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+                <span class="small-caps">6 ingredients · 5 steps</span>
+                <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                  Read <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- Recipe 12 -->
+            <article class="recipe-card">
+              <div class="corner-tape" style="background: rgba(107,122,63,0.32);"></div>
+              <div class="flex items-center gap-4 mb-4">
+                <span class="recipe-number" style="background: var(--olive);">12</span>
+                <p class="small-caps">Side · 20 min</p>
+              </div>
+              <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #6B7A3F 0%, #3F5220 100%);">
+                <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                  <i class="fa-solid fa-leaf text-white" style="font-size: 5rem;"></i>
+                </div>
+                <img src="asserts/recipes13.avif"
+                     alt="Green bean poriyal" onerror="this.style.display='none'">
+              </div>
+              <h3 class="text-2xl mb-2 min-h-[64px]">Green Bean Poriyal</h3>
+              <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+                A South Indian dry curry — green beans, coconut, and a heavy
+                pinch of mustard seeds.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+                <span class="small-caps">5 ingredients · 4 steps</span>
+                <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                  Read <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+            <!-- Recipe 13 — Fixed image -->
+            <article class="recipe-card">
+              <div class="corner-tape" style="background: rgba(217,119,6,0.32);"></div>
+              <div class="flex items-center gap-4 mb-4">
+                <span class="recipe-number" style="background: var(--amber);">13</span>
+                <p class="small-caps">Preserve · 90 min</p>
+              </div>
+              <div class="recipe-img mb-5" style="background: linear-gradient(140deg, #D97706 0%, #B26A05 100%);">
+                <div class="absolute inset-0 flex items-center justify-center opacity-25">
+                  <i class="fa-solid fa-jar text-white" style="font-size: 5rem;"></i>
+                </div>
+                <img src="asserts/recipes14.avif"
+                     alt="Green tomato chutney in glass jars"
+                     onerror="this.style.display='none'">
+              </div>
+              <h3 class="text-2xl mb-2 min-h-[64px]">Green Tomato Chutney</h3>
+              <p class="recipe-body text-sm mb-5 italic" style="font-family:'Lora',serif;">
+                End-of-season tomatoes turned into a sharp, bright chutney
+                that keeps all winter.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-app mt-auto">
+                <span class="small-caps">8 ingredients · 6 steps</span>
+                <a href="#" class="text-sm font-semibold t-brand transition hover:opacity-75 inline-flex items-center gap-1.5">
+                  Read <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Toggle button -->
+        <div class="text-center mt-14">
+          <button id="load-more-btn" class="btn btn-ghost" type="button">
+            <i class="fa-solid fa-book text-xs" id="load-more-icon"></i>
+            <span id="load-more-text">See all recipes</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 4 — SPLIT STORY
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-start">
+
+          <div class="lg:sticky lg:top-28">
+            <span class="small-caps block mb-3">Technique Note</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl leading-[1.1] mb-6">
+              Why we add the
+              <span class="italic t-brand">masala</span>
+              off the heat.
+            </h2>
+            <p class="recipe-body mb-6">
+              Most recipes tell you to add spice while the pot is bubbling.
+              We do the opposite. Ground spices lose their volatile oils
+              above 180°F — the same oils that give our blends their
+              distinctive aroma.
+            </p>
+            <p class="recipe-body mb-8">
+              Stir them in <strong>after you've turned off the flame</strong>
+              and the residual heat does the work. Your kitchen will smell
+              different. Your dish will taste the way we intended.
+            </p>
+
+            <div class="rounded-2xl border border-app bg-surface p-6 relative overflow-hidden">
+              <div class="absolute -top-6 -right-6 w-32 h-32 rounded-full" style="background: var(--brand-soft); opacity: 0.6;"></div>
+              <div class="relative z-10">
+                <p class="hand text-3xl mb-2">— a small rule —</p>
+                <p class="text-sm t-muted leading-relaxed">
+                  This is the single most important habit in our kitchen.
+                  It applies to every recipe on this page.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6">
+
+            <div class="grid grid-cols-[100px_1fr] gap-6 items-center rounded-2xl border border-app bg-surface p-6">
+              <div class="recipe-img" style="aspect-ratio: 1/1;">
+                <img src="asserts/products10.avif"
+                     alt="Toasting whole spices" onerror="this.style.display='none'">
+              </div>
+              <div>
+                <p class="small-caps mb-2">Step 01</p>
+                <h3 class="text-xl mb-2">Toast the whole</h3>
+                <p class="recipe-body text-sm">
+                  Before anything is ground, we toast whole spices in a dry
+                  pan. You'll hear them pop — that's the signal to stop.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-[100px_1fr] gap-6 items-center rounded-2xl border border-app bg-surface p-6">
+              <div class="recipe-img" style="aspect-ratio: 1/1;">
+                <img src="asserts/index3.avif"
+                     alt="Stone grinding spices" onerror="this.style.display='none'">
+              </div>
+              <div>
+                <p class="small-caps mb-2">Step 02</p>
+                <h3 class="text-xl mb-2">Grind in small batches</h3>
+                <p class="recipe-body text-sm">
+                  Stone-ground spices keep their texture and heat. We never
+                  grind more than a week's worth in advance.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-[100px_1fr] gap-6 items-center rounded-2xl border border-app bg-surface p-6">
+              <div class="recipe-img" style="aspect-ratio: 1/1;">
+                <img src="asserts/index5.avif"
+                     alt="Adding fresh herbs to finish a dish" onerror="this.style.display='none'">
+              </div>
+              <div>
+                <p class="small-caps mb-2">Step 03</p>
+                <h3 class="text-xl mb-2">Add after the flame</h3>
+                <p class="recipe-body text-sm">
+                  The final gesture. Stir the masala in when the pot is
+                  still hot but no longer bubbling — and cover it for two
+                  minutes before serving.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 5 — COOK'S NOTES
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-10">
+            <span class="small-caps block mb-3">Cook's Notes</span>
+            <h2 class="text-3xl md:text-4xl leading-tight">
+              A letter from the kitchen.
+            </h2>
+          </div>
+
+          <div class="rounded-3xl border border-app bg-surface p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-6 right-6 hand text-5xl" style="color: var(--brand-soft);">"</div>
+
+            <div class="recipe-body">
+              <p class="mb-5"><strong>To the cook who just opened this page,</strong></p>
+
+              <p class="mb-5">
+                Recipe writing is not like other writing. It assumes the reader
+                is standing in a kitchen with dirty hands, one eye on the pot,
+                and no patience for extra words. So we try to write recipes
+                like we'd want to receive them — short, precise, and honest
+                about where the tricky parts are.
+              </p>
+
+              <p class="mb-5">
+                Three things to know before you start:
+              </p>
+
+              <p class="mb-3">
+                <strong>1. Salt early, spice late.</strong> Salt is a
+                building block. Spice is a finish. Adding them at the wrong
+                time is the most common reason a home dish tastes flat.
+              </p>
+
+              <p class="mb-3">
+                <strong>2. Use a heavy pot.</strong> This is not a snob
+                thing. Thin pots burn at the base before the top is ready.
+                A cheap heavy-bottomed pan beats an expensive thin one.
+              </p>
+
+              <p class="mb-6">
+                <strong>3. Taste as you go.</strong> A recipe is a
+                direction, not a law. If your tomatoes are sweeter than
+                ours, use less jaggery. Trust your tongue.
+              </p>
+
+              <p class="mb-6">
+                And if something doesn't work — write to us. Every batch of
+                our blends has been adjusted because a customer wrote in
+                about a dish they made.
+              </p>
+
+              <div class="flex items-end justify-between gap-6 pt-6 border-t border-app">
+                <div>
+                  <p class="small-caps mb-2">From the workshop</p>
+                  <p class="hand text-3xl">Meera &amp; Arjun</p>
+                </div>
+                <div class="w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold" style="background: var(--brand); color: #fff; font-family:'Playfair Display',serif;">SR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 6 — CTA (Recipe kit)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-16 items-center">
+
+          <div>
+            <p class="hand text-3xl mb-3">— cook the whole page —</p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl leading-[1.1] mb-6">
+              Order the
+              <span class="italic t-brand">recipe kit</span>
+              once.
+            </h2>
+            <p class="recipe-body text-lg mb-8 max-w-xl">
+              All four blends used across these twenty-two recipes — Garuda
+              Masala, Haldi Gold, Chai Cardamom, and our house mustard. Packed
+              in a single kraft box with a printed recipe card for each.
+            </p>
+            <div class="flex flex-wrap gap-3 mb-8">
+              <a href="products.html" class="btn btn-primary">
+                <i class="fa-solid fa-box text-xs"></i>
+                Order the kit — $42
+              </a>
+              <a href="products.html" class="btn btn-ghost">
+                <i class="fa-solid fa-jar text-xs"></i>
+                Buy individually
+              </a>
+            </div>
+
+            <div class="flex flex-wrap gap-x-8 gap-y-3 pt-6 border-t border-app">
+              <div class="flex items-center gap-2 text-sm t-muted">
+                <i class="fa-solid fa-check t-brand text-xs"></i>
+                Free shipping over $40
+              </div>
+              <div class="flex items-center gap-2 text-sm t-muted">
+                <i class="fa-solid fa-check t-brand text-xs"></i>
+                Recipe cards included
+              </div>
+              <div class="flex items-center gap-2 text-sm t-muted">
+                <i class="fa-solid fa-check t-brand text-xs"></i>
+                Gift-ready packaging
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="rounded-3xl overflow-hidden relative" style="border: 1px solid var(--border); aspect-ratio: 1/1; background: linear-gradient(150deg, #C1440E 0%, #7A1E08 100%);">
+              <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 16px);"></div>
+              <div class="absolute inset-0 flex items-center justify-center opacity-15">
+                <i class="fa-solid fa-box text-white" style="font-size: 16rem;"></i>
+              </div>
+
+              <div class="absolute top-6 left-6 px-4 py-2 rounded-full" style="background: rgba(240,178,90,0.95); color: #2B1204;">
+                <span class="text-[10px] font-bold tracking-[0.2em] uppercase">Recipe Kit</span>
+              </div>
+
+              <div class="absolute bottom-6 left-6 right-6">
+                <p class="text-[10px] font-bold tracking-[0.22em] uppercase mb-2" style="color: #F0B25A;">Contains 4 jars</p>
+                <p class="text-2xl text-white mb-1" style="font-family:'Playfair Display',serif;">The Cook's Box</p>
+                <p class="text-sm" style="color: rgba(255,255,255,0.75);">22 recipes · 4 blends · 1 kraft box</p>
+              </div>
+            </div>
+
+            <!-- <div class="absolute -bottom-5 -right-5 bg-surface border border-app rounded-2xl px-5 py-4 shadow-xl">
+              <p class="hand text-2xl">save $8</p>
+              <p class="text-[10px] t-subtle uppercase tracking-wider mt-1">vs. buying separately</p>
+            </div> -->
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ MOBILE DRAWER ═══════════════════════ -->
+  <div id="mobile-drawer" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+    <div id="drawer-panel" class="absolute top-0 left-0 right-0 max-h-[90vh] overflow-y-auto p-6 shadow-2xl translate-y-[-100%] transition-transform duration-300 ease-out xl:hidden">
+
+      <div class="flex items-center justify-between pb-5 border-b border-app">
+        <a href="index.html" class="brand-lockup">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+        <button id="mobile-menu-close" class="btn-icon" aria-label="Close menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <nav class="mt-2">
+        <button class="mob-accordion" id="mob-home-toggle">
+          Home 1
+          <svg class="w-4 h-4 transition-transform duration-200" id="mob-home-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="mob-home-menu" class="hidden pl-4 py-1">
+          <a href="index.html" class="mob-link border-0 text-sm t-muted">Home 1</a>
+          <a href="home2.html" class="mob-link border-0 text-sm t-muted">Home 2</a>
+        </div>
+
+        <a href="about.html" class="mob-link">About Us</a>
+        <a href="products.html" class="mob-link">Products</a>
+        <a href="recipes.html" class="mob-link">Recipes</a>
+        <a href="journal.html" class="mob-link">Journal</a>
+        <a href="contact.html" class="mob-link">Contact</a>
+      </nav>
+
+      <div class="flex items-center justify-between mt-6 pt-5 border-t border-app">
+        <button id="drawer-theme-toggle" class="btn-icon" aria-label="Toggle theme">
+          <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+        <button id="mobile-lang-icon-drawer" class="btn-icon" aria-label="Toggle direction">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+        </button>
+      </div>
+
+      <div class="mt-5 flex justify-center">
+        <a href="login.html" class="btn btn-primary w-full max-w-[240px] justify-center">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer id="site-footer" class="pt-16">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14">
+
+        <div class="lg:col-span-4">
+          <a href="index.html" class="brand-lockup mb-5">
+            <span class="foot-brand-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+                <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+                <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span>
+              <span class="foot-wordmark">SPICE ROUTE</span>
+              <span class="foot-tagline block">Heritage Blends</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed max-w-sm" style="color: var(--footer-muted);">
+            Handcrafted spice blends and small-batch condiments from heirloom recipes —
+            sun-dried, stone-ground, and delivered to your kitchen.
+          </p>
+          <div class="flex gap-2 mt-6">
+            <a href="#" class="foot-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="foot-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="foot-social" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Company</h4>
+          <ul class="flex flex-col">
+            <li><a href="about.html" class="foot-link">About Us</a></li>
+            <li><a href="process.html" class="foot-link">Our Process</a></li>
+            <li><a href="journal.html" class="foot-link">Journal</a></li>
+            <li><a href="contact.html" class="foot-link">Contact</a></li>
+            <li><a href="recipes.html" class="foot-link">Recipes</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Shop</h4>
+          <ul class="flex flex-col">
+            <li><a href="products.html" class="foot-link">Whole Spices</a></li>
+            <li><a href="products.html" class="foot-link">Ground Blends</a></li>
+            <li><a href="products.html" class="foot-link">Signature Mixes</a></li>
+            <li><a href="products.html" class="foot-link">Gift Sets</a></li>
+            <li><a href="products.html" class="foot-link">New Arrivals</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-4">
+          <h4 class="foot-heading">Get in Touch</h4>
+          <div class="flex flex-col gap-1 mb-6">
+            <a href="tel:+18005550199" class="foot-contact"><i class="fa-solid fa-phone"></i> +1 (800) 555-0199</a>
+            <a href="mailto:hello@spiceroute.com" class="foot-contact"><i class="fa-solid fa-envelope"></i> hello@spiceroute.com</a>
+            <span class="foot-contact"><i class="fa-solid fa-location-dot"></i> 12 Spice Market Lane, Cochin</span>
+          </div>
+
+          <h4 class="foot-heading">Newsletter</h4>
+          <form class="flex gap-2" onsubmit="event.preventDefault();">
+            <input type="email" class="foot-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary px-5">
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="foot-bottom py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs" style="color: var(--footer-muted);">
+          © 2026 SPICE ROUTE. All rights reserved.
+        </p>
+        <div class="flex items-center gap-6 text-xs" style="color: var(--footer-muted);">
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+          <a href="#" class="hover:text-white transition">Shipping</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+      const html = document.documentElement;
+
+      const applyTheme = (t) => {
+        html.setAttribute('data-theme', t);
+        document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', t === 'dark'));
+        document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', t === 'light'));
+      };
+      const setTheme = (t) => { localStorage.setItem('theme', t); applyTheme(t); };
+      applyTheme(localStorage.getItem('theme') || 'light');
+
+      ['theme-toggle', 'drawer-theme-toggle'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          setTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        });
+      });
+
+      const applyDir = (d) => html.setAttribute('dir', d === 'ar' ? 'rtl' : 'ltr');
+      applyDir(localStorage.getItem('language') || 'en');
+      ['lang-icon', 'mobile-lang-icon-drawer'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          const next = (localStorage.getItem('language') === 'ar') ? 'en' : 'ar';
+          localStorage.setItem('language', next);
+          applyDir(next);
+        });
+      });
+
+      const drawer = document.getElementById('mobile-drawer');
+      const panel = document.getElementById('drawer-panel');
+      const backdrop = document.getElementById('drawer-backdrop');
+
+      const openDrawer = () => {
+        drawer.classList.remove('pointer-events-none');
+        panel.classList.remove('translate-y-[-100%]');
+        backdrop.classList.add('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeDrawer = () => {
+        panel.classList.add('translate-y-[-100%]');
+        backdrop.classList.remove('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = '';
+        setTimeout(() => drawer.classList.add('pointer-events-none'), 300);
+      };
+
+      document.getElementById('mobile-menu-open')?.addEventListener('click', openDrawer);
+      document.getElementById('mobile-menu-close')?.addEventListener('click', closeDrawer);
+      backdrop?.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+      const bindAccordion = (btnId, menuId, iconId) => {
+        const btn = document.getElementById(btnId);
+        const menu = document.getElementById(menuId);
+        const icon = document.getElementById(iconId);
+        btn?.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          icon.classList.toggle('rotate-180');
+        });
+      };
+      bindAccordion('mob-home-toggle', 'mob-home-menu', 'mob-home-icon');
+
+      const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const href = (link.getAttribute('href') || '').toLowerCase();
+        if (href === current) link.classList.add('is-active');
+      });
+      if (['index.html', 'home2.html'].includes(current)) {
+        document.getElementById('nav-home-btn')?.classList.add('is-active');
+      }
+
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('is-active'));
+          tab.classList.add('is-active');
+        });
+      });
+
+      /* ── LOAD MORE RECIPES TOGGLE ── */
+      const loadMoreBtn = document.getElementById('load-more-btn');
+      const loadMoreText = document.getElementById('load-more-text');
+      const loadMoreIcon = document.getElementById('load-more-icon');
+      const extraRecipes = document.getElementById('extra-recipes');
+
+      loadMoreBtn?.addEventListener('click', () => {
+        const isHidden = extraRecipes.classList.contains('hidden');
+
+        if (isHidden) {
+          extraRecipes.classList.remove('hidden');
+          loadMoreText.textContent = 'Show fewer recipes';
+          loadMoreIcon.className = 'fa-solid fa-circle-chevron-up text-xs';
+          setTimeout(() => {
+            extraRecipes.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 50);
+        } else {
+          extraRecipes.classList.add('hidden');
+          loadMoreText.textContent = 'See all 22 recipes';
+          loadMoreIcon.className = 'fa-solid fa-book text-xs';
+          document.getElementById('index').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

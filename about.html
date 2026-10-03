@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="asserts/favicon_v2.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Caveat:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <title>Our Story — SPICE ROUTE</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.js"></script>
+
+  <style>
+    :root, html[data-theme='light'] {
+      --bg:            #FAF4E8;
+      --bg-subtle:     #F3EAD6;
+      --surface:       #FFFCF5;
+      --text:          #2B1E12;
+      --text-muted:    #6B4F38;
+      --text-subtle:   #9B7B63;
+      --border:        #E8DCC0;
+      --border-strong: #D4C4A0;
+      --brand:         #C1440E;
+      --brand-hover:   #A33A0C;
+      --brand-soft:    #FDF0E8;
+      --ink:           #1F1308;
+      --nav-hover:     #F3EAD6;
+      --footer-bg:     #2B1E12;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #C4A68B;
+    }
+    html[data-theme='dark'] {
+      --bg:            #1A120B;
+      --bg-subtle:     #24180F;
+      --surface:       #24180F;
+      --text:          #F5EDE6;
+      --text-muted:    #C4A68B;
+      --text-subtle:   #9B7B63;
+      --border:        #3D2A1C;
+      --border-strong: #5A3E2B;
+      --brand:         #E05E2A;
+      --brand-hover:   #F07545;
+      --brand-soft:    #3D1E0E;
+      --ink:           #F5EDE6;
+      --nav-hover:     #33221A;
+      --footer-bg:     #120C07;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #9B7B63;
+    }
+
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', 'Plus Jakarta Sans', serif;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .t-text { color: var(--text); }
+    .t-muted { color: var(--text-muted); }
+    .t-subtle { color: var(--text-subtle); }
+    .t-brand { color: var(--brand); }
+    .bg-app { background-color: var(--bg); }
+    .bg-app-subtle { background-color: var(--bg-subtle); }
+    .bg-surface { background-color: var(--surface); }
+    .bg-nav-hover { background-color: var(--nav-hover); }
+    .bg-brand-soft { background-color: var(--brand-soft); }
+    .border-app { border-color: var(--border); }
+    .border-strong { border-color: var(--border-strong); }
+
+    /* BODY TEXT — Lora serif for this page (different from others) */
+    .body-serif {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+    .body-serif strong {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* Handwritten annotations */
+    .hand {
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+      color: var(--brand);
+      line-height: 1.1;
+    }
+
+    /* Small caps label */
+    .small-caps {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+
+    /* Header */
+    #main-header {
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    html[data-theme='dark'] #main-header {
+      background: color-mix(in srgb, var(--bg) 84%, transparent);
+    }
+
+    .brand-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; transition: opacity 0.2s ease; }
+    .brand-lockup:hover { opacity: 0.85; }
+    .brand-mark {
+      position: relative; width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--brand) 0%, var(--brand-hover) 100%);
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 4px 14px -4px rgba(193, 68, 14, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .brand-mark::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, 0.4); }
+    .brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    .brand-wordmark { white-space: nowrap;
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px;
+      letter-spacing: -0.02em; line-height: 1; color: var(--text);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .brand-wordmark .sub {
+      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 9px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle);
+    }
+
+    .nav-link {
+      position: relative; display: inline-flex; align-items: center;
+      padding: 10px 18px; font-size: 15.5px; font-weight: 500; color: var(--text);
+      border-radius: 10px; text-decoration: none;
+      transition: color 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--brand); background: var(--nav-hover); }
+    .nav-link.is-active { color: var(--brand); font-weight: 600; }
+    .nav-link.is-active::after {
+      content: ''; position: absolute; left: 18px; right: 18px; bottom: 3px;
+      height: 2px; background: var(--brand); border-radius: 2px;
+    }
+
+    .dd { position: relative; }
+    .dd-menu {
+      position: absolute; top: calc(100% + 6px); left: 0; min-width: 180px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: 0 12px 32px -8px rgba(43, 30, 18, 0.14), 0 4px 12px -2px rgba(43, 30, 18, 0.06);
+      padding: 6px; opacity: 0; visibility: hidden; transform: translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 100;
+    }
+    .dd:hover .dd-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dd-menu a {
+      display: block; padding: 10px 14px; font-size: 14.5px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-radius: 8px;
+      transition: background 0.14s ease, color 0.14s ease; white-space: nowrap;
+    }
+    .dd-menu a:hover { background: var(--nav-hover); color: var(--brand); }
+    .dd-chevron { width: 12px; height: 12px; margin-left: 5px; transition: transform 0.2s ease; }
+    .dd:hover .dd-chevron { transform: rotate(180deg); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 11px 24px; border-radius: 11px; border: 1px solid transparent;
+      cursor: pointer; text-decoration: none; transition: all 0.18s ease;
+      white-space: nowrap; line-height: 1;
+    }
+    .btn-primary {
+      background: var(--brand); color: #fff;
+      box-shadow: 0 1px 2px rgba(43, 30, 18, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    .btn-primary:hover {
+      background: var(--brand-hover);
+      box-shadow: 0 8px 20px -6px rgba(193, 68, 14, 0.5);
+      transform: translateY(-1px);
+    }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
+    .btn-ghost:hover { background: var(--nav-hover); border-color: var(--text-subtle); }
+    .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; border-radius: 11px; color: var(--text-muted);
+      background: transparent; border: 1px solid var(--border); cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .btn-icon:hover { background: var(--nav-hover); color: var(--brand); border-color: var(--border-strong); }
+    .btn-icon svg { width: 19px; height: 19px; }
+
+    #site-footer { background: var(--footer-bg); color: var(--footer-text); }
+    #site-footer .foot-brand-mark {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #E05E2A 0%, #C1440E 100%);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px -4px rgba(224, 94, 42, 0.55); position: relative;
+    }
+    #site-footer .foot-brand-mark::before {
+      content: ''; position: absolute; inset: 6px; border-radius: 50%;
+      border: 1.5px dashed rgba(255, 255, 255, 0.4);
+    }
+    #site-footer .foot-brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    #site-footer .foot-wordmark {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px;
+      letter-spacing: -0.02em; color: #fff;
+    }
+    #site-footer .foot-tagline {
+      font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--footer-muted); font-weight: 500; margin-top: 4px;
+    }
+    .foot-heading {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin-bottom: 20px;
+    }
+    .foot-link {
+      display: inline-block; font-size: 15px; font-weight: 400;
+      color: var(--footer-muted); text-decoration: none; padding: 6px 0;
+      transition: color 0.16s ease, transform 0.16s ease;
+    }
+    .foot-link:hover { color: #E05E2A; transform: translateX(3px); }
+    .foot-social {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 11px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #F5EDE6; font-size: 15px; text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .foot-social:hover { background: #E05E2A; border-color: #E05E2A; color: #fff; transform: translateY(-2px); }
+    #site-footer .foot-input {
+      width: 100%; padding: 12px 16px; font-size: 15px; color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 11px; outline: none;
+      transition: all 0.18s ease;
+    }
+    #site-footer .foot-input::placeholder { color: var(--footer-muted); }
+    #site-footer .foot-input:focus {
+      background: rgba(255, 255, 255, 0.08); border-color: #E05E2A;
+      box-shadow: 0 0 0 3px rgba(224, 94, 42, 0.15);
+    }
+    .foot-contact {
+      display: flex; align-items: center; gap: 12px; font-size: 14.5px;
+      color: var(--footer-muted); text-decoration: none; padding: 5px 0;
+      transition: color 0.16s ease;
+    }
+    .foot-contact:hover { color: #E05E2A; }
+    .foot-contact i { color: #E05E2A; width: 16px; font-size: 14px; }
+    .foot-bottom { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+
+    #drawer-panel { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .mob-link {
+      display: block; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border);
+      transition: color 0.15s ease;
+    }
+    .mob-link:hover { color: var(--brand); }
+    .mob-accordion {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 100%; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); background: none; border: none;
+      border-bottom: 1px solid var(--border); cursor: pointer; text-align: left;
+    }
+    .mob-accordion:hover { color: var(--brand); }
+
+    html { scroll-behavior: smooth; }
+
+    /* ══════════════ ABOUT PAGE UNIQUE STYLES ══════════════ */
+
+    /* Parchment texture background */
+    .parchment {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 20% 15%, rgba(193,68,14,0.06) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(217,119,6,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(107,122,63,0.03) 0%, transparent 60%);
+    }
+
+    /* Photo frame — scrapbook style */
+    .photo-frame {
+      position: relative;
+      background: var(--surface);
+      padding: 12px 12px 40px;
+      box-shadow: 0 12px 32px -12px rgba(43,30,18,0.25), 0 2px 4px rgba(43,30,18,0.06);
+      border: 1px solid var(--border);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .photo-frame:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 44px -14px rgba(43,30,18,0.32), 0 4px 8px rgba(43,30,18,0.08);
+    }
+    .photo-frame img { display: block; width: 100%; }
+    .photo-frame .caption {
+      position: absolute;
+      bottom: 10px;
+      left: 16px;
+      right: 16px;
+      font-family: 'Caveat', cursive;
+      font-size: 20px;
+      color: var(--text-muted);
+      line-height: 1.1;
+    }
+
+    /* Wax seal */
+    .wax-seal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #C1440E 0%, #7A1E08 100%);
+      box-shadow: 0 6px 18px -6px rgba(122,30,8,0.6), inset 0 -3px 6px rgba(0,0,0,0.2), inset 0 3px 6px rgba(255,255,255,0.15);
+      color: #F5EDE6;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+      position: relative;
+      transform: rotate(-12deg);
+    }
+    .wax-seal::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255,255,255,0.35);
+    }
+
+    /* Letter card */
+    .letter-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 40px 34px;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(43,30,18,0.06);
+    }
+    .letter-card::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px dashed var(--border-strong);
+      border-radius: 2px;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    /* Ribbon / tape */
+    .tape {
+      position: absolute;
+      width: 90px;
+      height: 24px;
+      background: rgba(217, 119, 6, 0.35);
+      backdrop-filter: blur(1px);
+      transform: rotate(-8deg);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .tape::before, .tape::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 8px;
+      background: repeating-linear-gradient(45deg, rgba(255,255,255,0.4) 0 2px, transparent 2px 4px);
+    }
+    .tape::before { left: -6px; }
+    .tape::after { right: -6px; }
+
+    /* Vertical year rail */
+    .year-rail {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--brand);
+      font-size: 2.5rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    /* Pull-quote */
+    .pull-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1.4;
+      color: var(--text);
+      padding-left: 24px;
+      border-left: 3px solid var(--brand);
+    }
+
+    /* Ornamental divider — quill style */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--brand);
+    }
+    .ornament::before,
+    .ornament::after {
+      content: '';
+      height: 1px;
+      width: 80px;
+      background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+    }
+
+    /* Rounded image tile with frame effect */
+    .arch-frame {
+      border-radius: 200px 200px 12px 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <nav class="flex items-center justify-between h-[76px]">
+        <a href="index.html" class="brand-lockup" aria-label="SPICE ROUTE Home">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+
+        <div class="hidden xl:flex items-center gap-1">
+          <div class="dd">
+            <button class="nav-link" id="nav-home-btn">
+              Home 1
+              <svg class="dd-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="dd-menu">
+              <a href="index.html">Home 1</a>
+              <a href="home2.html">Home 2</a>
+            </div>
+          </div>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="recipes.html" class="nav-link">Recipes</a>
+          <a href="journal.html" class="nav-link">Journal</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="hidden xl:flex items-center gap-2.5">
+          <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme">
+            <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+          <button id="lang-icon" class="btn-icon" aria-label="Toggle direction">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+          </button>
+          <a href="login.html" class="btn btn-primary ml-2">Sign In</a>
+        </div>
+
+        <button id="mobile-menu-open" class="xl:hidden btn-icon" aria-label="Open menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="h-[76px]"></div>
+
+  <main class="flex-grow">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 1 — HERO (Letter-style opening)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="parchment pt-10 pb-20 relative overflow-hidden">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center">
+
+          <div class="max-w-2xl">
+            <!-- Chapter marker -->
+            <div class="flex items-center gap-4 mb-8">
+              <span class="small-caps">Chapter I</span>
+              <span class="h-px w-16" style="background: var(--border-strong);"></span>
+              <span class="small-caps">Est. 1998</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6">
+              A kitchen
+              <span class="italic t-brand">ledger</span><br>
+              began this.
+            </h1>
+
+            <p class="body-serif mb-8">
+              In the autumn of 1998, our grandmother started writing down every spice she
+              bought, who grew it, and what she cooked with it. Four notebooks and
+              twenty-four years later, that ledger is still open — and so are we.
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+              <a href="#story" class="btn btn-primary">
+                <i class="fa-solid fa-book-open text-xs"></i>
+                Read our story
+              </a>
+              <a href="contact.html" class="btn btn-ghost">
+                <i class="fa-solid fa-feather-pointed text-xs"></i>
+                Write to us
+              </a>
+            </div>
+          </div>
+
+          <!-- Photo frame cluster -->
+          <div class="relative">
+            <!-- Main frame -->
+            <div class="photo-frame rotate-[-2deg] max-w-[360px] mx-auto lg:mx-0">
+              <div class="tape" style="top: -10px; left: 20px;"></div>
+              <img src="asserts/about1.avif"
+                   alt="Hands sorting whole spices on a wooden table"
+                   onerror="this.style.display='none'">
+              <p class="caption">Nellore market, 1998.</p>
+            </div>
+
+            <!-- Small overlapped frame -->
+            <div class="photo-frame rotate-[3deg] absolute -bottom-10 right-0 w-[200px] hidden sm:block">
+              <div class="tape" style="top: -10px; right: 20px; left: auto;"></div>
+              <img src="asserts/about2.avif"
+                   alt="Copper pot on the workshop stove"
+                   onerror="this.style.display='none'">
+              <p class="caption">First workshop, Cochin.</p>
+            </div>
+
+            
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 2 — THE LETTER (single column, letter-style)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section id="story" class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[120px_1fr_120px] gap-8 items-start">
+
+          <!-- Left rail — year -->
+          <div class="hidden lg:block sticky top-28">
+            <p class="small-caps mb-4">We are here</p>
+            <p class="year-rail">1998</p>
+            <div class="h-px w-16 my-6" style="background: var(--border-strong);"></div>
+            <p class="small-caps mb-4">—</p>
+            <p class="year-rail" style="opacity: 0.5;">2026</p>
+          </div>
+
+          <!-- Letter body -->
+          <div class="max-w-2xl mx-auto">
+            <div class="letter-card">
+              <div class="flex items-center gap-3 mb-6">
+                
+                <div>
+                  <p class="small-caps">Cochin, Kerala</p>
+                  <p class="hand text-xl t-brand">Monday morning, still.</p>
+                </div>
+              </div>
+
+              <p class="body-serif mb-6">
+                <strong>Dear friend,</strong>
+              </p>
+
+              <p class="body-serif mb-6">
+                Our grandmother, <strong>Rukmini Nair</strong>, was not a spice trader.
+                She was a schoolteacher who kept a small kitchen garden and an even
+                smaller notebook. In it she wrote down what she'd planted, what she'd
+                bought at the market, and — always in the margins — who had grown it.
+              </p>
+
+              <p class="body-serif mb-6">
+                That notebook became a habit. Every Sunday she would walk to the same
+                three stalls at the market, taste whatever was new, and add a line
+                to the ledger. The stallholders began to know her by name. They would
+                set aside a sack of cardamom the week before it was ready, knowing she
+                would come for it.
+              </p>
+
+              <div class="pull-quote my-10">
+                "Spices don't need to be mysterious. They just need to be honest."
+              </div>
+
+              <p class="body-serif mb-6">
+                When her daughter — our mother — took over the notebook in 2010,
+                the three stalls had grown to <strong>thirty-two farms</strong>. Not
+                because we went looking, but because they kept finding us. A nephew
+                of a grower would write a letter. A neighbor would drop off a sack
+                of turmeric. The network grew like that — one conversation at a time.
+              </p>
+
+              <p class="body-serif mb-6">
+                Today, SPICE ROUTE runs a workshop that looks nothing like the original
+                kitchen. But the ledger is still open. Every jar we sell — from the
+                tomato chutney to the twenty-four-month aged pickle — is still
+                numbered the way Rukmini numbered hers. The lid of every jar carries
+                a batch number and a date. Look at it and you'll know exactly which
+                week of which year your jar was made.
+              </p>
+
+              <p class="body-serif mb-8">
+                We don't write marketing copy. We write <strong>letters like this one</strong>.
+                If you've read this far, we owe you a tasting spoon.
+              </p>
+
+              <div class="flex items-end justify-between gap-6 pt-6 border-t border-app">
+                <div>
+                  <p class="small-caps mb-1">Yours, faithfully</p>
+                  <p class="hand text-3xl t-brand">Meera &amp; Arjun Nair</p>
+                  <p class="text-xs t-subtle mt-1">Second generation · 12 Spice Market Lane</p>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+          <!-- Right rail — decorative -->
+          <div class="hidden lg:block">
+            <p class="small-caps" style="writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: 0.3em;">— the ledger is still open —</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3 — TIMELINE (Curved path style with photo cards)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="small-caps">Chronicle</span>
+          <h2 class="text-4xl md:text-5xl leading-tight mt-3 mb-4">
+            Four turning <span class="italic t-brand">points</span>.
+          </h2>
+          <div class="ornament my-6">
+            <i class="fa-solid fa-feather-pointed text-sm"></i>
+          </div>
+          <p class="body-serif">
+            The moments that turned a personal notebook into a working pantry.
+          </p>
+        </div>
+
+                <!-- Timeline with photos alternating -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+                    <!-- Column A -->
+                    <div class="flex flex-col gap-10">
+          
+                      <!-- Entry 1 -->
+                      <article class="grid grid-cols-[100px_1fr] gap-6 items-start">
+                        <div class="photo-frame rotate-[-3deg] w-[100px]">
+                          <div class="tape" style="top: -8px; left: 12px;"></div>
+                          <img src="asserts/about3.avif"
+                               alt="Spices at the market" onerror="this.style.display='none'">
+                          <p class="caption" style="font-size: 15px;">1998</p>
+                        </div>
+                        <div>
+                          <p class="small-caps mb-2">Autumn 1998</p>
+                          <h3 class="text-2xl mb-3">The first notebook</h3>
+                          <p class="body-serif">
+                            Rukmini buys three sacks of cardamom at the Nellore market and writes
+                            her first ledger entry — the grower's name, the farm's village, the
+                            price she paid.
+                          </p>
+                        </div>
+                      </article>
+          
+                      <!-- Entry 2 -->
+                      <article class="grid grid-cols-[100px_1fr] gap-6 items-start">
+                        <div class="photo-frame rotate-[2deg] w-[100px]">
+                          <div class="tape" style="top: -8px; right: 12px; left: auto;"></div>
+                          <img src="asserts/about4.avif"
+                               alt="Copper pot workshop" onerror="this.style.display='none'">
+                          <p class="caption" style="font-size: 15px;">2008</p>
+                        </div>
+                        <div>
+                          <p class="small-caps mb-2">Winter 2008</p>
+                          <h3 class="text-2xl mb-3">The copper pots arrive</h3>
+                          <p class="body-serif">
+                            A friend sells us two second-hand copper pots. We start cooking
+                            small batches for neighbours — the first tomato chutney is
+                            jarred that same week.
+                          </p>
+                        </div>
+                      </article>
+          
+                    </div>
+          
+                    <!-- Column B — same photo alignment as column A -->
+                    <div class="flex flex-col gap-10">
+          
+                      <!-- Entry 3 -->
+                      <article class="grid grid-cols-[100px_1fr] gap-6 items-start">
+                        <div class="photo-frame rotate-[-2deg] w-[100px]">
+                          <div class="tape" style="top: -8px; left: 12px;"></div>
+                          <img src="asserts/about5.webp"
+                               alt="Jars on the shelf" onerror="this.style.display='none'">
+                          <p class="caption" style="font-size: 15px;">2015</p>
+                        </div>
+                        <div>
+                          <p class="small-caps mb-2">Summer 2015</p>
+                          <h3 class="text-2xl mb-3">Thirty-two partner farms</h3>
+                          <p class="body-serif">
+                            The ledger crosses thirty-two farms. We stop buying from
+                            intermediaries entirely — every sack now arrives with a name
+                            and a village attached.
+                          </p>
+                        </div>
+                      </article>
+          
+                      <!-- Entry 4 -->
+                      <article class="grid grid-cols-[100px_1fr] gap-6 items-start">
+                        <div class="photo-frame rotate-[3deg] w-[100px]">
+                          <div class="tape" style="top: -8px; right: 12px; left: auto;"></div>
+                          <img src="asserts/about6.avif"
+                               alt="Batch numbered jars" onerror="this.style.display='none'">
+                          <p class="caption" style="font-size: 15px;">Today</p>
+                        </div>
+                        <div>
+                          <p class="small-caps mb-2">Ongoing</p>
+                          <h3 class="text-2xl mb-3">The ledger never closes</h3>
+                          <p class="body-serif">
+                            Twenty-four jars, five shelves, one workshop. Every lid still
+                            numbered by hand — the way Rukmini numbered hers.
+                          </p>
+                        </div>
+                      </article>
+          
+                    </div>
+          
+                  </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 4 — WORKSHOP VALUES (3-panel with arch frame)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20 items-center">
+
+          <!-- Arch image -->
+          <div>
+            <div class="arch-frame">
+              <img src="asserts/about7.avif"
+                   alt="Golden turmeric and mustard in the workshop"
+                   class="w-full h-[560px] object-cover" onerror="this.style.display='none'">
+            </div>
+            <p class="hand text-2xl mt-4 text-center t-brand">— our workshop, at noon —</p>
+          </div>
+
+          <!-- Values list -->
+          <div>
+            <span class="small-caps">What We Believe</span>
+            <h2 class="text-4xl md:text-5xl leading-[1.1] mt-3 mb-8">
+              Three rules. <span class="italic t-brand">No exceptions.</span>
+            </h2>
+
+            <div class="flex flex-col gap-8">
+
+              <div class="grid grid-cols-[60px_1fr] gap-5 items-start">
+                <span class="year-rail" style="font-size: 2rem; opacity: 0.7;">i.</span>
+                <div>
+                  <h3 class="text-xl mb-2">Name every farm</h3>
+                  <p class="body-serif">
+                    If we can't tell you the grower's name, we don't sell the sack.
+                    No blind sourcing, no auctions, no mystery supply chains.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-[60px_1fr] gap-5 items-start">
+                <span class="year-rail" style="font-size: 2rem; opacity: 0.7;">ii.</span>
+                <div>
+                  <h3 class="text-xl mb-2">Cook only what we'd eat</h3>
+                  <p class="body-serif">
+                    Every recipe begins at our own kitchen table. If it isn't good
+                    enough for a family dinner, it never reaches a jar.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-[60px_1fr] gap-5 items-start">
+                <span class="year-rail" style="font-size: 2rem; opacity: 0.7;">iii.</span>
+                <div>
+                  <h3 class="text-xl mb-2">Number every lid</h3>
+                  <p class="body-serif">
+                    Batch number, day, month, year. Hand-inked every Saturday. It's
+                    the smallest habit we inherited from Rukmini — and the one we
+                    refuse to automate.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="mt-10 pt-8 border-t border-app">
+              <p class="hand text-3xl t-brand">— from our kitchen ledger, 1998 —</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+       <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 5 — THE PEOPLE (Portrait cards)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app">
+        <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+  
+          <div class="max-w-2xl mb-14">
+            <span class="small-caps">The Hands Behind</span>
+            <h2 class="text-4xl md:text-5xl leading-tight mt-3 mb-4">
+              The people at
+              <span class="italic t-brand">the bench</span>.
+            </h2>
+            <p class="body-serif">
+              Four of us, thirty-two farms, one ledger. This is who stirs the pots
+              and inks the lids.
+            </p>
+          </div>
+  
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+  
+            <!-- Portrait 1 -->
+            <article class="text-center flex flex-col">
+              <div class="photo-frame rotate-[-3deg] mx-auto w-[220px]">
+                <div class="tape" style="top: -8px; left: 20px;"></div>
+                <div class="aspect-square overflow-hidden bg-brand-soft">
+                  <img src="asserts/about8.avif"
+                       alt="Portrait of Meera Nair"
+                       class="w-full h-full object-cover"
+                       onerror="this.style.display='none'">
+                </div>
+                <p class="caption">Meera, 2018.</p>
+              </div>
+              <h3 class="text-xl mt-6 mb-1">Meera Nair</h3>
+              <p class="small-caps mb-3 block min-h-[44px]">Second generation · Head maker</p>
+              <p class="body-serif text-sm px-2 flex-1">
+                Runs the copper pot schedule and every recipe test. Keeps the ledger
+                in her coat pocket at all times.
+              </p>
+            </article>
+  
+            <!-- Portrait 2 -->
+            <article class="text-center flex flex-col">
+              <div class="photo-frame rotate-[2deg] mx-auto w-[220px]">
+                <div class="tape" style="top: -8px; right: 20px; left: auto;"></div>
+                <div class="aspect-square overflow-hidden bg-brand-soft">
+                  <img src="asserts/about9.avif"
+                       alt="Portrait of Arjun Nair"
+                       class="w-full h-full object-cover"
+                       onerror="this.style.display='none'">
+                </div>
+                <p class="caption">Arjun, 2020.</p>
+              </div>
+              <h3 class="text-xl mt-6 mb-1">Arjun Nair</h3>
+              <p class="small-caps mb-3 block min-h-[44px]">Second generation · Sourcing</p>
+              <p class="body-serif text-sm px-2 flex-1">
+                Travels to the thirty-two farms twice a year. Handshakes every
+                harvest contract in person.
+              </p>
+            </article>
+  
+            <!-- Portrait 3 -->
+            <article class="text-center flex flex-col">
+              <div class="photo-frame rotate-[-2deg] mx-auto w-[220px]">
+                <div class="tape" style="top: -8px; left: 20px;"></div>
+                <div class="aspect-square overflow-hidden bg-brand-soft">
+                  <img src="asserts/about10.avif"
+                       alt="Portrait of Latha Krishnan"
+                       class="w-full h-full object-cover"
+                       onerror="this.style.display='none'">
+                </div>
+                <p class="caption">Latha, 2022.</p>
+              </div>
+              <h3 class="text-xl mt-6 mb-1">Latha Krishnan</h3>
+              <p class="small-caps mb-3 block min-h-[44px]">Workshop manager</p>
+              <p class="body-serif text-sm px-2 flex-1">
+                Keeps four copper pots moving at once and never lets a jar leave
+                without a date inked on the lid.
+              </p>
+            </article>
+  
+            <!-- Portrait 4 -->
+            <article class="text-center flex flex-col">
+              <div class="photo-frame rotate-[3deg] mx-auto w-[220px]">
+                <div class="tape" style="top: -8px; right: 20px; left: auto;"></div>
+                <div class="aspect-square overflow-hidden bg-brand-soft">
+                  <img src="asserts/about11.avif"
+                       alt="Portrait of Suresh Menon"
+                       class="w-full h-full object-cover"
+                       onerror="this.style.display='none'">
+                </div>
+                <p class="caption">Suresh, 2019.</p>
+              </div>
+              <h3 class="text-xl mt-6 mb-1">Suresh Menon</h3>
+              <p class="small-caps mb-3 block min-h-[44px]">Accounting &amp; letters</p>
+              <p class="body-serif text-sm px-2 flex-1">
+                Answers every customer letter personally — including the ones
+                written on paper and posted to the workshop door.
+              </p>
+            </article>
+  
+          </div>
+        </div>
+      </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 6 — CTA (Open letter style)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="max-w-3xl mx-auto text-center">
+          
+
+          <span class="small-caps">A Request</span>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl leading-[1.1] mt-3 mb-6">
+            Come and
+            <span class="italic t-brand">taste</span>
+            the ledger.
+          </h2>
+
+          <p class="body-serif mb-10 max-w-xl mx-auto">
+            The workshop is open Tuesday through Sunday, 9am to 7pm. No booking needed.
+            Knock on the door and we'll hand you a spoon — the same one our grandmother
+            used at the market.
+          </p>
+
+          <div class="flex flex-wrap gap-3 justify-center mb-12">
+            <a href="contact.html" class="btn btn-primary">
+              <i class="fa-solid fa-location-dot text-xs"></i>
+              Plan your visit
+            </a>
+            <a href="products.html" class="btn btn-ghost">
+              <i class="fa-solid fa-jar text-xs"></i>
+              Browse our jars
+            </a>
+          </div>
+
+                    <!-- Contact ledger rows — centered -->
+                      <!-- Contact — ledger-style, matches the page -->
+          <div class="max-w-md mx-auto mt-16">
+            <div class="flex items-start justify-center gap-3 mb-6">
+              <span class="h-px w-12" style="background: var(--border-strong);"></span>
+              <span class="small-caps">Visit the workshop</span>
+              <span class="h-px w-12" style="background: var(--border-strong);"></span>
+            </div>
+
+            <div class="text-center">
+              <p class="body-serif mb-2">12 Spice Market Lane</p>
+              <p class="body-serif mb-8">Cochin, Kerala 682001</p>
+
+              <p class="body-serif mb-1">hello@spiceroute.com</p>
+              <p class="body-serif mb-8">+1 (800) 555-0199</p>
+
+              <p class="small-caps mb-2">Open Tuesday through Sunday</p>
+              <p class="body-serif">9:00 in the morning to 7:00 in the evening</p>
+            </div>
+
+            <div class="flex items-start justify-center gap-3 mt-10">
+              <span class="h-px w-8" style="background: var(--border-strong);"></span>
+              <i class="fa-solid fa-feather-pointed text-xs t-brand"></i>
+              <span class="h-px w-8" style="background: var(--border-strong);"></span>
+            </div>
+          </div>
+
+          <p class="hand text-4xl t-brand mt-12">— see you at the bench —</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ MOBILE DRAWER ═══════════════════════ -->
+  <div id="mobile-drawer" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+    <div id="drawer-panel" class="absolute top-0 left-0 right-0 max-h-[90vh] overflow-y-auto p-6 shadow-2xl translate-y-[-100%] transition-transform duration-300 ease-out xl:hidden">
+
+      <div class="flex items-center justify-between pb-5 border-b border-app">
+        <a href="index.html" class="brand-lockup">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+        <button id="mobile-menu-close" class="btn-icon" aria-label="Close menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <nav class="mt-2">
+        <button class="mob-accordion" id="mob-home-toggle">
+          Home 1
+          <svg class="w-4 h-4 transition-transform duration-200" id="mob-home-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="mob-home-menu" class="hidden pl-4 py-1">
+          <a href="index.html" class="mob-link border-0 text-sm t-muted">Home 1</a>
+          <a href="home2.html" class="mob-link border-0 text-sm t-muted">Home 2</a>
+        </div>
+
+        <a href="about.html" class="mob-link">About Us</a>
+        <a href="products.html" class="mob-link">Products</a>
+        <a href="recipes.html" class="mob-link">Recipes</a>
+        <a href="journal.html" class="mob-link">Journal</a>
+        <a href="contact.html" class="mob-link">Contact</a>
+      </nav>
+
+      <div class="flex items-center justify-between mt-6 pt-5 border-t border-app">
+        <button id="drawer-theme-toggle" class="btn-icon" aria-label="Toggle theme">
+          <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+        <button id="mobile-lang-icon-drawer" class="btn-icon" aria-label="Toggle direction">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+        </button>
+      </div>
+
+      <div class="mt-5 flex justify-center">
+        <a href="login.html" class="btn btn-primary w-full max-w-[240px] justify-center">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer id="site-footer" class="pt-16">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14">
+
+        <div class="lg:col-span-4">
+          <a href="index.html" class="brand-lockup mb-5">
+            <span class="foot-brand-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+                <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+                <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span>
+              <span class="foot-wordmark">SPICE ROUTE</span>
+              <span class="foot-tagline block">Heritage Blends</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed max-w-sm" style="color: var(--footer-muted);">
+            Handcrafted spice blends and small-batch condiments from heirloom recipes —
+            sun-dried, stone-ground, and delivered to your kitchen.
+          </p>
+          <div class="flex gap-2 mt-6">
+            <a href="#" class="foot-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="foot-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="foot-social" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Company</h4>
+          <ul class="flex flex-col">
+            <li><a href="about.html" class="foot-link">About Us</a></li>
+            <li><a href="process.html" class="foot-link">Our Process</a></li>
+            <li><a href="journal.html" class="foot-link">Journal</a></li>
+            <li><a href="contact.html" class="foot-link">Contact</a></li>
+            <li><a href="recipes.html" class="foot-link">Recipes</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Shop</h4>
+          <ul class="flex flex-col">
+            <li><a href="products.html" class="foot-link">Whole Spices</a></li>
+            <li><a href="products.html" class="foot-link">Ground Blends</a></li>
+            <li><a href="products.html" class="foot-link">Signature Mixes</a></li>
+            <li><a href="products.html" class="foot-link">Gift Sets</a></li>
+            <li><a href="products.html" class="foot-link">New Arrivals</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-4">
+          <h4 class="foot-heading">Get in Touch</h4>
+          <div class="flex flex-col gap-1 mb-6">
+            <a href="tel:+18005550199" class="foot-contact"><i class="fa-solid fa-phone"></i> +1 (800) 555-0199</a>
+            <a href="mailto:hello@spiceroute.com" class="foot-contact"><i class="fa-solid fa-envelope"></i> hello@spiceroute.com</a>
+            <span class="foot-contact"><i class="fa-solid fa-location-dot"></i> 12 Spice Market Lane, Cochin</span>
+          </div>
+
+          <h4 class="foot-heading">Newsletter</h4>
+          <form class="flex gap-2" onsubmit="event.preventDefault();">
+            <input type="email" class="foot-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary px-5">
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="foot-bottom py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs" style="color: var(--footer-muted);">
+          © 2026 SPICE ROUTE. All rights reserved.
+        </p>
+        <div class="flex items-center gap-6 text-xs" style="color: var(--footer-muted);">
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+          <a href="#" class="hover:text-white transition">Shipping</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+      const html = document.documentElement;
+
+      const applyTheme = (t) => {
+        html.setAttribute('data-theme', t);
+        document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', t === 'dark'));
+        document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', t === 'light'));
+      };
+      const setTheme = (t) => { localStorage.setItem('theme', t); applyTheme(t); };
+      applyTheme(localStorage.getItem('theme') || 'light');
+
+      ['theme-toggle', 'drawer-theme-toggle'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          setTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        });
+      });
+
+      const applyDir = (d) => html.setAttribute('dir', d === 'ar' ? 'rtl' : 'ltr');
+      applyDir(localStorage.getItem('language') || 'en');
+      ['lang-icon', 'mobile-lang-icon-drawer'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          const next = (localStorage.getItem('language') === 'ar') ? 'en' : 'ar';
+          localStorage.setItem('language', next);
+          applyDir(next);
+        });
+      });
+
+      const drawer = document.getElementById('mobile-drawer');
+      const panel = document.getElementById('drawer-panel');
+      const backdrop = document.getElementById('drawer-backdrop');
+
+      const openDrawer = () => {
+        drawer.classList.remove('pointer-events-none');
+        panel.classList.remove('translate-y-[-100%]');
+        backdrop.classList.add('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeDrawer = () => {
+        panel.classList.add('translate-y-[-100%]');
+        backdrop.classList.remove('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = '';
+        setTimeout(() => drawer.classList.add('pointer-events-none'), 300);
+      };
+
+      document.getElementById('mobile-menu-open')?.addEventListener('click', openDrawer);
+      document.getElementById('mobile-menu-close')?.addEventListener('click', closeDrawer);
+      backdrop?.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+      const bindAccordion = (btnId, menuId, iconId) => {
+        const btn = document.getElementById(btnId);
+        const menu = document.getElementById(menuId);
+        const icon = document.getElementById(iconId);
+        btn?.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          icon.classList.toggle('rotate-180');
+        });
+      };
+      bindAccordion('mob-home-toggle', 'mob-home-menu', 'mob-home-icon');
+
+      const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const href = (link.getAttribute('href') || '').toLowerCase();
+        if (href === current) link.classList.add('is-active');
+      });
+      if (['index.html', 'home2.html'].includes(current)) {
+        document.getElementById('nav-home-btn')?.classList.add('is-active');
+      }
+    })();
+  </script>
+</body>
+</html>

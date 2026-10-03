@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="asserts/favicon_v2.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <title>SPICE ROUTE — Aromatic Heritage Spice Blends</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.js"></script>
+
+  <style>
+    :root, html[data-theme='light'] {
+      --bg:            #FFFFFF;
+      --bg-subtle:     #FDF8F2;
+      --surface:       #FFFFFF;
+      --text:          #2B1E12;
+      --text-muted:    #6B4F38;
+      --text-subtle:   #9B7B63;
+      --border:        #EADBCB;
+      --border-strong: #DBC8B2;
+      --brand:         #C1440E;
+      --brand-hover:   #A33A0C;
+      --brand-soft:    #FDF0E8;
+      --nav-hover:     #F9F2EA;
+      --footer-bg:     #2B1E12;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #C4A68B;
+    }
+    html[data-theme='dark'] {
+      --bg:            #1A120B;
+      --bg-subtle:     #24180F;
+      --surface:       #24180F;
+      --text:          #F5EDE6;
+      --text-muted:    #C4A68B;
+      --text-subtle:   #9B7B63;
+      --border:        #3D2A1C;
+      --border-strong: #5A3E2B;
+      --brand:         #E05E2A;
+      --brand-hover:   #F07545;
+      --brand-soft:    #3D1E0E;
+      --nav-hover:     #33221A;
+      --footer-bg:     #120C07;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #9B7B63;
+    }
+
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', 'Plus Jakarta Sans', serif;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .t-text { color: var(--text); }
+    .t-muted { color: var(--text-muted); }
+    .t-subtle { color: var(--text-subtle); }
+    .t-brand { color: var(--brand); }
+    .bg-app { background-color: var(--bg); }
+    .bg-app-subtle { background-color: var(--bg-subtle); }
+    .bg-surface { background-color: var(--surface); }
+    .bg-nav-hover { background-color: var(--nav-hover); }
+    .bg-brand { background-color: var(--brand); }
+    .bg-brand-soft { background-color: var(--brand-soft); }
+    .border-app { border-color: var(--border); }
+    .border-strong { border-color: var(--border-strong); }
+
+    /* BRAND */
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .brand-lockup:hover { opacity: 0.85; }
+    .brand-mark {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--brand) 0%, var(--brand-hover) 100%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px -4px rgba(193, 68, 14, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .brand-mark::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255, 255, 255, 0.4);
+    }
+    .brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    .brand-wordmark { white-space: nowrap;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .brand-wordmark .sub {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+
+    /* HEADER */
+    #main-header {
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    html[data-theme='dark'] #main-header {
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+    }
+
+    /* NAV */
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 18px;
+      font-size: 15.5px;
+      font-weight: 500;
+      color: var(--text);
+      border-radius: 10px;
+      text-decoration: none;
+      transition: color 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--brand); background: var(--nav-hover); }
+    .nav-link.is-active { color: var(--brand); font-weight: 600; }
+    .nav-link.is-active::after {
+      content: '';
+      position: absolute;
+      left: 18px; right: 18px; bottom: 3px;
+      height: 2px; background: var(--brand); border-radius: 2px;
+    }
+
+    /* DROPDOWN */
+    .dd { position: relative; }
+    .dd-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      min-width: 180px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 12px 32px -8px rgba(43, 30, 18, 0.14), 0 4px 12px -2px rgba(43, 30, 18, 0.06);
+      padding: 6px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 100;
+    }
+    .dd:hover .dd-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dd-menu a {
+      display: block;
+      padding: 10px 14px;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.14s ease, color 0.14s ease;
+      white-space: nowrap;
+    }
+    .dd-menu a:hover { background: var(--nav-hover); color: var(--brand); }
+    .dd-chevron { width: 12px; height: 12px; margin-left: 5px; transition: transform 0.2s ease; }
+    .dd:hover .dd-chevron { transform: rotate(180deg); }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 11px 24px;
+      border-radius: 11px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .btn-primary {
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 1px 2px rgba(43, 30, 18, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    .btn-primary:hover {
+      background: var(--brand-hover);
+      box-shadow: 0 8px 20px -6px rgba(193, 68, 14, 0.5);
+      transform: translateY(-1px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
+    .btn-ghost:hover { background: var(--nav-hover); border-color: var(--text-subtle); }
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .btn-icon:hover { background: var(--nav-hover); color: var(--brand); border-color: var(--border-strong); }
+    .btn-icon svg { width: 19px; height: 19px; }
+
+    /* FOOTER */
+    #site-footer { background: var(--footer-bg); color: var(--footer-text); }
+    #site-footer .foot-brand-mark {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #E05E2A 0%, #C1440E 100%);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px -4px rgba(224, 94, 42, 0.55);
+      position: relative;
+    }
+    #site-footer .foot-brand-mark::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255, 255, 255, 0.4);
+    }
+    #site-footer .foot-brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    #site-footer .foot-wordmark {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 22px; letter-spacing: -0.02em; color: #fff;
+    }
+    #site-footer .foot-tagline {
+      font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--footer-muted); font-weight: 500; margin-top: 4px;
+    }
+    .foot-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #fff; margin-bottom: 20px;
+    }
+    .foot-link {
+      display: inline-block; font-size: 15px; font-weight: 400;
+      color: var(--footer-muted); text-decoration: none; padding: 6px 0;
+      transition: color 0.16s ease, transform 0.16s ease;
+    }
+    .foot-link:hover { color: #E05E2A; transform: translateX(3px); }
+    .foot-social {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 11px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #F5EDE6; font-size: 15px; text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .foot-social:hover { background: #E05E2A; border-color: #E05E2A; color: #fff; transform: translateY(-2px); }
+    #site-footer .foot-input {
+      width: 100%; padding: 12px 16px; font-size: 15px; color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 11px; outline: none;
+      transition: all 0.18s ease;
+    }
+    #site-footer .foot-input::placeholder { color: var(--footer-muted); }
+    #site-footer .foot-input:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #E05E2A;
+      box-shadow: 0 0 0 3px rgba(224, 94, 42, 0.15);
+    }
+    .foot-contact {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14.5px; color: var(--footer-muted);
+      text-decoration: none; padding: 5px 0;
+      transition: color 0.16s ease;
+    }
+    .foot-contact:hover { color: #E05E2A; }
+    .foot-contact i { color: #E05E2A; width: 16px; font-size: 14px; }
+    .foot-bottom { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+
+    /* MOBILE DRAWER */
+    #drawer-panel { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .mob-link {
+      display: block; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border);
+      transition: color 0.15s ease;
+    }
+    .mob-link:hover { color: var(--brand); }
+    .mob-accordion {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 100%; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); background: none; border: none;
+      border-bottom: 1px solid var(--border); cursor: pointer; text-align: left;
+    }
+    .mob-accordion:hover { color: var(--brand); }
+
+    html { scroll-behavior: smooth; }
+
+    /* ══════════ HOMEPAGE SECTION STYLES ══════════ */
+    .spice-glow { position: relative; }
+    .spice-glow::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(193, 68, 14, 0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .spice-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--brand);
+      background: var(--brand-soft); padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid color-mix(in srgb, var(--brand) 20%, transparent);
+    }
+    .jar-illustration {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    /* Ornamental divider */
+    .ornament-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 0 auto;
+    }
+    .ornament-divider::before,
+    .ornament-divider::after {
+      content: '';
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+    }
+    /* Texture overlay */
+    .texture-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .texture-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(193, 68, 14, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(193, 68, 14, 0.05) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    /* Ingredient ring */
+    .ingredient-dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      font-size: 24px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: 0 4px 12px -4px rgba(43, 30, 18, 0.08);
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <nav class="flex items-center justify-between h-[76px]">
+        <a href="index.html" class="brand-lockup" aria-label="SPICE ROUTE Home">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+
+        <div class="hidden xl:flex items-center gap-1">
+          <div class="dd">
+            <button class="nav-link" id="nav-home-btn">
+              Home 1
+              <svg class="dd-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="dd-menu">
+              <a href="index.html">Home 1</a>
+              <a href="home2.html">Home 2</a>
+            </div>
+          </div>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="recipes.html" class="nav-link">Recipes</a>
+          <a href="journal.html" class="nav-link">Journal</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="hidden xl:flex items-center gap-2.5">
+          <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme">
+            <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+          <button id="lang-icon" class="btn-icon" aria-label="Toggle direction">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+          </button>
+          <a href="login.html" class="btn btn-primary ml-2">Sign In</a>
+        </div>
+
+        <button id="mobile-menu-open" class="xl:hidden btn-icon" aria-label="Open menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="h-[76px]"></div>
+
+  <main class="flex-grow">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 1 — HERO (Signature Blend Showcase)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="spice-glow py-16 md:py-24 bg-app-subtle relative overflow-hidden">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          <div class="max-w-xl">
+            <span class="spice-badge mb-6">
+              <i class="fa-solid fa-fire-flame-curved text-[10px]"></i>
+              Signature Heritage Blend
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.1] mb-6">
+              The soul of <span class="t-brand italic">aromatic</span> cooking,<br class="hidden sm:block"> ground fresh for you.
+            </h1>
+            <p class="text-lg t-muted mb-8 leading-relaxed">
+              Handcrafted spice blends from heirloom recipes — sun-dried, stone-ground, and delivered
+              to your kitchen. Bring depth, warmth, and authenticity to every dish.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a href="products.html" class="btn btn-primary">
+                <i class="fa-solid fa-bag-shopping text-xs"></i>
+                Shop Blends
+              </a>
+              <a href="recipes.html" class="btn btn-ghost">
+                <i class="fa-solid fa-book-open text-xs"></i>
+                Explore Recipes
+              </a>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-6 mt-10 pt-8 border-t border-app">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-brand"></span>
+                <span class="text-xs font-medium t-muted">100% Organic</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-brand"></span>
+                <span class="text-xs font-medium t-muted">Stone-Ground</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-brand"></span>
+                <span class="text-xs font-medium t-muted">Small Batch</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative flex justify-center lg:justify-end">
+            <div class="relative w-full max-w-[420px]">
+              <div class="bg-surface border border-app rounded-3xl p-8 shadow-xl shadow-[rgba(43,30,18,0.08)] relative overflow-hidden texture-card">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-soft rounded-full opacity-60"></div>
+                <div class="absolute -bottom-12 -left-12 w-48 h-48 bg-brand-soft rounded-full opacity-40"></div>
+                <div class="relative z-10">
+                  <div class="flex items-start justify-between mb-6">
+                    <div>
+                      <p class="text-[11px] font-bold tracking-[0.12em] uppercase t-brand mb-1">Signature Blend</p>
+                      <h3 class="text-2xl font-bold">Garuda Masala</h3>
+                      <p class="text-sm t-muted mt-1 italic">Warm · Earthy · Complex</p>
+                    </div>
+                    <span class="text-3xl">🫙</span>
+                  </div>
+
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="text-xs px-3 py-1.5 rounded-full bg-brand-soft t-brand font-medium">Coriander</span>
+                    <span class="text-xs px-3 py-1.5 rounded-full bg-brand-soft t-brand font-medium">Cumin</span>
+                    <span class="text-xs px-3 py-1.5 rounded-full bg-brand-soft t-brand font-medium">Cardamom</span>
+                    <span class="text-xs px-3 py-1.5 rounded-full bg-brand-soft t-brand font-medium">Clove</span>
+                    <span class="text-xs px-3 py-1.5 rounded-full bg-brand-soft t-brand font-medium">Cinnamon</span>
+                  </div>
+                </div>
+              </div>
+
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 2 — SIGNATURE BLEND TRIO (3 hero blends)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-[11px] font-bold tracking-[0.18em] uppercase t-brand mb-3 block">Our Signature Trio</span>
+          <h2 class="text-3xl md:text-4xl mb-4">Three blends, <span class="italic t-brand">one</span> story</h2>
+          <div class="ornament-divider my-4">
+            <span class="text-brand text-xl">❦</span>
+          </div>
+          <p class="t-muted leading-relaxed">
+            Every jar we make begins in the same three fields. These are the blends that carried
+            our family kitchens across generations.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+
+          <!-- Blend 1 -->
+          <article class="bg-surface border border-app rounded-3xl overflow-hidden group transition hover:-translate-y-1 hover:shadow-2xl flex flex-col h-full">
+            <div class="relative h-64 overflow-hidden">
+              <img src="asserts/index1.avif"
+                   alt="Red chili and paprika spice blend close up"
+                   class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+              <span class="absolute top-4 left-4 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full bg-surface/90 t-brand">No. 01</span>
+            </div>
+            <div class="p-7 flex flex-col flex-grow">
+              <h3 class="text-2xl mb-2 min-h-[64px]">Garuda Masala</h3>
+              <p class="text-sm t-muted italic mb-4 min-h-[44px]">Warm · Earthy · Complex</p>
+              <p class="text-sm t-muted leading-relaxed mb-5">
+                Our flagship blend — nine spices roasted in small batches and stone-ground to
+                a deep amber powder. Built for slow-cooked curries and rich gravies.
+              </p>
+              <div class="flex items-center justify-between pt-5 border-t border-app mt-auto">
+                <span class="text-xs t-subtle uppercase tracking-wider">100g jar</span>
+                <span class="font-bold t-brand">$12.90</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blend 2 -->
+          <article class="bg-surface border border-app rounded-3xl overflow-hidden group transition hover:-translate-y-1 hover:shadow-2xl flex flex-col h-full">
+            <div class="relative h-64 overflow-hidden">
+              <img src="asserts/index2.avif"
+                   alt="Golden turmeric root and powder on wooden surface"
+                   class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+              <span class="absolute top-4 left-4 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full bg-surface/90 t-brand">No. 02</span>
+            </div>
+            <div class="p-7 flex flex-col flex-grow">
+              <h3 class="text-2xl mb-2 min-h-[64px]">Haldi Gold</h3>
+              <p class="text-sm t-muted italic mb-4 min-h-[44px]">Bright · Golden · Soothing</p>
+              <p class="text-sm t-muted leading-relaxed mb-5">
+                Single-origin turmeric from Alleppey, blended with black pepper and dried ginger
+                for a warm, grounding everyday mix. Brightens any dal or broth.
+              </p>
+              <div class="flex items-center justify-between pt-5 border-t border-app mt-auto">
+                <span class="text-xs t-subtle uppercase tracking-wider">80g jar</span>
+                <span class="font-bold t-brand">$10.50</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blend 3 -->
+          <article class="bg-surface border border-app rounded-3xl overflow-hidden group transition hover:-translate-y-1 hover:shadow-2xl flex flex-col h-full">
+            <div class="relative h-64 overflow-hidden">
+              <img src="asserts/index3.avif"
+                   alt="Whole green cardamom pods scattered on linen"
+                   class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+              <span class="absolute top-4 left-4 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full bg-surface/90 t-brand">No. 03</span>
+            </div>
+            <div class="p-7 flex flex-col flex-grow">
+              <h3 class="text-2xl mb-2 min-h-[64px]">Chai Cardamom</h3>
+              <p class="text-sm t-muted italic mb-4 min-h-[44px]">Fragrant · Sweet · Floral</p>
+              <p class="text-sm t-muted leading-relaxed mb-5">
+                Green cardamom, cinnamon bark, and clove — a chai blend that blooms when
+                simmered in milk. Our most-gifted jar, three years running.
+              </p>
+              <div class="flex items-center justify-between pt-5 border-t border-app mt-auto">
+                <span class="text-xs t-subtle uppercase tracking-wider">90g jar</span>
+                <span class="font-bold t-brand">$14.20</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="products.html" class="inline-flex items-center gap-2 text-sm font-semibold t-brand transition hover:gap-3">
+            Browse all blends <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+        <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3 — SOURCING STORY (Image + Text Split)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 items-center">
+
+          <div class="relative">
+            <div class="rounded-3xl overflow-hidden border border-app">
+              <img src="asserts/index3.avif"
+                   alt="Whole spices arranged on a woven mat in warm light"
+                   class="w-full h-[480px] object-cover">
+            </div>
+            
+          </div>
+
+          <div>
+            <span class="text-[11px] font-bold tracking-[0.18em] uppercase t-brand mb-3 block">From the Source</span>
+            <h2 class="text-3xl md:text-4xl mb-5 leading-tight">
+              Every spice has a <span class="italic t-brand">name</span>, a farm, and a harvest date.
+            </h2>
+            <p class="t-muted leading-relaxed mb-6">
+              We work directly with 32 smallholder farms — no auctions, no middlemen, no
+              mystery sacks. Each batch we receive is logged with the grower's name, the
+              village, and the week it was sun-dried.
+            </p>
+
+            <div class="flex flex-col gap-5 mt-8">
+              <div class="flex gap-4 items-start">
+                <span class="w-10 h-10 rounded-full bg-brand-soft flex items-center justify-center text-brand flex-shrink-0">
+                  <i class="fa-solid fa-seedling text-sm"></i>
+                </span>
+                <div>
+                  <p class="font-semibold text-sm">Grown, not sourced</p>
+                  <p class="text-sm t-muted leading-relaxed">Direct trade agreements with every farm, reviewed each season.</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start">
+                <span class="w-10 h-10 rounded-full bg-brand-soft flex items-center justify-center text-brand flex-shrink-0">
+                  <i class="fa-solid fa-sun text-sm"></i>
+                </span>
+                <div>
+                  <p class="font-semibold text-sm">Sun-dried, never kiln-forced</p>
+                  <p class="text-sm t-muted leading-relaxed">Slow drying preserves volatile oils that carry aroma into your kitchen.</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start">
+                <span class="w-10 h-10 rounded-full bg-brand-soft flex items-center justify-center text-brand flex-shrink-0">
+                  <i class="fa-solid fa-mortar-pestle text-sm"></i>
+                </span>
+                <div>
+                  <p class="font-semibold text-sm">Stone-ground in small batches</p>
+                  <p class="text-sm t-muted leading-relaxed">We grind weekly, not monthly — so what reaches you is at peak fragrance.</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="about.html" class="inline-flex items-center gap-2 mt-9 text-sm font-semibold t-brand transition hover:gap-3">
+              Read our sourcing story <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 4 — INGREDIENT RING (Circular Icons Carousel Style)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="text-[11px] font-bold tracking-[0.18em] uppercase t-brand mb-3 block">In Every Jar</span>
+          <h2 class="text-3xl md:text-4xl mb-4">Nine spices. <span class="italic t-brand">One</span> blend.</h2>
+          <p class="t-muted leading-relaxed">
+            The full Garuda Masala palette — some whole, some ground, all toasted together
+            the same morning they're jarred.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-5 sm:gap-7 max-w-4xl mx-auto">
+          <div class="flex flex-col items-center gap-3">
+            <div class="ingredient-dot">🌿</div>
+            <p class="text-xs font-medium t-muted">Coriander</p>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="ingredient-dot">🌰</div>
+            <p class="text-xs font-medium t-muted">Cumin</p>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="ingredient-dot">🫘</div>
+            <p class="text-xs font-medium t-muted">Cardamom</p>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="ingredient-dot">🌶️</div>
+            <p class="text-xs font-medium t-muted">Chili</p>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="ingredient-dot">🪵</div>
+            <p class="text-xs font-medium t-muted">Cinnamon</p>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="ingredient-dot">🌸</div>
+            <p class="text-xs font-medium t-muted">Clove</p>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="ingredient-dot">🥜</div>
+            <p class="text-xs font-medium t-muted">Nutmeg</p>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="ingredient-dot">🍃</div>
+            <p class="text-xs font-medium t-muted">Bay Leaf</p>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <div class="ingredient-dot">⚫</div>
+            <p class="text-xs font-medium t-muted">Pepper</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 5 — RECIPE TEASER (Editorial Cards with Image)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+          <div class="max-w-xl">
+            <span class="text-[11px] font-bold tracking-[0.18em] uppercase t-brand mb-3 block">From the Kitchen</span>
+            <h2 class="text-3xl md:text-4xl leading-tight">
+              Three ways to cook with
+              <span class="italic t-brand">Garuda</span>
+              this week.
+            </h2>
+          </div>
+          <a href="recipes.html" class="inline-flex items-center gap-2 text-sm font-semibold t-brand transition hover:gap-3">
+            View all recipes <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+
+          <a href="recipes.html" class="group flex flex-col h-full bg-surface border border-app rounded-3xl overflow-hidden transition hover:-translate-y-1 hover:shadow-2xl">
+            <div class="relative h-56 overflow-hidden">
+              <img src="asserts/index4.avif"
+                   alt="Slow-cooked curry simmering in a clay pot"
+                   class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+              
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl mb-2 min-h-[56px] group-hover:text-brand transition">Slow-Cooked Dal Makhani</h3>
+              <p class="text-sm t-muted leading-relaxed">
+                Black lentils simmered overnight, finished with a spoon of Garuda at the very end
+                to keep its aroma intact.
+              </p>
+            </div>
+          </a>
+
+          <a href="recipes.html" class="group flex flex-col h-full bg-surface border border-app rounded-3xl overflow-hidden transition hover:-translate-y-1 hover:shadow-2xl">
+            <div class="relative h-56 overflow-hidden">
+              <img src="asserts/index5.avif"
+                   alt="Roasted vegetables with spice rub on a baking tray"
+                   class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+              
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl mb-2 min-h-[56px] group-hover:text-brand transition">Spiced Roast Roots</h3>
+              <p class="text-sm t-muted leading-relaxed">
+                Carrots, beets, and sweet potato tossed in olive oil and a heavy dusting of
+                Garuda before roasting.
+              </p>
+            </div>
+          </a>
+
+          <a href="recipes.html" class="group flex flex-col h-full bg-surface border border-app rounded-3xl overflow-hidden transition hover:-translate-y-1 hover:shadow-2xl">
+            <div class="relative h-56 overflow-hidden">
+              <img src="asserts/index6.avif"
+                   alt="Warm spiced chai served in clay cups"
+                   class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+              
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl mb-2 min-h-[56px] group-hover:text-brand transition">Evening Masala Chai</h3>
+              <p class="text-sm t-muted leading-relaxed">
+                Assam black tea, full-fat milk, and a quarter spoon of Garuda simmered
+                low — our most-brewed house recipe.
+              </p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 6 — CTA (Enquiry Panel)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+        <div class="rounded-3xl overflow-hidden border border-app bg-surface relative">
+          <div class="absolute -top-20 -right-20 w-72 h-72 bg-brand-soft rounded-full opacity-50 pointer-events-none"></div>
+          <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-brand-soft rounded-full opacity-40 pointer-events-none"></div>
+
+          <div class="relative grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-16 p-9 sm:p-12 lg:p-16 items-center">
+            <div>
+              <span class="spice-badge mb-6">
+                <i class="fa-solid fa-envelope-open-text text-[10px]"></i>
+                Enquiries Welcome
+              </span>
+              <h2 class="text-3xl md:text-4xl lg:text-5xl leading-tight mb-5">
+                Looking for a
+                <span class="italic t-brand">custom</span>
+                blend?
+              </h2>
+              <p class="t-muted text-base leading-relaxed mb-8 max-w-lg">
+                We create private-label blends for restaurants, tea houses, and gift makers.
+                Tell us the flavour direction, and we'll send samples within the week.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <a href="contact.html" class="btn btn-primary">
+                  <i class="fa-solid fa-paper-plane text-xs"></i>
+                  Send an Enquiry
+                </a>
+                <a href="products.html" class="btn btn-ghost">
+                  <i class="fa-solid fa-jar text-xs"></i>
+                  Browse the Pantry
+                </a>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-app bg-app-subtle p-7">
+              <p class="text-[11px] font-bold tracking-[0.16em] uppercase t-brand mb-5">Reach Us Directly</p>
+
+              <div class="flex flex-col gap-5">
+                <div class="flex items-start gap-4">
+                  <i class="fa-solid fa-location-dot t-brand mt-1"></i>
+                  <div>
+                    <p class="text-[11px] t-subtle uppercase tracking-wider mb-1">Workshop</p>
+                    <p class="text-sm">12 Spice Market Lane, Cochin, KL 682001</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <i class="fa-solid fa-envelope t-brand mt-1"></i>
+                  <div>
+                    <p class="text-[11px] t-subtle uppercase tracking-wider mb-1">Email</p>
+                    <p class="text-sm">hello@spiceroute.com</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <i class="fa-solid fa-clock t-brand mt-1"></i>
+                  <div>
+                    <p class="text-[11px] t-subtle uppercase tracking-wider mb-1">Open</p>
+                    <p class="text-sm">Tue – Sun · 9:00 AM – 7:00 PM</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ MOBILE DRAWER ═══════════════════════ -->
+  <div id="mobile-drawer" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+    <div id="drawer-panel" class="absolute top-0 left-0 right-0 max-h-[90vh] overflow-y-auto p-6 shadow-2xl translate-y-[-100%] transition-transform duration-300 ease-out xl:hidden">
+
+      <div class="flex items-center justify-between pb-5 border-b border-app">
+        <a href="index.html" class="brand-lockup">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+        <button id="mobile-menu-close" class="btn-icon" aria-label="Close menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <nav class="mt-2">
+        <button class="mob-accordion" id="mob-home-toggle">
+          Home 1
+          <svg class="w-4 h-4 transition-transform duration-200" id="mob-home-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="mob-home-menu" class="hidden pl-4 py-1">
+          <a href="index.html" class="mob-link border-0 text-sm t-muted">Home 1</a>
+          <a href="home2.html" class="mob-link border-0 text-sm t-muted">Home 2</a>
+        </div>
+
+        <a href="about.html" class="mob-link">About Us</a>
+        <a href="products.html" class="mob-link">Products</a>
+        <a href="recipes.html" class="mob-link">Recipes</a>
+        <a href="journal.html" class="mob-link">Journal</a>
+        <a href="contact.html" class="mob-link">Contact</a>
+      </nav>
+
+      <div class="flex items-center justify-between mt-6 pt-5 border-t border-app">
+        <button id="drawer-theme-toggle" class="btn-icon" aria-label="Toggle theme">
+          <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+        <button id="mobile-lang-icon-drawer" class="btn-icon" aria-label="Toggle direction">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+        </button>
+      </div>
+
+      <div class="mt-5 flex justify-center">
+        <a href="login.html" class="btn btn-primary w-full max-w-[240px] justify-center">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer id="site-footer" class="pt-16">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14">
+
+        <div class="lg:col-span-4">
+          <a href="index.html" class="brand-lockup mb-5">
+            <span class="foot-brand-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+                <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+                <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span>
+              <span class="foot-wordmark">SPICE ROUTE</span>
+              <span class="foot-tagline block">Heritage Blends</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed max-w-sm" style="color: var(--footer-muted);">
+            Handcrafted spice blends from heirloom recipes — sun-dried, stone-ground, and delivered to your kitchen.
+            Bringing depth, warmth, and authenticity to every dish.
+          </p>
+          <div class="flex gap-2 mt-6">
+            <a href="#" class="foot-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="foot-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="foot-social" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Company</h4>
+          <ul class="flex flex-col">
+            <li><a href="about.html" class="foot-link">About Us</a></li>
+            <li><a href="process.html" class="foot-link">Our Process</a></li>
+            <li><a href="journal.html" class="foot-link">Journal</a></li>
+            <li><a href="contact.html" class="foot-link">Contact</a></li>
+            <li><a href="recipes.html" class="foot-link">Recipes</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Shop</h4>
+          <ul class="flex flex-col">
+            <li><a href="products.html" class="foot-link">Whole Spices</a></li>
+            <li><a href="products.html" class="foot-link">Ground Blends</a></li>
+            <li><a href="products.html" class="foot-link">Signature Mixes</a></li>
+            <li><a href="products.html" class="foot-link">Gift Sets</a></li>
+            <li><a href="products.html" class="foot-link">New Arrivals</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-4">
+          <h4 class="foot-heading">Get in Touch</h4>
+          <div class="flex flex-col gap-1 mb-6">
+            <a href="tel:+18005550199" class="foot-contact"><i class="fa-solid fa-phone"></i> +1 (800) 555-0199</a>
+            <a href="mailto:hello@spiceroute.com" class="foot-contact"><i class="fa-solid fa-envelope"></i> hello@spiceroute.com</a>
+            <span class="foot-contact"><i class="fa-solid fa-location-dot"></i> 12 Spice Market Lane, Cochin</span>
+          </div>
+
+          <h4 class="foot-heading">Newsletter</h4>
+          <form class="flex gap-2" onsubmit="event.preventDefault();">
+            <input type="email" class="foot-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary px-5">
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="foot-bottom py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs" style="color: var(--footer-muted);">
+          © 2026 SPICE ROUTE. All rights reserved.
+        </p>
+        <div class="flex items-center gap-6 text-xs" style="color: var(--footer-muted);">
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+          <a href="#" class="hover:text-white transition">Shipping</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+      const html = document.documentElement;
+
+      /* ── THEME ── */
+      const applyTheme = (t) => {
+        html.setAttribute('data-theme', t);
+        document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', t === 'dark'));
+        document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', t === 'light'));
+      };
+      const setTheme = (t) => { localStorage.setItem('theme', t); applyTheme(t); };
+      applyTheme(localStorage.getItem('theme') || 'light');
+
+      ['theme-toggle', 'drawer-theme-toggle'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          setTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        });
+      });
+
+      /* ── RTL ── */
+      const applyDir = (d) => html.setAttribute('dir', d === 'ar' ? 'rtl' : 'ltr');
+      applyDir(localStorage.getItem('language') || 'en');
+      ['lang-icon', 'mobile-lang-icon-drawer'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          const next = (localStorage.getItem('language') === 'ar') ? 'en' : 'ar';
+          localStorage.setItem('language', next);
+          applyDir(next);
+        });
+      });
+
+      /* ── MOBILE DRAWER ── */
+      const drawer = document.getElementById('mobile-drawer');
+      const panel = document.getElementById('drawer-panel');
+      const backdrop = document.getElementById('drawer-backdrop');
+
+      const openDrawer = () => {
+        drawer.classList.remove('pointer-events-none');
+        panel.classList.remove('translate-y-[-100%]');
+        backdrop.classList.add('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeDrawer = () => {
+        panel.classList.add('translate-y-[-100%]');
+        backdrop.classList.remove('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = '';
+        setTimeout(() => drawer.classList.add('pointer-events-none'), 300);
+      };
+
+      document.getElementById('mobile-menu-open')?.addEventListener('click', openDrawer);
+      document.getElementById('mobile-menu-close')?.addEventListener('click', closeDrawer);
+      backdrop?.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+      /* ── MOBILE ACCORDIONS ── */
+      const bindAccordion = (btnId, menuId, iconId) => {
+        const btn = document.getElementById(btnId);
+        const menu = document.getElementById(menuId);
+        const icon = document.getElementById(iconId);
+        btn?.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          icon.classList.toggle('rotate-180');
+        });
+      };
+      bindAccordion('mob-home-toggle', 'mob-home-menu', 'mob-home-icon');
+
+      /* ── ACTIVE NAV HIGHLIGHT ── */
+      const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const href = (link.getAttribute('href') || '').toLowerCase();
+        if (href === current) {
+          link.classList.add('is-active');
+        }
+      });
+      if (['index.html', 'home2.html'].includes(current)) {
+        document.getElementById('nav-home-btn')?.classList.add('is-active');
+      }
+    })();
+  </script>
+</body>
+</html>

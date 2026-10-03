@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/fav.png" type="image/jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Caveat:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <title>Page Not Found — SPICE ROUTE</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.js"></script>
+
+  <style>
+    :root, html[data-theme='light'] {
+      --bg:            #F5EFE3;
+      --bg-subtle:     #EDE4D2;
+      --surface:       #FFFDF8;
+      --text:          #1F1810;
+      --text-muted:    #56442F;
+      --text-subtle:   #857054;
+      --border:        #D8C8AE;
+      --border-strong: #BAA684;
+      --brand:         #8B2E08;
+      --brand-hover:   #6B2205;
+      --brand-soft:    #F2E0D2;
+      --ink:           #1A120A;
+      --olive:         #5A6B32;
+      --olive-soft:    #E6EAD4;
+      --amber:         #B45309;
+      --amber-soft:    #F2E2C9;
+      --nav-hover:     #EDE4D2;
+      --footer-bg:     #1F1810;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #A89074;
+    }
+    html[data-theme='dark'] {
+      --bg:            #14100A;
+      --bg-subtle:     #1D170F;
+      --surface:       #1D170F;
+      --text:          #F2E6D2;
+      --text-muted:    #B9A585;
+      --text-subtle:   #857054;
+      --border:        #302516;
+      --border-strong: #4A3924;
+      --brand:         #D67745;
+      --brand-hover:   #E28958;
+      --brand-soft:    #3A1E10;
+      --ink:           #F2E6D2;
+      --olive:         #A8B87A;
+      --olive-soft:    #2C3320;
+      --amber:         #E6A857;
+      --amber-soft:    #3A2E10;
+      --nav-hover:     #291E12;
+      --footer-bg:     #0A0603;
+      --footer-text:   #F2E6D2;
+      --footer-muted:  #8A7860;
+    }
+
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(139,46,8,0.06) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(90,107,50,0.06) 0%, transparent 40%);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', 'Plus Jakarta Sans', serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .t-text { color: var(--text); }
+    .t-muted { color: var(--text-muted); }
+    .t-subtle { color: var(--text-subtle); }
+    .t-brand { color: var(--brand); }
+    .bg-app { background-color: var(--bg); }
+    .bg-app-subtle { background-color: var(--bg-subtle); }
+    .bg-surface { background-color: var(--surface); }
+    .bg-brand-soft { background-color: var(--brand-soft); }
+    .border-app { border-color: var(--border); }
+    .border-strong { border-color: var(--border-strong); }
+
+    .hand {
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+      color: var(--brand);
+      line-height: 1.1;
+    }
+    .small-caps {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+    .journal-body {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    /* Brand lockup */
+    .brand-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; transition: opacity 0.2s ease; }
+    .brand-lockup:hover { opacity: 0.85; }
+    .brand-mark {
+      position: relative; width: 44px; height: 44px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--brand) 0%, var(--brand-hover) 100%);
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 4px 12px -4px rgba(139, 46, 8, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .brand-mark::before { content: ''; position: absolute; inset: 5px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, 0.4); }
+    .brand-mark svg { position: relative; z-index: 1; width: 21px; height: 21px; color: #fff; }
+    .brand-wordmark { white-space: nowrap;
+      font-family: 'Playfair Display', serif; font-weight: 800; font-size: 22px;
+      letter-spacing: -0.02em; line-height: 1; color: var(--text);
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .brand-wordmark .sub {
+      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 9px;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-subtle);
+    }
+
+    /* Utility bar */
+    .util-bar {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 50;
+    }
+    @media (min-width: 1024px) {
+      .util-bar { top: 32px; right: 40px; }
+    }
+    .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; border-radius: 50%; color: var(--text-muted);
+      background: var(--surface); border: 1px solid var(--border); cursor: pointer;
+      transition: all 0.16s ease;
+      box-shadow: 0 2px 8px -2px rgba(31, 24, 16, 0.08);
+    }
+    .btn-icon:hover { background: var(--brand); color: #fff; border-color: var(--brand); transform: translateY(-2px); }
+    .btn-icon svg { width: 18px; height: 18px; }
+
+    /* Page */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Big background 404 numeral */
+    .bg-404 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(20rem, 40vw, 42rem);
+      line-height: 0.85;
+      color: var(--brand);
+      opacity: 0.06;
+      letter-spacing: -0.06em;
+      user-select: none;
+      pointer-events: none;
+      z-index: 1;
+      white-space: nowrap;
+    }
+
+    /* Decorative glyphs */
+    .glyph {
+      position: absolute;
+      pointer-events: none;
+      color: var(--brand);
+      opacity: 0.08;
+      font-weight: 900;
+      font-family: 'Playfair Display', serif;
+      user-select: none;
+      z-index: 2;
+    }
+    .glyph-1 { top: 10%; left: 6%; transform: rotate(-15deg); font-size: 6rem; }
+    .glyph-2 { bottom: 14%; right: 5%; transform: rotate(20deg); font-size: 8rem; color: var(--olive); opacity: 0.07; }
+    .glyph-3 { top: 55%; left: 8%; font-size: 4rem; color: var(--amber); opacity: 0.08; }
+
+    /* Main content */
+    .content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 720px;
+      text-align: center;
+    }
+
+    /* Small caps top rail */
+    .top-rail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .top-rail::before,
+    .top-rail::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--border-strong);
+    }
+
+    /* Number display */
+    .four-oh-four {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(5rem, 14vw, 9rem);
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .four-oh-four .zero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      border: 3px solid var(--brand);
+      color: var(--brand);
+      font-style: italic;
+      position: relative;
+    }
+    .four-oh-four .zero::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      border: 1.5px dashed color-mix(in srgb, var(--brand) 40%, transparent);
+    }
+
+    /* Heading */
+    .content h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    /* Subtext */
+    .content .journal-body {
+      max-width: 32rem;
+      margin: 0 auto 40px;
+      font-size: 17px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 13px 26px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-hover) 100%);
+      color: #fff;
+      box-shadow: 0 4px 14px -4px rgba(139, 46, 8, 0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px -6px rgba(139, 46, 8, 0.55);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
+    .btn-ghost:hover {
+      background: var(--brand-soft);
+      border-color: var(--brand);
+      color: var(--brand);
+    }
+
+    /* Helper links row */
+    .helper-block {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .helper-block .small-caps {
+      margin-bottom: 20px;
+    }
+
+    .helper-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    @media (min-width: 640px) {
+      .helper-links { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .helper-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.18s ease;
+    }
+    .helper-link:hover {
+      border-color: var(--brand);
+      background: var(--brand-soft);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px -12px rgba(139, 46, 8, 0.3);
+    }
+    .helper-link i {
+      font-size: 18px;
+      color: var(--brand);
+      transition: transform 0.18s ease;
+    }
+    .helper-link:hover i {
+      transform: scale(1.15);
+    }
+    .helper-link span {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* Handwritten note */
+    .hand-note {
+      margin-top: 50px;
+      text-align: center;
+    }
+    .hand-note .hand {
+      font-size: 1.9rem;
+    }
+
+    /* Ornamental divider */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--brand);
+      margin: 30px 0;
+    }
+    .ornament::before,
+    .ornament::after {
+      content: '';
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+    }
+
+    /* Journal footer */
+    .journal-footer {
+      position: relative;
+      z-index: 10;
+      margin-top: 40px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-subtle);
+    }
+    .journal-footer a {
+      color: var(--brand);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .journal-footer a:hover { opacity: 0.75; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Utility bar -->
+  <div class="util-bar">
+    <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme">
+      <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+    </button>
+    <button id="lang-icon" class="btn-icon" aria-label="Toggle direction">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+    </button>
+  </div>
+
+  <!-- Page -->
+  <main class="page">
+
+    <!-- Big 404 numeral behind content -->
+    <span class="bg-404" aria-hidden="true">404</span>
+
+    <!-- Decorative glyphs -->
+    <span class="glyph glyph-1" aria-hidden="true">§</span>
+    <span class="glyph glyph-2" aria-hidden="true">№</span>
+    <span class="glyph glyph-3" aria-hidden="true">❦</span>
+
+    <div class="content">
+
+      <!-- Top rail -->
+      <div class="top-rail">
+        <span class="small-caps">Est. 1998 · Page Missing</span>
+      </div>
+
+      <!-- Brand lockup -->
+      <div class="flex justify-center mb-8">
+        <a href="index.html" class="brand-lockup" aria-label="SPICE ROUTE Home">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Big 404 visual -->
+      <div class="four-oh-four">
+        <span>4</span>
+        <span class="zero">0</span>
+        <span>4</span>
+      </div>
+
+      <!-- Heading -->
+      <h1>
+        This page went
+        <span class="italic t-brand">missing</span>
+        from the ledger.
+      </h1>
+
+      <!-- Subtext -->
+      <p class="journal-body">
+        The page you're looking for isn't in our notebook. It may have
+        been moved, renamed, or perhaps it was never written down at all.
+        Either way, the shelf it belonged to is empty.
+      </p>
+
+      <!-- Ornament -->
+      <div class="ornament">
+        <i class="fa-solid fa-feather-pointed text-sm"></i>
+      </div>
+
+      <!-- CTA buttons -->
+      <div class="flex flex-wrap gap-3 justify-center mb-4">
+        <a href="index.html" class="btn btn-primary">
+          <i class="fa-solid fa-house text-xs"></i>
+          Back to home
+        </a>
+        <a href="contact.html" class="btn btn-ghost">
+          <i class="fa-solid fa-envelope text-xs"></i>
+          Write to us
+        </a>
+      </div>
+
+      <!-- Helper links -->
+      <div class="helper-block">
+        <p class="small-caps text-center">Or try these pages</p>
+
+        <div class="helper-links">
+          <a href="products.html" class="helper-link">
+            <i class="fa-solid fa-jar"></i>
+            <span>Shop Blends</span>
+          </a>
+          <a href="recipes.html" class="helper-link">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Recipes</span>
+          </a>
+          <a href="journal.html" class="helper-link">
+            <i class="fa-solid fa-feather-pointed"></i>
+            <span>Journal</span>
+          </a>
+          <a href="about.html" class="helper-link">
+            <i class="fa-solid fa-seedling"></i>
+            <span>Our Story</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Handwritten note -->
+      <div class="hand-note">
+        <p class="hand">— wrong shelf, no harm done —</p>
+      </div>
+
+    </div>
+
+    <!-- Journal footer -->
+    <div class="journal-footer">
+      <p>
+        © 2026 SPICE ROUTE ·
+        <a href="#">Privacy</a> ·
+        <a href="#">Terms</a>
+      </p>
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+      const html = document.documentElement;
+
+      /* ── THEME ── */
+      const applyTheme = (t) => {
+        html.setAttribute('data-theme', t);
+        document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', t === 'dark'));
+        document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', t === 'light'));
+      };
+      const setTheme = (t) => { localStorage.setItem('theme', t); applyTheme(t); };
+      applyTheme(localStorage.getItem('theme') || 'light');
+
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        setTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+      });
+
+      /* ── RTL ── */
+      const applyDir = (d) => html.setAttribute('dir', d === 'ar' ? 'rtl' : 'ltr');
+      applyDir(localStorage.getItem('language') || 'en');
+      document.getElementById('lang-icon')?.addEventListener('click', () => {
+        const next = (localStorage.getItem('language') === 'ar') ? 'en' : 'ar';
+        localStorage.setItem('language', next);
+        applyDir(next);
+      });
+    })();
+  </script>
+</body>
+</html>

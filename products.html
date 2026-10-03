@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="asserts/favicon_v2.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+  <title>Products — SPICE ROUTE</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.js"></script>
+
+  <style>
+    :root, html[data-theme='light'] {
+      --bg:            #FFFCF7;
+      --bg-subtle:     #FBF4E8;
+      --surface:       #FFFFFF;
+      --text:          #2B1E12;
+      --text-muted:    #6B4F38;
+      --text-subtle:   #9B7B63;
+      --border:        #EADBCB;
+      --border-strong: #DBC8B2;
+      --brand:         #C1440E;
+      --brand-hover:   #A33A0C;
+      --brand-soft:    #FDF0E8;
+      --olive:         #6B7A3F;
+      --olive-soft:    #EEF1E1;
+      --amber:         #D97706;
+      --amber-soft:    #FEF3C7;
+      --nav-hover:     #F9F2EA;
+      --footer-bg:     #2B1E12;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #C4A68B;
+    }
+    html[data-theme='dark'] {
+      --bg:            #17110A;
+      --bg-subtle:     #211710;
+      --surface:       #211710;
+      --text:          #F5EDE6;
+      --text-muted:    #C4A68B;
+      --text-subtle:   #9B7B63;
+      --border:        #382618;
+      --border-strong: #54381F;
+      --brand:         #E05E2A;
+      --brand-hover:   #F07545;
+      --brand-soft:    #3D1E0E;
+      --olive:         #A8B87A;
+      --olive-soft:    #2C3320;
+      --amber:         #F59E0B;
+      --amber-soft:    #3A2E10;
+      --nav-hover:     #2F2117;
+      --footer-bg:     #0A0603;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #9B7B63;
+    }
+
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', 'Plus Jakarta Sans', serif;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .t-text { color: var(--text); }
+    .t-muted { color: var(--text-muted); }
+    .t-subtle { color: var(--text-subtle); }
+    .t-brand { color: var(--brand); }
+    .t-olive { color: var(--olive); }
+    .bg-app { background-color: var(--bg); }
+    .bg-app-subtle { background-color: var(--bg-subtle); }
+    .bg-surface { background-color: var(--surface); }
+    .bg-nav-hover { background-color: var(--nav-hover); }
+    .bg-brand-soft { background-color: var(--brand-soft); }
+    .border-app { border-color: var(--border); }
+    .border-strong { border-color: var(--border-strong); }
+
+    .brand-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; transition: opacity 0.2s ease; }
+    .brand-lockup:hover { opacity: 0.85; }
+    .brand-mark {
+      position: relative; width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--brand) 0%, var(--brand-hover) 100%);
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 4px 14px -4px rgba(193, 68, 14, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .brand-mark::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, 0.4); }
+    .brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    .brand-wordmark { white-space: nowrap;
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px;
+      letter-spacing: -0.02em; line-height: 1; color: var(--text);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .brand-wordmark .sub {
+      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 9px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle);
+    }
+
+    #main-header {
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    html[data-theme='dark'] #main-header {
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+    }
+
+    .nav-link {
+      position: relative; display: inline-flex; align-items: center;
+      padding: 10px 18px; font-size: 15.5px; font-weight: 500; color: var(--text);
+      border-radius: 10px; text-decoration: none;
+      transition: color 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--brand); background: var(--nav-hover); }
+    .nav-link.is-active { color: var(--brand); font-weight: 600; }
+    .nav-link.is-active::after {
+      content: ''; position: absolute; left: 18px; right: 18px; bottom: 3px;
+      height: 2px; background: var(--brand); border-radius: 2px;
+    }
+
+    .dd { position: relative; }
+    .dd-menu {
+      position: absolute; top: calc(100% + 6px); left: 0; min-width: 180px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: 0 12px 32px -8px rgba(43, 30, 18, 0.14), 0 4px 12px -2px rgba(43, 30, 18, 0.06);
+      padding: 6px; opacity: 0; visibility: hidden; transform: translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 100;
+    }
+    .dd:hover .dd-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dd-menu a {
+      display: block; padding: 10px 14px; font-size: 14.5px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-radius: 8px;
+      transition: background 0.14s ease, color 0.14s ease; white-space: nowrap;
+    }
+    .dd-menu a:hover { background: var(--nav-hover); color: var(--brand); }
+    .dd-chevron { width: 12px; height: 12px; margin-left: 5px; transition: transform 0.2s ease; }
+    .dd:hover .dd-chevron { transform: rotate(180deg); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 11px 24px; border-radius: 11px; border: 1px solid transparent;
+      cursor: pointer; text-decoration: none; transition: all 0.18s ease;
+      white-space: nowrap; line-height: 1;
+    }
+    .btn-primary {
+      background: var(--brand); color: #fff;
+      box-shadow: 0 1px 2px rgba(43, 30, 18, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    .btn-primary:hover {
+      background: var(--brand-hover);
+      box-shadow: 0 8px 20px -6px rgba(193, 68, 14, 0.5);
+      transform: translateY(-1px);
+    }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
+    .btn-ghost:hover { background: var(--nav-hover); border-color: var(--text-subtle); }
+    .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; border-radius: 11px; color: var(--text-muted);
+      background: transparent; border: 1px solid var(--border); cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .btn-icon:hover { background: var(--nav-hover); color: var(--brand); border-color: var(--border-strong); }
+    .btn-icon svg { width: 19px; height: 19px; }
+
+    #site-footer { background: var(--footer-bg); color: var(--footer-text); }
+    #site-footer .foot-brand-mark {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #E05E2A 0%, #C1440E 100%);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px -4px rgba(224, 94, 42, 0.55); position: relative;
+    }
+    #site-footer .foot-brand-mark::before {
+      content: ''; position: absolute; inset: 6px; border-radius: 50%;
+      border: 1.5px dashed rgba(255, 255, 255, 0.4);
+    }
+    #site-footer .foot-brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    #site-footer .foot-wordmark {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px;
+      letter-spacing: -0.02em; color: #fff;
+    }
+    #site-footer .foot-tagline {
+      font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--footer-muted); font-weight: 500; margin-top: 4px;
+    }
+    .foot-heading {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin-bottom: 20px;
+    }
+    .foot-link {
+      display: inline-block; font-size: 15px; font-weight: 400;
+      color: var(--footer-muted); text-decoration: none; padding: 6px 0;
+      transition: color 0.16s ease, transform 0.16s ease;
+    }
+    .foot-link:hover { color: #E05E2A; transform: translateX(3px); }
+    .foot-social {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 11px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #F5EDE6; font-size: 15px; text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .foot-social:hover { background: #E05E2A; border-color: #E05E2A; color: #fff; transform: translateY(-2px); }
+    #site-footer .foot-input {
+      width: 100%; padding: 12px 16px; font-size: 15px; color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 11px; outline: none;
+      transition: all 0.18s ease;
+    }
+    #site-footer .foot-input::placeholder { color: var(--footer-muted); }
+    #site-footer .foot-input:focus {
+      background: rgba(255, 255, 255, 0.08); border-color: #E05E2A;
+      box-shadow: 0 0 0 3px rgba(224, 94, 42, 0.15);
+    }
+    .foot-contact {
+      display: flex; align-items: center; gap: 12px; font-size: 14.5px;
+      color: var(--footer-muted); text-decoration: none; padding: 5px 0;
+      transition: color 0.16s ease;
+    }
+    .foot-contact:hover { color: #E05E2A; }
+    .foot-contact i { color: #E05E2A; width: 16px; font-size: 14px; }
+    .foot-bottom { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+
+    #drawer-panel { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .mob-link {
+      display: block; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border);
+      transition: color 0.15s ease;
+    }
+    .mob-link:hover { color: var(--brand); }
+    .mob-accordion {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 100%; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); background: none; border: none;
+      border-bottom: 1px solid var(--border); cursor: pointer; text-align: left;
+    }
+    .mob-accordion:hover { color: var(--brand); }
+
+    html { scroll-behavior: smooth; }
+
+    /* ══════════════ PRODUCTS PAGE UNIQUE STYLES ══════════════ */
+
+    .script-accent {
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+      color: var(--brand);
+      font-size: 1.6em;
+      line-height: 1;
+    }
+    .small-caps {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+
+    /* Filter rail */
+    .filter-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.15s ease, color 0.15s ease;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+    .filter-link:hover { background: var(--nav-hover); color: var(--brand); }
+    .filter-link.is-active {
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-weight: 600;
+    }
+    .filter-link .count {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: var(--nav-hover);
+      color: var(--text-subtle);
+    }
+    .filter-link.is-active .count {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    /* Product shelf row */
+    .shelf-row {
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s ease;
+    }
+    .shelf-row:hover { background: var(--nav-hover); }
+    .shelf-row:last-child { border-bottom: none; }
+
+    @media (max-width: 640px) {
+      .shelf-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* Image thumb — has photo, plus icon fallback behind */
+    .thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 14px;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .thumb .thumb-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      opacity: 0.4;
+      font-size: 3rem;
+      z-index: 1;
+    }
+    .thumb img {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .shelf-row:hover .thumb img { transform: scale(1.06); }
+
+    /* Batch number tag */
+    .batch-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--brand);
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--brand-soft);
+      letter-spacing: 0.02em;
+    }
+
+    /* Price tag */
+    .price-tag {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    /* Feature tile — image with gradient overlay */
+    .feature-tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(160deg, #C1440E 0%, #7A1E08 55%, #2B1204 100%);
+    }
+    .feature-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 48px -20px rgba(43, 30, 18, 0.3);
+    }
+    .feature-tile .tile-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      transition: transform 0.7s ease;
+    }
+    .feature-tile:hover .tile-img { transform: scale(1.05); }
+    .feature-tile .tile-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(43,30,18,0.15) 0%, rgba(43,30,18,0.4) 45%, rgba(43,30,18,0.92) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .feature-tile .watermark {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.08;
+      color: #fff;
+      z-index: 1;
+    }
+    .feature-tile .texture {
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(45deg, #fff 0 1px, transparent 1px 16px);
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Ornamental divider */
+    .ornament {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      color: var(--brand);
+    }
+    .ornament::before, .ornament::after {
+      content: '';
+      height: 1px; width: 60px;
+      background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+    }
+
+    /* Tag pill */
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 100px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text-muted);
+    }
+    .tag-pill.t-brand { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); }
+    .tag-pill.t-olive { background: var(--olive-soft); border-color: var(--olive); color: var(--olive); }
+
+    /* Farm story panel — has image */
+    .farm-panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      min-height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(150deg, #C1440E 0%, #7A1E08 100%);
+    }
+    .farm-panel img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .farm-panel .panel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(150deg, rgba(43,30,18,0.4) 0%, rgba(43,30,18,0.75) 100%);
+      z-index: 1;
+    }
+    .farm-panel .panel-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 32px;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <nav class="flex items-center justify-between h-[76px]">
+        <a href="index.html" class="brand-lockup" aria-label="SPICE ROUTE Home">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+
+        <div class="hidden xl:flex items-center gap-1">
+          <div class="dd">
+            <button class="nav-link" id="nav-home-btn">
+              Home 1
+              <svg class="dd-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="dd-menu">
+              <a href="index.html">Home 1</a>
+              <a href="home2.html">Home 2</a>
+            </div>
+          </div>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="recipes.html" class="nav-link">Recipes</a>
+          <a href="journal.html" class="nav-link">Journal</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="hidden xl:flex items-center gap-2.5">
+          <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme">
+            <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+          <button id="lang-icon" class="btn-icon" aria-label="Toggle direction">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+          </button>
+          <a href="login.html" class="btn btn-primary ml-2">Sign In</a>
+        </div>
+
+        <button id="mobile-menu-open" class="xl:hidden btn-icon" aria-label="Open menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="h-[76px]"></div>
+
+  <main class="flex-grow">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 1 — HERO
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-12 md:py-16 bg-app-subtle relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-1" style="background: linear-gradient(90deg, var(--brand) 0%, var(--amber) 50%, var(--olive) 100%);"></div>
+
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-16 items-end">
+
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <span class="small-caps">Catalog · Vol. 04</span>
+              <span class="h-px w-12" style="background: var(--border-strong);"></span>
+              <span class="small-caps">Autumn · 2026</span>
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl leading-[0.95] mb-6">
+              The
+              <span class="italic t-brand">pantry</span><br>
+              index.
+            </h1>
+
+            <p class="text-lg t-muted max-w-xl leading-relaxed mb-8">
+              Twenty-four jars across five shelves. Every listing shows its batch
+              number, aging time, and where the produce was grown. Scroll, or
+              filter by shelf.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-x-8 gap-y-3">
+              <div class="flex items-center gap-2 text-sm">
+                <span class="w-2 h-2 rounded-full" style="background: var(--brand);"></span>
+                <span class="t-muted">14 open batches</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="w-2 h-2 rounded-full" style="background: var(--olive);"></span>
+                <span class="t-muted">6 in rest</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm">
+                <span class="w-2 h-2 rounded-full" style="background: var(--amber);"></span>
+                <span class="t-muted">3 released this week</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: hero image with overlay panel -->
+          <div class="relative">
+            <div class="rounded-3xl overflow-hidden shadow-xl relative" style="border: 1px solid var(--border);">
+              <img src="asserts/products1.avif"
+                   alt="Jars of artisan preserves on a workshop shelf"
+                   class="w-full h-[380px] object-cover"
+                   onerror="this.style.display='none'">
+              <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(43,30,18,0.15) 0%, rgba(43,30,18,0.75) 100%); pointer-events: none;"></div>
+
+              <div class="absolute inset-0 p-8 flex flex-col justify-between">
+                <div class="flex items-start justify-between">
+                  <!-- <div>
+                    <p class="text-[10px] font-bold tracking-[0.22em] uppercase" style="color: #F0B25A;">The Workshop Shelf</p>
+                    <p class="text-white text-xl mt-2" style="font-family:'Playfair Display',serif;">Twenty-four jars, five shelves.</p>
+                  </div> -->
+                  <!-- <div class="w-14 h-14 rounded-full border-2 border-dashed flex items-center justify-center" style="border-color: rgba(240,178,90,0.75); background: rgba(43,30,18,0.4); backdrop-filter: blur(6px);">
+                    <span class="text-[9px] font-bold tracking-widest text-center leading-tight" style="color: #F0B25A;">№<br>04</span>
+                  </div> -->
+                </div>
+
+                <!-- <div class="flex flex-wrap sm:flex-nowrap gap-2">
+                  <span class="text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full" style="background: rgba(240,178,90,0.95); color: #2B1204;">New this week</span>
+                  <span class="text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full" style="background: rgba(255,255,255,0.15); color: #F5EDE6; border: 1px solid rgba(255,255,255,0.25);">14 batches open</span>
+                </div> -->
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 2 — FEATURED SHELF
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <span class="small-caps block mb-3">Just Released</span>
+            <h2 class="text-4xl md:text-5xl leading-tight max-w-xl">
+              Three jars we
+              <span class="italic t-brand">opened</span> this week.
+            </h2>
+          </div>
+          <p class="text-sm t-muted max-w-xs">
+            Fresh from the copper pot. These three have had their six-week rest and
+            are now on the shelf.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7">
+
+          <!-- Feature 1 — wide -->
+          <a href="#" class="feature-tile md:col-span-2 min-h-[380px] p-8 sm:p-10">
+            <img class="tile-img"
+                 src="asserts/products2.avif"
+                 alt="Tomato and tamarind chutney"
+                 onerror="this.style.display='none'">
+            <div class="tile-overlay"></div>
+            <div class="watermark" style="top: 50%; left: 50%; transform: translate(-50%, -60%);">
+              <i class="fa-solid fa-jar" style="font-size: 22rem;"></i>
+            </div>
+            <div class="texture"></div>
+
+            <!-- <div class="absolute top-6 right-6 w-16 h-16 rounded-full border-2 border-dashed flex items-center justify-center z-10" style="border-color: rgba(240,178,90,0.75); background: rgba(43,30,18,0.4); backdrop-filter: blur(6px);">
+              <span class="text-[10px] font-bold tracking-widest text-center leading-tight" style="color: #F0B25A;">№<br>041</span>
+            </div> -->
+
+            <div class="relative z-10">
+              <div class="flex items-center gap-3 mb-3 flex-wrap">
+                <span class="tag-pill" style="background: rgba(240,178,90,0.95); border-color: rgba(240,178,90,0.95); color: #2B1204;">New batch</span>
+              </div>
+              <h3 class="text-3xl sm:text-4xl mb-2 text-white" style="font-family:'Playfair Display',serif;">Tomato &amp; Tamarind</h3>
+              <p class="text-sm italic mb-4 text-white" style="font-family:'Playfair Display',serif;">sweet · tangy · 6 weeks aged</p>
+              <div class="flex items-center justify-between flex-wrap gap-3">
+                <span class="text-xs text-white uppercase tracking-wider">240g jar · Chutney shelf</span>
+                <span class="text-2xl font-bold" style="font-family:'Playfair Display',serif; color: #F0B25A;">$11.00</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Feature 2 -->
+          <a href="#" class="feature-tile min-h-[380px] p-8">
+            <img class="tile-img"
+                 src="asserts/products3.avif"
+                 alt="Lemon chili pickle"
+                 onerror="this.style.display='none'">
+            <div class="tile-overlay"></div>
+            <div class="watermark" style="bottom: -60px; right: -40px;">
+              <i class="fa-solid fa-pepper-hot" style="font-size: 16rem;"></i>
+            </div>
+            <div class="texture"></div>
+
+            <div class="relative z-10">
+              <!-- <div class="flex items-center gap-3 mb-3 flex-wrap">
+                <span class="tag-pill" style="background: rgba(255,255,255,0.9); color: #2B1204; border-color: rgba(255,255,255,0.9);">No. 042</span>
+              </div> -->
+              <h3 class="text-3xl mb-2 text-white" style="font-family:'Playfair Display',serif;">Lemon Chili</h3>
+              <p class="text-sm italic mb-4 text-white" style="font-family:'Playfair Display',serif;">sharp · fiery</p>
+              <div class="flex items-center justify-between flex-wrap gap-3">
+                <span class="text-xs text-white uppercase tracking-wider">300g · Pickle shelf</span>
+                <span class="text-2xl font-bold" style="font-family:'Playfair Display',serif; color: #F0B25A;">$9.80</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3 — MAIN CATALOG
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8 lg:gap-12 items-start">
+
+          <!-- LEFT: Filter rail -->
+          <aside class="lg:sticky lg:top-28">
+            <div class="small-caps mb-4 pl-3">Browse by shelf</div>
+
+            <div class="flex flex-col gap-1 mb-8">
+              <button class="filter-link is-active" data-filter="all">
+                <span><i class="fa-solid fa-layer-group mr-2 text-xs"></i>All jars</span>
+                <span class="count">24</span>
+              </button>
+              <button class="filter-link" data-filter="chutney">
+                <span><i class="fa-solid fa-jar mr-2 text-xs"></i>Chutneys</span>
+                <span class="count">8</span>
+              </button>
+              <button class="filter-link" data-filter="pickle">
+                <span><i class="fa-solid fa-pepper-hot mr-2 text-xs"></i>Pickles</span>
+                <span class="count">6</span>
+              </button>
+              <button class="filter-link" data-filter="mustard">
+                <span><i class="fa-solid fa-mortar-pestle mr-2 text-xs"></i>Mustards</span>
+                <span class="count">4</span>
+              </button>
+              <button class="filter-link" data-filter="vinegar">
+                <span><i class="fa-solid fa-leaf mr-2 text-xs"></i>Herb Vinegars</span>
+                <span class="count">3</span>
+              </button>
+              <button class="filter-link" data-filter="relish">
+                <span><i class="fa-solid fa-bowl-food mr-2 text-xs"></i>Relishes</span>
+                <span class="count">3</span>
+              </button>
+            </div>
+
+            <div class="rounded-2xl border border-app bg-surface p-5">
+              <div class="small-caps mb-3">Aging time</div>
+              <div class="flex flex-col gap-2">
+                <label class="flex items-center gap-3 text-sm cursor-pointer">
+                  <input type="checkbox" style="accent-color: var(--brand);">
+                  <span class="t-muted">Under 3 weeks</span>
+                </label>
+                <label class="flex items-center gap-3 text-sm cursor-pointer">
+                  <input type="checkbox" style="accent-color: var(--brand);" checked>
+                  <span class="t-muted">3 – 6 weeks</span>
+                </label>
+                <label class="flex items-center gap-3 text-sm cursor-pointer">
+                  <input type="checkbox" style="accent-color: var(--brand);">
+                  <span class="t-muted">6+ weeks</span>
+                </label>
+              </div>
+            </div>
+
+            <p class="script-accent text-center mt-8 text-2xl">— shelf notes —</p>
+          </aside>
+
+          <!-- RIGHT: Shelf list -->
+          <div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-6 border-b border-app">
+              <p class="text-sm t-muted">
+                Showing <span class="font-semibold t-text">6 of 24</span> jars
+              </p>
+              <div class="flex items-center gap-3">
+                <span class="small-caps">Sort</span>
+                <select class="rounded-lg border px-3 py-2 text-sm bg-surface t-text" style="border-color: var(--border);">
+                  <option>Newest first</option>
+                  <option>Aging time</option>
+                  <option>Price: low to high</option>
+                  <option>Price: high to low</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="rounded-3xl border border-app bg-surface overflow-hidden">
+
+              <!-- Product 1 -->
+              <article class="shelf-row" data-category="chutney">
+                <div class="thumb" style="background: linear-gradient(140deg, #C1440E 0%, #7A1E08 100%);">
+                  <div class="thumb-fallback"><i class="fa-solid fa-jar"></i></div>
+                  <img src="asserts/products4.avif"
+                       alt="Tomato and tamarind chutney" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <div class="flex items-center gap-3 mb-2 flex-wrap">
+                    <span class="batch-tag">No. 041</span>
+                    <span class="small-caps">Chutney · 240g</span>
+                  </div>
+                  <h3 class="text-xl mb-2">Tomato &amp; Tamarind</h3>
+                  <p class="text-sm t-muted leading-relaxed mb-3">
+                    Slow-cooked tomatoes, tamarind, and jaggery. Sweet, tangy, and
+                    thick enough to spoon onto anything warm.
+                  </p>
+                  <div class="flex flex-wrap sm:flex-nowrap gap-2">
+                    <span class="tag-pill">Aged 6 weeks</span>
+                    <span class="tag-pill">Grown in Nellore</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="price-tag">$11.00</p>
+                  <button class="btn btn-primary mt-3">
+                    <i class="fa-solid fa-basket-shopping text-xs"></i>
+                    Add
+                  </button>
+                </div>
+              </article>
+
+              <!-- Product 2 -->
+              <article class="shelf-row" data-category="pickle">
+                <div class="thumb" style="background: linear-gradient(140deg, #B26A05 0%, #D97706 100%);">
+                  <div class="thumb-fallback"><i class="fa-solid fa-pepper-hot"></i></div>
+                  <img src="asserts/products5.avif"
+                       alt="Lemon chili pickle" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <div class="flex items-center gap-3 mb-2 flex-wrap">
+                    <span class="batch-tag">No. 042</span>
+                    <span class="small-caps">Pickle · 300g</span>
+                  </div>
+                  <h3 class="text-xl mb-2">Lemon Chili</h3>
+                  <p class="text-sm t-muted leading-relaxed mb-3">
+                    Sun-ripened lemons layered with green chili and cold-pressed
+                    mustard oil. Fiery and unapologetic.
+                  </p>
+                  <div class="flex flex-wrap sm:flex-nowrap gap-2">
+                    <span class="tag-pill">Aged 6 weeks</span>
+                    <span class="tag-pill">Grown in Alleppey</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="price-tag">$9.80</p>
+                  <button class="btn btn-primary mt-3">
+                    <i class="fa-solid fa-basket-shopping text-xs"></i>
+                    Add
+                  </button>
+                </div>
+              </article>
+
+              <!-- Product 3 -->
+              <article class="shelf-row" data-category="mustard">
+                <div class="thumb" style="background: linear-gradient(140deg, #D97706 0%, #F0B25A 100%);">
+                  <div class="thumb-fallback"><i class="fa-solid fa-jar"></i></div>
+                  <img src="asserts/products6.avif"
+                       alt="Haldi mustard" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <div class="flex items-center gap-3 mb-2 flex-wrap">
+                    <span class="batch-tag">No. 043</span>
+                    <span class="small-caps">Mustard · 200g</span>
+                  </div>
+                  <h3 class="text-xl mb-2">Haldi Mustard</h3>
+                  <p class="text-sm t-muted leading-relaxed mb-3">
+                    Whole mustard seeds stone-ground with fresh turmeric and honey.
+                    Pungent, golden, and good on everything.
+                  </p>
+                  <div class="flex flex-wrap sm:flex-nowrap gap-2">
+                    <span class="tag-pill">Aged 3 weeks</span>
+                    <span class="tag-pill">Grown in Coorg</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="price-tag">$10.40</p>
+                  <button class="btn btn-primary mt-3">
+                    <i class="fa-solid fa-basket-shopping text-xs"></i>
+                    Add
+                  </button>
+                </div>
+              </article>
+
+              <!-- Product 4 -->
+              <article class="shelf-row" data-category="vinegar">
+                <div class="thumb" style="background: linear-gradient(140deg, #3F5220 0%, #6B7A3F 100%);">
+                  <div class="thumb-fallback"><i class="fa-solid fa-leaf"></i></div>
+                  <img src="asserts/products7.avif"
+                       alt="Bay and basil herb vinegar" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <div class="flex items-center gap-3 mb-2 flex-wrap">
+                    <span class="batch-tag">No. 044</span>
+                    <span class="small-caps">Vinegar · 500ml</span>
+                  </div>
+                  <h3 class="text-xl mb-2">Bay &amp; Basil Vinegar</h3>
+                  <p class="text-sm t-muted leading-relaxed mb-3">
+                    Apple cider vinegar steeped for four weeks with basil, bay leaf,
+                    and black peppercorns. Bright and herbal.
+                  </p>
+                  <div class="flex flex-wrap sm:flex-nowrap gap-2">
+                    <span class="tag-pill">Aged 4 weeks</span>
+                    <span class="tag-pill">Grown in Cochin</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="price-tag">$8.60</p>
+                  <button class="btn btn-primary mt-3">
+                    <i class="fa-solid fa-basket-shopping text-xs"></i>
+                    Add
+                  </button>
+                </div>
+              </article>
+
+              <!-- Product 5 -->
+              <article class="shelf-row" data-category="relish">
+                <div class="thumb" style="background: linear-gradient(140deg, #5A1F08 0%, #A33A0C 100%);">
+                  <div class="thumb-fallback"><i class="fa-solid fa-mortar-pestle"></i></div>
+                  <img src="asserts/products8.avif"
+                       alt="Green chili relish" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <div class="flex items-center gap-3 mb-2 flex-wrap">
+                    <span class="batch-tag">No. 045</span>
+                    <span class="small-caps">Relish · 220g</span>
+                  </div>
+                  <h3 class="text-xl mb-2">Green Chili Relish</h3>
+                  <p class="text-sm t-muted leading-relaxed mb-3">
+                    Fresh green chilies, coriander, and lime. Bright, sharp, and made
+                    to be eaten within the season.
+                  </p>
+                  <div class="flex flex-wrap sm:flex-nowrap gap-2">
+                    <span class="tag-pill t-olive">Aged 2 weeks</span>
+                    <span class="tag-pill">Grown in Cochin</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="price-tag">$9.20</p>
+                  <button class="btn btn-primary mt-3">
+                    <i class="fa-solid fa-basket-shopping text-xs"></i>
+                    Add
+                  </button>
+                </div>
+              </article>
+
+              <!-- Product 6 -->
+              <article class="shelf-row" data-category="chutney">
+                <div class="thumb" style="background: linear-gradient(140deg, #A8480F 0%, #E08A34 100%);">
+                  <div class="thumb-fallback"><i class="fa-solid fa-jar"></i></div>
+                  <img src="asserts/products9.avif"
+                       alt="Mango chutney" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <div class="flex items-center gap-3 mb-2 flex-wrap">
+                    <span class="batch-tag">No. 046</span>
+                    <span class="small-caps">Chutney · 260g</span>
+                  </div>
+                  <h3 class="text-xl mb-2">Raw Mango Chutney</h3>
+                  <p class="text-sm t-muted leading-relaxed mb-3">
+                    Sharp green mangoes cooked down with fenugreek and mustard
+                    seeds. The bright side of a summer pantry.
+                  </p>
+                  <div class="flex flex-wrap sm:flex-nowrap gap-2">
+                    <span class="tag-pill">Aged 5 weeks</span>
+                    <span class="tag-pill">Grown in Ratnagiri</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="price-tag">$10.20</p>
+                  <button class="btn btn-primary mt-3">
+                    <i class="fa-solid fa-basket-shopping text-xs"></i>
+                    Add
+                  </button>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- <div class="text-center mt-10">
+              <button class="btn btn-ghost">
+                <i class="fa-solid fa-circle-chevron-down text-xs"></i>
+                Load 18 more jars
+              </button>
+            </div> -->
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 4 — SHELF STORY
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="small-caps">Behind the jar</span>
+          <h2 class="text-4xl md:text-5xl leading-tight mt-3 mb-4">
+            Every jar comes from a
+            <span class="italic t-brand">specific</span>
+            field.
+          </h2>
+          <div class="ornament my-6">
+            <i class="fa-solid fa-wheat-awn text-sm"></i>
+          </div>
+          <p class="t-muted leading-relaxed">
+            Here's how three of our partner farms made it onto the shelf.
+          </p>
+        </div>
+
+        <!-- Story 1 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center mb-16 md:mb-24">
+          <div class="farm-panel">
+            <img src="asserts/products10.avif"
+                 alt="Coriander and cumin drying in the sun"
+                 onerror="this.style.display='none'">
+            <div class="panel-overlay"></div>
+            <div class="panel-content">
+              <p class="text-[10px] font-bold tracking-[0.22em] uppercase mb-3" style="color: #F0B25A;">Field notes</p>
+              <p class="text-5xl text-white mb-2" style="font-family:'Playfair Display',serif; font-style: italic;">Nellore</p>
+              <p class="text-sm text-white">Andhra Pradesh</p>
+            </div>
+          </div>
+          <div>
+            <p class="small-caps mb-3">Nellore, Andhra Pradesh</p>
+            <h3 class="text-3xl md:text-4xl mb-4">Chandra Reddy's coriander</h3>
+            <p class="t-muted leading-relaxed mb-6">
+              Chandra plants coriander every February and harvests in the last
+              week of April. He sun-dries the seeds on the same woven mat his
+              father used and sells us one full sack a season. We use his
+              coriander in three of our blends — you can taste its citrus
+              backbone in the Tomato &amp; Tamarind chutney.
+            </p>
+            <div class="flex flex-wrap sm:flex-nowrap gap-2">
+              <span class="tag-pill">Partner since 2003</span>
+              <span class="tag-pill">1 crop per year</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 2 (reversed) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center mb-16 md:mb-24 md:[&>*:first-child]:order-2">
+          <div class="farm-panel">
+            <img src="asserts/products11.avif"
+                 alt="Green cardamom pods on linen"
+                 onerror="this.style.display='none'">
+            <div class="panel-overlay"></div>
+            <div class="panel-content">
+              <p class="text-[10px] font-bold tracking-[0.22em] uppercase mb-3" style="color: #F0B25A;">Field notes</p>
+              <p class="text-5xl text-white mb-2" style="font-family:'Playfair Display',serif; font-style: italic;">Idukki</p>
+              <p class="text-sm text-white">Kerala · 3,200 ft</p>
+            </div>
+          </div>
+          <div>
+            <p class="small-caps mb-3">Idukki, Kerala</p>
+            <h3 class="text-3xl md:text-4xl mb-4">Latha's green cardamom</h3>
+            <p class="t-muted leading-relaxed mb-6">
+              Latha runs a 3-acre cardamom plot at 3,200 feet. She sends us one
+              hundred kilos every October — enough for our entire winter batch of
+              chai blends. The pods arrive still smelling of the mist that grew them.
+            </p>
+            <div class="flex flex-wrap sm:flex-nowrap gap-2">
+              <span class="tag-pill">Partner since 2011</span>
+              <span class="tag-pill">Altitude grown</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 3 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center">
+          <div class="farm-panel">
+            <img src="asserts/products12.avif"
+                 alt="Turmeric roots and powder"
+                 onerror="this.style.display='none'">
+            <div class="panel-overlay"></div>
+            <div class="panel-content">
+              <p class="text-[10px] font-bold tracking-[0.22em] uppercase mb-3" style="color: #F0B25A;">Field notes</p>
+              <p class="text-5xl text-white mb-2" style="font-family:'Playfair Display',serif; font-style: italic;">Alleppey</p>
+              <p class="text-sm text-white">Kerala · Turmeric country</p>
+            </div>
+          </div>
+          <div>
+            <p class="small-caps mb-3">Alleppey, Kerala</p>
+            <h3 class="text-3xl md:text-4xl mb-4">Suresh's Alleppey turmeric</h3>
+            <p class="t-muted leading-relaxed mb-6">
+              Suresh grows the fattest turmeric roots we've ever seen. Rich
+              colour, high curcumin, and a smell that fills the entire workshop
+              when we grind it. Every Haldi Mustard jar starts with his crop.
+            </p>
+            <div class="flex flex-wrap sm:flex-nowrap gap-2">
+              <span class="tag-pill">Partner since 2008</span>
+              <span class="tag-pill">Organic certified</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 5 — BUYING FAQ
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
+
+          <div class="lg:sticky lg:top-28">
+            <span class="small-caps block mb-3">Buying Notes</span>
+            <h2 class="text-4xl md:text-5xl leading-[1.1] mb-6">
+              Before you
+              <span class="italic t-brand">open</span>
+              the jar.
+            </h2>
+            <p class="t-muted leading-relaxed mb-8">
+              Questions we get most often from customers ordering for the first
+              time. If we've missed something, write to us — we answer every
+              letter.
+            </p>
+            <a href="contact.html" class="btn btn-ghost">
+              <i class="fa-solid fa-feather-pointed text-xs"></i>
+              Write to us
+            </a>
+          </div>
+
+          <div class="flex flex-col">
+
+            <div class="grid grid-cols-[40px_1fr] gap-5 py-6 border-b border-app">
+              <span class="text-2xl italic font-bold t-brand leading-none" style="font-family:'Playfair Display',serif;">i.</span>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">How long does a jar keep?</h3>
+                <p class="text-sm t-muted leading-relaxed">
+                  Between four and twelve months once opened, depending on the
+                  jar. Every lid has a printed 'best by' date — and the jar's
+                  original rest period is on the batch ledger.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-[40px_1fr] gap-5 py-6 border-b border-app">
+              <span class="text-2xl italic font-bold t-brand leading-none" style="font-family:'Playfair Display',serif;">ii.</span>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Do you ship outside India?</h3>
+                <p class="text-sm t-muted leading-relaxed">
+                  Yes — we ship to 22 countries. International orders take
+                  7–14 days and are packed in shock-resistant cardboard
+                  with muslin padding.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-[40px_1fr] gap-5 py-6 border-b border-app">
+              <span class="text-2xl italic font-bold t-brand leading-none" style="font-family:'Playfair Display',serif;">iii.</span>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Can I return a jar?</h3>
+                <p class="text-sm t-muted leading-relaxed">
+                  If a seal is broken on arrival, we replace it — no questions.
+                  If you simply don't like the taste, write to us and we'll
+                  credit your next order.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-[40px_1fr] gap-5 py-6">
+              <span class="text-2xl italic font-bold t-brand leading-none" style="font-family:'Playfair Display',serif;">iv.</span>
+              <div>
+                <h3 class="text-lg font-semibold mb-2">Do you offer wholesale?</h3>
+                <p class="text-sm t-muted leading-relaxed">
+                  Yes — from 200 jars up. Cafés, delis, and gift makers order
+                  directly from the workshop. Custom labels available.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 6 — CTA
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="rounded-3xl border border-app bg-surface overflow-hidden relative">
+          <div class="h-2 w-full" style="background: repeating-linear-gradient(90deg, var(--brand) 0 20px, var(--amber) 20px 40px, var(--olive) 40px 60px);"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-16 p-9 sm:p-12 lg:p-16 items-start">
+
+            <div>
+              <p class="script-accent mb-4" style="font-size: 1.75rem;">— and one more shelf —</p>
+              <h2 class="text-3xl md:text-4xl lg:text-5xl leading-[1.05] mb-6">
+                Come see them
+                <span class="italic t-brand">in person</span>.
+              </h2>
+              <p class="t-muted leading-relaxed mb-8 max-w-lg text-lg">
+                The workshop is open Tuesday through Sunday. Walk in, pick a jar
+                off the shelf, and we'll hand you a tasting spoon before you pay.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <a href="contact.html" class="btn btn-primary">
+                  <i class="fa-solid fa-location-dot text-xs"></i>
+                  Plan a visit
+                </a>
+                <a href="recipes.html" class="btn btn-ghost">
+                  <i class="fa-solid fa-book-open text-xs"></i>
+                  See recipes
+                </a>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-app bg-app-subtle p-7">
+              <p class="small-caps mb-5">Shelf directory</p>
+
+              <div class="flex flex-col">
+                <a href="#" class="flex items-start justify-between gap-2 py-3 border-b border-app group">
+                  <span class="text-sm">Shelf 01 — Chutneys</span>
+                  <span class="text-xs t-subtle shrink-0 whitespace-nowrap text-right mt-1">08 varieties →</span>
+                </a>
+                <a href="#" class="flex items-start justify-between gap-2 py-3 border-b border-app group">
+                  <span class="text-sm">Shelf 02 — Pickles</span>
+                  <span class="text-xs t-subtle shrink-0 whitespace-nowrap text-right mt-1">06 varieties →</span>
+                </a>
+                <a href="#" class="flex items-start justify-between gap-2 py-3 border-b border-app group">
+                  <span class="text-sm">Shelf 03 — Mustards</span>
+                  <span class="text-xs t-subtle shrink-0 whitespace-nowrap text-right mt-1">04 varieties →</span>
+                </a>
+                <a href="#" class="flex items-start justify-between gap-2 py-3 border-b border-app group">
+                  <span class="text-sm">Shelf 04 — Herb Vinegars</span>
+                  <span class="text-xs t-subtle shrink-0 whitespace-nowrap text-right mt-1">03 varieties →</span>
+                </a>
+                <a href="#" class="flex items-start justify-between gap-2 py-3 group">
+                  <span class="text-sm">Shelf 05 — Relishes</span>
+                  <span class="text-xs t-subtle shrink-0 whitespace-nowrap text-right mt-1">03 varieties →</span>
+                </a>
+              </div>
+
+              <p class="script-accent text-2xl mt-6 t-brand">— see you at the shelf.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ MOBILE DRAWER ═══════════════════════ -->
+  <div id="mobile-drawer" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+    <div id="drawer-panel" class="absolute top-0 left-0 right-0 max-h-[90vh] overflow-y-auto p-6 shadow-2xl translate-y-[-100%] transition-transform duration-300 ease-out xl:hidden">
+
+      <div class="flex items-center justify-between pb-5 border-b border-app">
+        <a href="index.html" class="brand-lockup">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+        <button id="mobile-menu-close" class="btn-icon" aria-label="Close menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <nav class="mt-2">
+        <button class="mob-accordion" id="mob-home-toggle">
+          Home 1
+          <svg class="w-4 h-4 transition-transform duration-200" id="mob-home-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="mob-home-menu" class="hidden pl-4 py-1">
+          <a href="index.html" class="mob-link border-0 text-sm t-muted">Home 1</a>
+          <a href="home2.html" class="mob-link border-0 text-sm t-muted">Home 2</a>
+        </div>
+
+        <a href="about.html" class="mob-link">About Us</a>
+        <a href="products.html" class="mob-link">Products</a>
+        <a href="recipes.html" class="mob-link">Recipes</a>
+        <a href="journal.html" class="mob-link">Journal</a>
+        <a href="contact.html" class="mob-link">Contact</a>
+      </nav>
+
+      <div class="flex items-center justify-between mt-6 pt-5 border-t border-app">
+        <button id="drawer-theme-toggle" class="btn-icon" aria-label="Toggle theme">
+          <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+        <button id="mobile-lang-icon-drawer" class="btn-icon" aria-label="Toggle direction">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+        </button>
+      </div>
+
+      <div class="mt-5 flex justify-center">
+        <a href="login.html" class="btn btn-primary w-full max-w-[240px] justify-center">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer id="site-footer" class="pt-16">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14">
+
+        <div class="lg:col-span-4">
+          <a href="index.html" class="brand-lockup mb-5">
+            <span class="foot-brand-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+                <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+                <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span>
+              <span class="foot-wordmark">SPICE ROUTE</span>
+              <span class="foot-tagline block">Heritage Blends</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed max-w-sm" style="color: var(--footer-muted);">
+            Handcrafted spice blends and small-batch condiments from heirloom recipes —
+            sun-dried, stone-ground, and delivered to your kitchen.
+          </p>
+          <div class="flex gap-2 mt-6">
+            <a href="#" class="foot-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="foot-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="foot-social" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Company</h4>
+          <ul class="flex flex-col">
+            <li><a href="about.html" class="foot-link">About Us</a></li>
+            <li><a href="process.html" class="foot-link">Our Process</a></li>
+            <li><a href="journal.html" class="foot-link">Journal</a></li>
+            <li><a href="contact.html" class="foot-link">Contact</a></li>
+            <li><a href="recipes.html" class="foot-link">Recipes</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Shop</h4>
+          <ul class="flex flex-col">
+            <li><a href="products.html" class="foot-link">Whole Spices</a></li>
+            <li><a href="products.html" class="foot-link">Ground Blends</a></li>
+            <li><a href="products.html" class="foot-link">Signature Mixes</a></li>
+            <li><a href="products.html" class="foot-link">Gift Sets</a></li>
+            <li><a href="products.html" class="foot-link">New Arrivals</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-4">
+          <h4 class="foot-heading">Get in Touch</h4>
+          <div class="flex flex-col gap-1 mb-6">
+            <a href="tel:+18005550199" class="foot-contact"><i class="fa-solid fa-phone"></i> +1 (800) 555-0199</a>
+            <a href="mailto:hello@spiceroute.com" class="foot-contact"><i class="fa-solid fa-envelope"></i> hello@spiceroute.com</a>
+            <span class="foot-contact"><i class="fa-solid fa-location-dot"></i> 12 Spice Market Lane, Cochin</span>
+          </div>
+
+          <h4 class="foot-heading">Newsletter</h4>
+          <form class="flex gap-2" onsubmit="event.preventDefault();">
+            <input type="email" class="foot-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary px-5">
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="foot-bottom py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs" style="color: var(--footer-muted);">
+          © 2026 SPICE ROUTE. All rights reserved.
+        </p>
+        <div class="flex items-center gap-6 text-xs" style="color: var(--footer-muted);">
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+          <a href="#" class="hover:text-white transition">Shipping</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+      const html = document.documentElement;
+
+      const applyTheme = (t) => {
+        html.setAttribute('data-theme', t);
+        document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', t === 'dark'));
+        document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', t === 'light'));
+      };
+      const setTheme = (t) => { localStorage.setItem('theme', t); applyTheme(t); };
+      applyTheme(localStorage.getItem('theme') || 'light');
+
+      ['theme-toggle', 'drawer-theme-toggle'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          setTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        });
+      });
+
+      const applyDir = (d) => html.setAttribute('dir', d === 'ar' ? 'rtl' : 'ltr');
+      applyDir(localStorage.getItem('language') || 'en');
+      ['lang-icon', 'mobile-lang-icon-drawer'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          const next = (localStorage.getItem('language') === 'ar') ? 'en' : 'ar';
+          localStorage.setItem('language', next);
+          applyDir(next);
+        });
+      });
+
+      const drawer = document.getElementById('mobile-drawer');
+      const panel = document.getElementById('drawer-panel');
+      const backdrop = document.getElementById('drawer-backdrop');
+
+      const openDrawer = () => {
+        drawer.classList.remove('pointer-events-none');
+        panel.classList.remove('translate-y-[-100%]');
+        backdrop.classList.add('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeDrawer = () => {
+        panel.classList.add('translate-y-[-100%]');
+        backdrop.classList.remove('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = '';
+        setTimeout(() => drawer.classList.add('pointer-events-none'), 300);
+      };
+
+      document.getElementById('mobile-menu-open')?.addEventListener('click', openDrawer);
+      document.getElementById('mobile-menu-close')?.addEventListener('click', closeDrawer);
+      backdrop?.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+      const bindAccordion = (btnId, menuId, iconId) => {
+        const btn = document.getElementById(btnId);
+        const menu = document.getElementById(menuId);
+        const icon = document.getElementById(iconId);
+        btn?.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          icon.classList.toggle('rotate-180');
+        });
+      };
+      bindAccordion('mob-home-toggle', 'mob-home-menu', 'mob-home-icon');
+
+      const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const href = (link.getAttribute('href') || '').toLowerCase();
+        if (href === current) link.classList.add('is-active');
+      });
+      if (['index.html', 'home2.html'].includes(current)) {
+        document.getElementById('nav-home-btn')?.classList.add('is-active');
+      }
+
+      document.querySelectorAll('.filter-link').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-link').forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

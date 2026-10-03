@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="asserts/favicon_v2.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+  <title>SPICE ROUTE — Artisan Condiments &amp; Preserves</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.js"></script>
+
+  <style>
+    :root, html[data-theme='light'] {
+      --bg:            #FFFCF7;
+      --bg-subtle:     #FBF4E8;
+      --surface:       #FFFFFF;
+      --text:          #2B1E12;
+      --text-muted:    #6B4F38;
+      --text-subtle:   #9B7B63;
+      --border:        #EADBCB;
+      --border-strong: #DBC8B2;
+      --brand:         #C1440E;
+      --brand-hover:   #A33A0C;
+      --brand-soft:    #FDF0E8;
+      --olive:         #6B7A3F;
+      --olive-soft:    #EEF1E1;
+      --amber:         #D97706;
+      --amber-soft:    #FEF3C7;
+      --nav-hover:     #F9F2EA;
+      --footer-bg:     #2B1E12;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #C4A68B;
+    }
+    html[data-theme='dark'] {
+      --bg:            #17110A;
+      --bg-subtle:     #211710;
+      --surface:       #211710;
+      --text:          #F5EDE6;
+      --text-muted:    #C4A68B;
+      --text-subtle:   #9B7B63;
+      --border:        #382618;
+      --border-strong: #54381F;
+      --brand:         #E05E2A;
+      --brand-hover:   #F07545;
+      --brand-soft:    #3D1E0E;
+      --olive:         #A8B87A;
+      --olive-soft:    #2C3320;
+      --amber:         #F59E0B;
+      --amber-soft:    #3A2E10;
+      --nav-hover:     #2F2117;
+      --footer-bg:     #0A0603;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #9B7B63;
+    }
+
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', 'Plus Jakarta Sans', serif;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .t-text { color: var(--text); }
+    .t-muted { color: var(--text-muted); }
+    .t-subtle { color: var(--text-subtle); }
+    .t-brand { color: var(--brand); }
+    .t-olive { color: var(--olive); }
+    .bg-app { background-color: var(--bg); }
+    .bg-app-subtle { background-color: var(--bg-subtle); }
+    .bg-surface { background-color: var(--surface); }
+    .bg-nav-hover { background-color: var(--nav-hover); }
+    .bg-olive-soft { background-color: var(--olive-soft); }
+    .bg-amber-soft { background-color: var(--amber-soft); }
+    .border-app { border-color: var(--border); }
+
+    .brand-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; transition: opacity 0.2s ease; }
+    .brand-lockup:hover { opacity: 0.85; }
+    .brand-mark {
+      position: relative; width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--brand) 0%, var(--brand-hover) 100%);
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 4px 14px -4px rgba(193, 68, 14, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .brand-mark::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, 0.4); }
+    .brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    .brand-wordmark { white-space: nowrap;
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px;
+      letter-spacing: -0.02em; line-height: 1; color: var(--text);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .brand-wordmark .sub {
+      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 9px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle);
+    }
+
+    #main-header {
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    html[data-theme='dark'] #main-header {
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+    }
+
+    .nav-link {
+      position: relative; display: inline-flex; align-items: center;
+      padding: 10px 18px; font-size: 15.5px; font-weight: 500; color: var(--text);
+      border-radius: 10px; text-decoration: none;
+      transition: color 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--brand); background: var(--nav-hover); }
+    .nav-link.is-active { color: var(--brand); font-weight: 600; }
+    .nav-link.is-active::after {
+      content: ''; position: absolute; left: 18px; right: 18px; bottom: 3px;
+      height: 2px; background: var(--brand); border-radius: 2px;
+    }
+
+    .dd { position: relative; }
+    .dd-menu {
+      position: absolute; top: calc(100% + 6px); left: 0; min-width: 180px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: 0 12px 32px -8px rgba(43, 30, 18, 0.14), 0 4px 12px -2px rgba(43, 30, 18, 0.06);
+      padding: 6px; opacity: 0; visibility: hidden; transform: translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 100;
+    }
+    .dd:hover .dd-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dd-menu a {
+      display: block; padding: 10px 14px; font-size: 14.5px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-radius: 8px;
+      transition: background 0.14s ease, color 0.14s ease; white-space: nowrap;
+    }
+    .dd-menu a:hover { background: var(--nav-hover); color: var(--brand); }
+    .dd-chevron { width: 12px; height: 12px; margin-left: 5px; transition: transform 0.2s ease; }
+    .dd:hover .dd-chevron { transform: rotate(180deg); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 11px 24px; border-radius: 11px; border: 1px solid transparent;
+      cursor: pointer; text-decoration: none; transition: all 0.18s ease;
+      white-space: nowrap; line-height: 1;
+    }
+    .btn-primary {
+      background: var(--brand); color: #fff;
+      box-shadow: 0 1px 2px rgba(43, 30, 18, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    .btn-primary:hover {
+      background: var(--brand-hover);
+      box-shadow: 0 8px 20px -6px rgba(193, 68, 14, 0.5);
+      transform: translateY(-1px);
+    }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
+    .btn-ghost:hover { background: var(--nav-hover); border-color: var(--text-subtle); }
+    .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; border-radius: 11px; color: var(--text-muted);
+      background: transparent; border: 1px solid var(--border); cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .btn-icon:hover { background: var(--nav-hover); color: var(--brand); border-color: var(--border-strong); }
+    .btn-icon svg { width: 19px; height: 19px; }
+
+    #site-footer { background: var(--footer-bg); color: var(--footer-text); }
+    #site-footer .foot-brand-mark {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #E05E2A 0%, #C1440E 100%);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px -4px rgba(224, 94, 42, 0.55); position: relative;
+    }
+    #site-footer .foot-brand-mark::before {
+      content: ''; position: absolute; inset: 6px; border-radius: 50%;
+      border: 1.5px dashed rgba(255, 255, 255, 0.4);
+    }
+    #site-footer .foot-brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    #site-footer .foot-wordmark {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px;
+      letter-spacing: -0.02em; color: #fff;
+    }
+    #site-footer .foot-tagline {
+      font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--footer-muted); font-weight: 500; margin-top: 4px;
+    }
+    .foot-heading {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin-bottom: 20px;
+    }
+    .foot-link {
+      display: inline-block; font-size: 15px; font-weight: 400;
+      color: var(--footer-muted); text-decoration: none; padding: 6px 0;
+      transition: color 0.16s ease, transform 0.16s ease;
+    }
+    .foot-link:hover { color: #E05E2A; transform: translateX(3px); }
+    .foot-social {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 11px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #F5EDE6; font-size: 15px; text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .foot-social:hover { background: #E05E2A; border-color: #E05E2A; color: #fff; transform: translateY(-2px); }
+    #site-footer .foot-input {
+      width: 100%; padding: 12px 16px; font-size: 15px; color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 11px; outline: none;
+      transition: all 0.18s ease;
+    }
+    #site-footer .foot-input::placeholder { color: var(--footer-muted); }
+    #site-footer .foot-input:focus {
+      background: rgba(255, 255, 255, 0.08); border-color: #E05E2A;
+      box-shadow: 0 0 0 3px rgba(224, 94, 42, 0.15);
+    }
+    .foot-contact {
+      display: flex; align-items: center; gap: 12px; font-size: 14.5px;
+      color: var(--footer-muted); text-decoration: none; padding: 5px 0;
+      transition: color 0.16s ease;
+    }
+    .foot-contact:hover { color: #E05E2A; }
+    .foot-contact i { color: #E05E2A; width: 16px; font-size: 14px; }
+    .foot-bottom { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+
+    #drawer-panel { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .mob-link {
+      display: block; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border);
+      transition: color 0.15s ease;
+    }
+    .mob-link:hover { color: var(--brand); }
+    .mob-accordion {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 100%; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); background: none; border: none;
+      border-bottom: 1px solid var(--border); cursor: pointer; text-align: left;
+    }
+    .mob-accordion:hover { color: var(--brand); }
+
+    html { scroll-behavior: smooth; }
+
+    .script-accent {
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+      color: var(--brand);
+      font-size: 1.6em;
+      line-height: 1;
+    }
+
+    .ornament-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 0 auto;
+    }
+    .ornament-divider::before,
+    .ornament-divider::after {
+      content: '';
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+    }
+
+    /* Decorative jar tile — pure CSS, no images */
+    .jar-tile {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .jar-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 48px -20px rgba(43, 30, 18, 0.35);
+    }
+    .jar-tile .watermark {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.14;
+      color: #fff;
+    }
+    .jar-tile .texture {
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      pointer-events: none;
+      background-image: repeating-linear-gradient(45deg, #fff 0 1px, transparent 1px 14px);
+    }
+  
+    .small-caps {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+</style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <nav class="flex items-center justify-between h-[76px]">
+        <a href="index.html" class="brand-lockup" aria-label="SPICE ROUTE Home">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+
+        <div class="hidden xl:flex items-center gap-1">
+          <div class="dd">
+            <button class="nav-link" id="nav-home-btn">
+              Home 1
+              <svg class="dd-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="dd-menu">
+              <a href="index.html">Home 1</a>
+              <a href="home2.html">Home 2</a>
+            </div>
+          </div>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="recipes.html" class="nav-link">Recipes</a>
+          <a href="journal.html" class="nav-link">Journal</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="hidden xl:flex items-center gap-2.5">
+          <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme">
+            <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+          <button id="lang-icon" class="btn-icon" aria-label="Toggle direction">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+          </button>
+          <a href="login.html" class="btn btn-primary ml-2">Sign In</a>
+        </div>
+
+        <button id="mobile-menu-open" class="xl:hidden btn-icon" aria-label="Open menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="h-[76px]"></div>
+
+  <main class="flex-grow">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 1 — HERO
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="relative overflow-hidden bg-app pt-8 pb-20 md:pt-10 md:pb-28">
+
+      <div class="absolute top-10 -left-20 w-96 h-96 rounded-full pointer-events-none opacity-40"
+           style="background: radial-gradient(circle, rgba(193,68,14,0.25) 0%, transparent 70%); filter: blur(60px);"></div>
+      <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none opacity-30"
+           style="background: radial-gradient(circle, rgba(217,119,6,0.28) 0%, transparent 70%); filter: blur(80px);"></div>
+
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10">
+
+        <!-- <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-app">
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--brand);"></span>
+            <span class="text-[10px] font-bold tracking-[0.22em] uppercase t-subtle">Vol. 04 · Autumn 2026</span>
+          </div>
+          <span class="text-[10px] font-bold tracking-[0.22em] uppercase t-subtle">The Larder Journal</span>
+          <span class="text-[10px] font-bold tracking-[0.22em] uppercase t-subtle">Est. 1998 · Cochin</span>
+        </div> -->
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+
+          <div class="lg:col-span-7">
+            <p class="script-accent mb-6" style="font-size: 2rem;">from our slow kitchen,</p>
+
+            <h1 class="text-[3.2rem] sm:text-[4.5rem] lg:text-[6.5rem] leading-[0.92] mb-8">
+              Jars
+              <span class="italic" style="color: var(--brand);">that</span><br>
+              remember
+              <span class="italic t-brand">summer</span>.
+            </h1>
+
+            <p class="text-lg sm:text-xl leading-relaxed max-w-xl t-muted mb-10">
+              Chutneys, pickles, mustards, and vinegars — hand-cooked in copper pots,
+              aged in glass, and numbered one jar at a time.
+            </p>
+
+            <div class="flex flex-wrap gap-3 mb-12">
+              <a href="products.html" class="btn btn-primary">
+                <i class="fa-solid fa-jar text-xs"></i>
+                Open the Larder
+              </a>
+              <a href="recipes.html" class="btn btn-ghost">
+                <i class="fa-solid fa-utensils text-xs"></i>
+                Read our notes
+              </a>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6 pt-8 border-t border-app max-w-2xl">
+              <div>
+                <p class="text-[10px] font-bold tracking-[0.16em] uppercase t-olive mb-2">Today's Shelf</p>
+                <p class="text-sm leading-relaxed t-muted">14 open batches, 6 in rest.</p>
+              </div>
+              <div>
+                <p class="text-[10px] font-bold tracking-[0.16em] uppercase t-olive mb-2">This Week</p>
+                <p class="text-sm leading-relaxed t-muted">Tomato harvest arrived Monday.</p>
+              </div>
+              <div>
+                <p class="text-[10px] font-bold tracking-[0.16em] uppercase t-olive mb-2">Shop Note</p>
+                <p class="text-sm leading-relaxed t-muted">Lemon pickle back in stock.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: pure-CSS jar illustration cluster -->
+          <div class="lg:col-span-5 relative">
+            <div class="relative pt-10 lg:pt-4">
+
+              <!-- Main jar illustration — pure CSS -->
+              <div class="rounded-3xl ml-auto w-[85%] aspect-[3/4] relative overflow-hidden shadow-2xl"
+                   style="border: 1px solid var(--border); background: linear-gradient(165deg, #C1440E 0%, #8B2E08 60%, #4A1804 100%);">
+                <div class="absolute inset-0 opacity-[0.08]"
+                     style="background-image: repeating-linear-gradient(45deg, #fff 0 1px, transparent 1px 14px);"></div>
+                <div class="absolute inset-0 flex items-center justify-center opacity-20">
+                  <i class="fa-solid fa-jar text-white" style="font-size: 14rem;"></i>
+                </div>
+                <div class="absolute top-6 right-6 w-16 h-16 rounded-full border-2 border-dashed flex items-center justify-center" style="border-color: rgba(240,178,90,0.7);">
+                  <span class="text-[10px] font-bold tracking-widest text-center leading-tight" style="color: #F0B25A;">№<br>041</span>
+                </div>
+                <!-- <div class="absolute bottom-6 left-6 right-6">
+                  <p class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1" style="color: #F0B25A;">Signature Jar</p>
+                  <p class="text-2xl text-white" style="font-family:'Playfair Display',serif;">Tomato &amp; Tamarind</p>
+                </div> -->
+              </div>
+
+              <!-- Small overlapped illustration — pure CSS -->
+              <div class="absolute -bottom-8 left-0 w-[55%] aspect-square rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center"
+                   style="border: 1px solid var(--border); background: linear-gradient(140deg, #B26A05 0%, #D97706 55%, #F0B25A 100%);">
+                <div class="absolute inset-0 opacity-[0.08]"
+                     style="background-image: repeating-linear-gradient(45deg, #fff 0 1px, transparent 1px 14px);"></div>
+                <i class="fa-solid fa-mortar-pestle text-white opacity-30" style="font-size: 6rem;"></i>
+              </div>
+
+              <!-- Handwritten badge -->
+              <div class="absolute top-2 left-2 sm:top-0 sm:left-0 rotate-[-8deg]">
+                <div class="bg-surface px-5 py-3 rounded-2xl shadow-xl" style="border: 1px dashed var(--border-strong);">
+                  <p class="script-accent text-2xl t-brand leading-none">fresh</p>
+                  <p class="text-[9px] uppercase tracking-[0.18em] t-subtle">this week</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 2 — VERTICAL RAIL + MASONRY GRID (all CSS tiles)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[180px_1fr] gap-10 lg:gap-14 items-start">
+
+          <aside class="hidden lg:block sticky top-28">
+            <div class="flex flex-col items-center gap-6">
+              <span class="text-[10px] font-bold tracking-[0.28em] uppercase t-subtle"
+                    style="writing-mode: vertical-rl; transform: rotate(180deg);">Chapter One</span>
+              <span class="h-16 w-px" style="background: var(--border-strong);"></span>
+              <span class="text-3xl italic font-bold t-brand" style="font-family:'Playfair Display',serif;">§</span>
+              <span class="h-16 w-px" style="background: var(--border-strong);"></span>
+              <span class="text-[10px] font-bold tracking-[0.28em] uppercase t-subtle"
+                    style="writing-mode: vertical-rl; transform: rotate(180deg);">The Shelf</span>
+            </div>
+          </aside>
+
+          <div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end mb-14">
+              <div>
+                <h2 class="text-4xl md:text-5xl leading-[1.05] mb-4">
+                  Twenty-four
+                  <span class="italic t-brand">jars</span>,
+                  five shelves.
+                </h2>
+                <p class="text-sm t-muted leading-relaxed max-w-md">
+                  Each shelf runs on its own rhythm — some are released monthly, some
+                  only twice a year. Ask us for a tasting spoon at the door.
+                </p>
+              </div>
+
+              <div class="md:text-right">
+                <p class="text-[10px] font-bold tracking-[0.2em] uppercase t-olive mb-3">Now Open</p>
+                <div class="flex flex-wrap md:justify-end gap-x-8 gap-y-3">
+                  <div>
+                    <p class="text-3xl font-bold t-brand" style="font-family:'Playfair Display',serif;">14</p>
+                    <p class="text-[10px] uppercase tracking-wider t-subtle">Batches</p>
+                  </div>
+                  <div>
+                    <p class="text-3xl font-bold" style="font-family:'Playfair Display',serif; color: var(--olive);">06</p>
+                    <p class="text-[10px] uppercase tracking-wider t-subtle">In rest</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
+
+              <!-- Tall feature tile — pure CSS -->
+              <a href="products.html" class="jar-tile row-span-2 col-span-2 md:col-span-1 relative rounded-3xl min-h-[500px]"
+                 style="background: linear-gradient(165deg, #C1440E 0%, #8B2E08 60%, #4A1804 100%); border: 1px solid var(--border);">
+                <div class="texture"></div>
+                <div class="watermark" style="top: 50%; left: 50%; transform: translate(-50%,-50%);">
+                  <i class="fa-solid fa-jar text-white" style="font-size: 16rem;"></i>
+                </div>
+
+                <!-- Circular seal -->
+                <div class="absolute top-6 right-6 w-16 h-16 rounded-full border-2 border-dashed flex items-center justify-center"
+                     style="border-color: rgba(240,178,90,0.6);">
+                  <span class="text-[9px] font-bold tracking-widest text-center leading-tight" style="color: #F0B25A;">№<br>041</span>
+                </div>
+
+                <!-- Bottom content -->
+                <div class="relative z-10 p-6 mt-auto text-white">
+                  <p class="text-[10px] font-bold tracking-[0.2em] uppercase mb-2" style="color: #F0B25A;">Chutney</p>
+                  <h3 class="text-xl text-white mb-1" style="font-family:'Playfair Display',serif;">Tomato &amp; Tamarind</h3>
+                  <p class="text-sm italic text-white mb-4" style="font-family:'Playfair Display',serif;">sweet · tangy · 6 weeks aged</p>
+                  <div class="flex items-center justify-between pt-4" style="border-top: 1px solid rgba(255,255,255,0.2);">
+                    <span class="text-xs opacity-70">240g jar</span>
+                    <span class="font-bold" style="color: #F0B25A;">$11.00</span>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Small tile — pickles -->
+              <a href="products.html" class="jar-tile relative rounded-3xl min-h-[240px]"
+                 style="background: linear-gradient(140deg, #5A1F08 0%, #A33A0C 100%); border: 1px solid var(--border);">
+                <div class="texture"></div>
+                <div class="watermark" style="bottom: -40px; right: -30px;">
+                  <i class="fa-solid fa-pepper-hot text-white" style="font-size: 11rem;"></i>
+                </div>
+                <div class="relative z-10 p-5 flex flex-col justify-between h-full">
+                  <p class="text-[10px] font-bold tracking-[0.2em] uppercase" style="color: #F0B25A;">No. 042 · Pickle</p>
+                  <div class="mt-auto pt-6">
+                    <h3 class="text-xl text-white mb-1" style="font-family:'Playfair Display',serif;">Lemon Chili</h3>
+                    <p class="text-xs text-white">sharp · fiery</p>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Small tile — mustard -->
+              <a href="products.html" class="jar-tile relative rounded-3xl min-h-[240px]"
+                 style="background: linear-gradient(140deg, #B26A05 0%, #D97706 55%, #F0B25A 100%); border: 1px solid var(--border);">
+                <div class="texture"></div>
+                <div class="watermark" style="bottom: -40px; right: -30px;">
+                  <i class="fa-solid fa-jar text-white" style="font-size: 11rem;"></i>
+                </div>
+                <div class="relative z-10 p-5 flex flex-col justify-between h-full">
+                  <p class="text-[10px] font-bold tracking-[0.2em] uppercase" style="color: #F0B25A;">No. 043 · Mustard</p>
+                  <div class="mt-auto pt-6">
+                    <h3 class="text-xl text-white mb-1" style="font-family:'Playfair Display',serif;">Haldi Mustard</h3>
+                    <p class="text-xs text-white">pungent · golden</p>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Wide tile — vinegar -->
+              <a href="products.html" class="jar-tile col-span-2 relative rounded-3xl min-h-[240px]"
+                 style="background: linear-gradient(140deg, #3F5220 0%, #6B7A3F 100%); border: 1px solid var(--border);">
+                <div class="texture"></div>
+                <div class="watermark" style="bottom: -50px; right: 20px;">
+                  <i class="fa-solid fa-leaf text-white" style="font-size: 14rem;"></i>
+                </div>
+                <div class="relative z-10 p-6 flex flex-col justify-between h-full">
+                  <p class="text-[10px] font-bold tracking-[0.2em] uppercase" style="color: #F0B25A;">No. 044 · Vinegar</p>
+                  <div class="mt-auto pt-6 flex items-end justify-between gap-4">
+                    <div>
+                      <h3 class="text-2xl text-white" style="font-family:'Playfair Display',serif;">Bay &amp; Basil</h3>
+                      <p class="text-xs text-white mt-1">herbal · bright · 4 weeks aged</p>
+                    </div>
+                    <span class="text-3xl text-white">→</span>
+                  </div>
+                </div>
+              </a>
+
+            </div>
+
+            <div class="mt-12">
+              <a href="products.html" class="inline-flex items-center gap-3 text-sm font-semibold t-brand transition hover:gap-5">
+                <span class="h-px w-12" style="background: var(--brand);"></span>
+                See the full shelf
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3 — PROCESS TIMELINE
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-[11px] font-bold tracking-[0.18em] uppercase t-olive mb-3 block">The Method</span>
+          <h2 class="text-4xl md:text-5xl leading-tight mb-4">
+            Four days.
+            <span class="italic t-brand">Every</span>
+            jar.
+          </h2>
+          <p class="t-muted leading-relaxed">
+            Our workshop runs on a fixed weekly rhythm. Nothing starts until the
+            produce arrives Monday morning.
+          </p>
+        </div>
+
+        <div class="relative">
+
+          <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 md:translate-x-0" style="background: var(--border-strong);"></div>
+
+          <div class="flex flex-col gap-12 md:gap-16">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
+              <div class="md:text-right md:pr-16 pl-12 md:pl-0">
+                <p class="text-[10px] font-bold tracking-[0.2em] uppercase t-olive mb-3">Day 01 · Monday</p>
+                <h3 class="text-2xl md:text-3xl mb-3">Pick &amp; weigh</h3>
+                <p class="text-sm t-muted leading-relaxed">
+                  Produce arrives early. Every crate is weighed, tagged, and logged
+                  against the batch it will become.
+                </p>
+              </div>
+              <div class="hidden md:block"></div>
+
+              <span class="absolute left-4 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 w-3 h-3 rounded-full" style="background: var(--brand); box-shadow: 0 0 0 4px var(--bg);"></span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
+              <div class="hidden md:block"></div>
+              <div class="md:pl-16 pl-12">
+                <p class="text-[10px] font-bold tracking-[0.2em] uppercase t-olive mb-3">Day 02 · Tuesday</p>
+                <h3 class="text-2xl md:text-3xl mb-3">Prep &amp; grind</h3>
+                <p class="text-sm t-muted leading-relaxed">
+                  Whole spices are toasted and stone-ground. Fruit is peeled, seeded,
+                  and left to macerate overnight.
+                </p>
+              </div>
+
+              <span class="absolute left-4 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 w-3 h-3 rounded-full" style="background: var(--brand); box-shadow: 0 0 0 4px var(--bg);"></span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
+              <div class="md:text-right md:pr-16 pl-12 md:pl-0">
+                <p class="text-[10px] font-bold tracking-[0.2em] uppercase t-olive mb-3">Day 03–04 · Wed–Thu</p>
+                <h3 class="text-2xl md:text-3xl mb-3">Copper pot reduction</h3>
+                <p class="text-sm t-muted leading-relaxed">
+                  Low simmer for four to six hours. No pectin, no gums, no thickeners —
+                  just time and a wooden spoon.
+                </p>
+              </div>
+              <div class="hidden md:block"></div>
+
+              <span class="absolute left-4 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 w-3 h-3 rounded-full" style="background: var(--brand); box-shadow: 0 0 0 4px var(--bg);"></span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
+              <div class="hidden md:block"></div>
+              <div class="md:pl-16 pl-12">
+                <p class="text-[10px] font-bold tracking-[0.2em] uppercase t-olive mb-3">Day 05 · Friday</p>
+                <h3 class="text-2xl md:text-3xl mb-3">Jar, ink &amp; rest</h3>
+                <p class="text-sm t-muted leading-relaxed">
+                  Sealed and dated by hand. Then the long rest — six weeks in the dark
+                  before any jar leaves the workshop.
+                </p>
+              </div>
+
+              <span class="absolute left-4 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 w-3 h-3 rounded-full" style="background: var(--brand); box-shadow: 0 0 0 4px var(--bg);"></span>
+            </div>
+
+          </div>
+        </div>
+
+    
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 4 — CATEGORY TILES (all CSS)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+          <div>
+            <span class="text-[11px] font-bold tracking-[0.18em] uppercase t-olive mb-3 block">By Category</span>
+            <h2 class="text-4xl md:text-5xl leading-tight max-w-xl">
+              Five shelves, one
+              <span class="italic t-brand">larder</span>.
+            </h2>
+          </div>
+          <p class="text-sm t-muted max-w-xs">
+            Every jar belongs to a shelf. Every shelf has its own tempo and pairings.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+          <!-- Big left tile -->
+          <a href="products.html" class="lg:col-span-7 jar-tile relative rounded-3xl min-h-[420px] flex flex-col justify-between p-8 sm:p-10"
+             style="background: linear-gradient(140deg, #7A1E08 0%, #C1440E 45%, #E08A34 100%); border: 1px solid var(--border);">
+            <div class="texture"></div>
+            <div class="watermark" style="right: -40px; bottom: -60px;">
+              <i class="fa-solid fa-jar text-white" style="font-size: 22rem;"></i>
+            </div>
+
+            <div class="relative z-10 flex items-start justify-between">
+              <span class="text-[10px] font-bold tracking-[0.22em] uppercase" style="color: #F0B25A;">Shelf 01</span>
+              <span class="text-[10px] font-bold tracking-[0.22em] uppercase text-white">08 varieties</span>
+            </div>
+
+            <div class="relative z-10">
+              <h3 class="text-4xl sm:text-5xl mb-4 text-white" style="font-family:'Playfair Display',serif;">
+                Chutneys
+              </h3>
+              <p class="text-sm leading-relaxed max-w-md mb-6" style="color: rgba(255,255,255,0.78);">
+                Slow-cooked fruit and vegetable preserves. Sweet, tangy, and thick enough
+                to spoon onto anything warm.
+              </p>
+              <span class="inline-flex items-center gap-3 text-xs font-bold tracking-[0.2em] uppercase text-white">
+                Browse shelf
+                <i class="fa-solid fa-arrow-right"></i>
+              </span>
+            </div>
+          </a>
+
+          <div class="lg:col-span-5 flex flex-col gap-6">
+
+            <!-- Pickles tile -->
+            <a href="products.html" class="jar-tile relative rounded-3xl min-h-[200px] flex flex-col justify-between p-7"
+               style="background: linear-gradient(140deg, #5A1F08 0%, #A33A0C 100%); border: 1px solid var(--border);">
+              <div class="texture"></div>
+              <div class="watermark" style="right: -30px; bottom: -40px;">
+                <i class="fa-solid fa-pepper-hot text-white" style="font-size: 11rem;"></i>
+              </div>
+              <div class="relative z-10 flex items-start justify-between">
+                <span class="text-[10px] font-bold tracking-[0.22em] uppercase" style="color: #F0B25A;">Shelf 02</span>
+                <span class="text-[10px] font-bold tracking-[0.22em] uppercase text-white">06 varieties</span>
+              </div>
+              <div class="relative z-10">
+                <h3 class="text-2xl mb-2 text-white" style="font-family:'Playfair Display',serif;">Pickles</h3>
+                <p class="text-xs leading-relaxed text-white">Sharp · fiery · aged in oil.</p>
+              </div>
+            </a>
+
+            <!-- Mustards tile -->
+            <a href="products.html" class="jar-tile relative rounded-3xl min-h-[200px] flex flex-col justify-between p-7"
+               style="background: linear-gradient(140deg, #B26A05 0%, #D97706 55%, #F0B25A 100%); border: 1px solid var(--border);">
+              <div class="texture"></div>
+              <div class="watermark" style="right: -30px; bottom: -40px;">
+                <i class="fa-solid fa-jar text-white" style="font-size: 11rem;"></i>
+              </div>
+              <div class="relative z-10 flex items-start justify-between">
+                <span class="text-[10px] font-bold tracking-[0.22em] uppercase" style="color: #F0B25A;">Shelf 03</span>
+                <span class="text-[10px] font-bold tracking-[0.22em] uppercase text-white">04 varieties</span>
+              </div>
+              <div class="relative z-10">
+                <h3 class="text-2xl mb-2 text-white" style="font-family:'Playfair Display',serif;">Mustards</h3>
+                <p class="text-xs leading-relaxed text-white">Pungent · golden · stone-ground.</p>
+              </div>
+            </a>
+
+          </div>
+
+          <!-- Vinegars tile -->
+          <a href="products.html" class="lg:col-span-6 jar-tile relative rounded-3xl min-h-[220px] flex flex-col justify-between p-7"
+             style="background: linear-gradient(140deg, #3F5220 0%, #6B7A3F 100%); border: 1px solid var(--border);">
+            <div class="texture"></div>
+            <div class="watermark" style="right: -40px; bottom: -50px;">
+              <i class="fa-solid fa-leaf text-white" style="font-size: 13rem;"></i>
+            </div>
+            <div class="relative z-10 flex items-start justify-between">
+              <span class="text-[10px] font-bold tracking-[0.22em] uppercase" style="color: #F0B25A;">Shelf 04</span>
+              <span class="text-[10px] font-bold tracking-[0.22em] uppercase text-white">03 varieties</span>
+            </div>
+            <div class="relative z-10">
+              <h3 class="text-2xl mb-2 text-white" style="font-family:'Playfair Display',serif;">Herb Vinegars</h3>
+              <p class="text-xs leading-relaxed max-w-sm text-white">
+                Apple cider and red wine vinegars steeped for weeks with fresh herbs.
+              </p>
+            </div>
+          </a>
+
+          <!-- Relishes tile -->
+          <a href="products.html" class="lg:col-span-6 jar-tile relative rounded-3xl min-h-[220px] flex flex-col justify-between p-7"
+             style="background: linear-gradient(140deg, #7A1E08 0%, #C1440E 60%, #D97706 100%); border: 1px solid var(--border);">
+            <div class="texture"></div>
+            <div class="watermark" style="right: -40px; bottom: -50px;">
+              <i class="fa-solid fa-mortar-pestle text-white" style="font-size: 13rem;"></i>
+            </div>
+            <div class="relative z-10 flex items-start justify-between">
+              <span class="text-[10px] font-bold tracking-[0.22em] uppercase" style="color: #F0B25A;">Shelf 05</span>
+              <span class="text-[10px] font-bold tracking-[0.22em] uppercase text-white">03 varieties</span>
+            </div>
+            <div class="relative z-10">
+              <h3 class="text-2xl mb-2 text-white" style="font-family:'Playfair Display',serif;">Relishes &amp; Chips</h3>
+              <p class="text-xs leading-relaxed max-w-sm text-white">
+                Fresh, bright, and lively — made to be eaten within a season.
+              </p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 5 — QUOTE PANEL
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-20 px-5 sm:px-8">
+      <div class="mx-auto max-w-[1440px]">
+        <div class="rounded-[32px] overflow-hidden relative px-8 py-16 md:px-20 md:py-24" style="background: var(--footer-bg);">
+
+          <span class="absolute -top-10 left-4 md:left-10 text-[16rem] leading-none italic opacity-[0.08] select-none" style="font-family:'Playfair Display',serif; color:#F0B25A;">“</span>
+          <span class="absolute -bottom-24 right-4 md:right-10 text-[16rem] leading-none italic opacity-[0.08] select-none" style="font-family:'Playfair Display',serif; color:#F0B25A;">”</span>
+
+          <div class="relative z-10 text-center max-w-4xl mx-auto">
+            <p class="text-[10px] font-bold tracking-[0.24em] uppercase mb-10" style="color: #F0B25A;">From the ledger · page 12</p>
+
+            <blockquote class="text-3xl sm:text-4xl md:text-5xl leading-[1.2] italic mb-12" style="font-family:'Playfair Display',serif; color: #F5EDE6;">
+              The tomato chutney tastes exactly like the one my grandmother made. I bought three jars and hid two.
+            </blockquote>
+
+            <div class="flex flex-wrap items-center justify-center gap-5">
+              <div class="w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold"
+                   style="background: #F0B25A; color: #2B1E12; font-family:'Playfair Display',serif;">PM</div>
+              <div class="text-left">
+                <p class="text-sm font-semibold" style="color: #F5EDE6;">Priya Menon</p>
+                <p class="text-xs" style="color: #C4A68B;">Bangalore · Repeat buyer since 2023</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+       <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 6 — CTA (Editorial sign-off)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-24 bg-app relative overflow-hidden">
+
+        <!-- Decorative rules top -->
+        <div class="absolute top-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent 0%, var(--border-strong) 50%, transparent 100%);"></div>
+  
+        <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10">
+  
+          <!-- Centered heading block -->
+          <div class="max-w-3xl mx-auto text-center mb-14">
+            <p class="script-accent text-3xl mb-5">— one more way in —</p>
+  
+            <h2 class="text-4xl sm:text-5xl md:text-6xl leading-[1.02] mb-6">
+              Prefer to write a
+              <span class="italic t-brand">real letter?</span>
+            </h2>
+  
+            <div class="ornament my-8">
+              <i class="fa-solid fa-feather-pointed text-sm"></i>
+            </div>
+  
+            <p class="t-muted leading-relaxed text-lg max-w-xl mx-auto mb-10">
+              We keep a wooden tray by the workshop door for handwritten
+              notes. Post them to us, or drop them off in person — every
+              letter gets a reply, usually within a week.
+            </p>
+  
+            <div class="flex flex-wrap gap-3 justify-center">
+              <a href="#enquiry" class="btn btn-primary">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+                Send an enquiry online
+              </a>
+              <a href="#map" class="btn btn-ghost">
+                <i class="fa-solid fa-location-dot text-xs"></i>
+                See the map
+              </a>
+            </div>
+          </div>
+  
+          <!-- Two-column ledger — the address panel + the note panel -->
+          <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start pt-14 border-t border-app">
+  
+            <!-- Left: address -->
+            <div>
+              <p class="small-caps mb-5">The Workshop</p>
+  
+              <p class="text-2xl leading-snug t-text mb-6" style="font-family:'Playfair Display',serif;">SPICE ROUTE<br>
+12 Spice Market Lane<br>
+Fort Kochi, Kerala 682001</p>
+  
+              <div class="flex flex-col gap-2 mt-6">
+                <a href="mailto:hello@spiceroute.com" class="text-sm font-semibold t-brand hover:opacity-75 transition inline-flex items-center gap-3">
+                  <i class="fa-solid fa-envelope text-xs"></i>
+                  hello@spiceroute.com
+                </a>
+                <a href="tel:+18005550199" class="text-sm font-semibold t-brand hover:opacity-75 transition inline-flex items-center gap-3">
+                  <i class="fa-solid fa-phone text-xs"></i>
+                  +1 (800) 555-0199
+                </a>
+              </div>
+            </div>
+  
+            <!-- Right: note panel -->
+            <div class="md:pl-10 md:border-l md:border-app">
+              <p class="small-caps mb-5">Marked for</p>
+  
+              <p class="text-2xl leading-snug t-text mb-6" style="font-family:'Playfair Display',serif;">The Kitchen Notebook</p>
+  
+              <p class="text-sm t-muted leading-relaxed mb-6">Letters land on our bench and get read by whoever opens the
+workshop that morning. We reply on the same paper they arrived on —
+handwritten, stamped, and posted back within the week.</p>
+  
+              <p class="script-accent text-3xl t-brand">— see you at the bench.</p>
+            </div>
+  
+          </div>
+  
+        </div>
+  
+        <!-- Decorative rules bottom -->
+        <div class="absolute bottom-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent 0%, var(--border-strong) 50%, transparent 100%);"></div>
+  
+      </section>
+  </main>
+
+  <!-- ═══════════════════════ MOBILE DRAWER ═══════════════════════ -->
+  <div id="mobile-drawer" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+    <div id="drawer-panel" class="absolute top-0 left-0 right-0 max-h-[90vh] overflow-y-auto p-6 shadow-2xl translate-y-[-100%] transition-transform duration-300 ease-out xl:hidden">
+
+      <div class="flex items-center justify-between pb-5 border-b border-app">
+        <a href="index.html" class="brand-lockup">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+        <button id="mobile-menu-close" class="btn-icon" aria-label="Close menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <nav class="mt-2">
+        <button class="mob-accordion" id="mob-home-toggle">
+          Home 1
+          <svg class="w-4 h-4 transition-transform duration-200" id="mob-home-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="mob-home-menu" class="hidden pl-4 py-1">
+          <a href="index.html" class="mob-link border-0 text-sm t-muted">Home 1</a>
+          <a href="home2.html" class="mob-link border-0 text-sm t-muted">Home 2</a>
+        </div>
+
+        <a href="about.html" class="mob-link">About Us</a>
+        <a href="products.html" class="mob-link">Products</a>
+        <a href="recipes.html" class="mob-link">Recipes</a>
+        <a href="journal.html" class="mob-link">Journal</a>
+        <a href="contact.html" class="mob-link">Contact</a>
+      </nav>
+
+      <div class="flex items-center justify-between mt-6 pt-5 border-t border-app">
+        <button id="drawer-theme-toggle" class="btn-icon" aria-label="Toggle theme">
+          <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+        <button id="mobile-lang-icon-drawer" class="btn-icon" aria-label="Toggle direction">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+        </button>
+      </div>
+
+      <div class="mt-5 flex justify-center">
+        <a href="login.html" class="btn btn-primary w-full max-w-[240px] justify-center">Sign In</a>
+      </div>
+    </div>
+  </div>
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer id="site-footer" class="pt-16">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14">
+
+        <div class="lg:col-span-4">
+          <a href="index.html" class="brand-lockup mb-5">
+            <span class="foot-brand-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+                <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+                <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span>
+              <span class="foot-wordmark">SPICE ROUTE</span>
+              <span class="foot-tagline block">Heritage Blends</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed max-w-sm" style="color: var(--footer-muted);">
+            Handcrafted spice blends and small-batch condiments from heirloom recipes —
+            sun-dried, stone-ground, and delivered to your kitchen.
+          </p>
+          <div class="flex gap-2 mt-6">
+            <a href="#" class="foot-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="foot-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="foot-social" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Company</h4>
+          <ul class="flex flex-col">
+            <li><a href="about.html" class="foot-link">About Us</a></li>
+            <li><a href="process.html" class="foot-link">Our Process</a></li>
+            <li><a href="journal.html" class="foot-link">Journal</a></li>
+            <li><a href="contact.html" class="foot-link">Contact</a></li>
+            <li><a href="recipes.html" class="foot-link">Recipes</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Shop</h4>
+          <ul class="flex flex-col">
+            <li><a href="products.html" class="foot-link">Whole Spices</a></li>
+            <li><a href="products.html" class="foot-link">Ground Blends</a></li>
+            <li><a href="products.html" class="foot-link">Signature Mixes</a></li>
+            <li><a href="products.html" class="foot-link">Gift Sets</a></li>
+            <li><a href="products.html" class="foot-link">New Arrivals</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-4">
+          <h4 class="foot-heading">Get in Touch</h4>
+          <div class="flex flex-col gap-1 mb-6">
+            <a href="tel:+18005550199" class="foot-contact"><i class="fa-solid fa-phone"></i> +1 (800) 555-0199</a>
+            <a href="mailto:hello@spiceroute.com" class="foot-contact"><i class="fa-solid fa-envelope"></i> hello@spiceroute.com</a>
+            <span class="foot-contact"><i class="fa-solid fa-location-dot"></i> 12 Spice Market Lane, Cochin</span>
+          </div>
+
+          <h4 class="foot-heading">Newsletter</h4>
+          <form class="flex gap-2" onsubmit="event.preventDefault();">
+            <input type="email" class="foot-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary px-5">
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="foot-bottom py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs" style="color: var(--footer-muted);">
+          © 2026 SPICE ROUTE. All rights reserved.
+        </p>
+        <div class="flex items-center gap-6 text-xs" style="color: var(--footer-muted);">
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+          <a href="#" class="hover:text-white transition">Shipping</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+      const html = document.documentElement;
+
+      const applyTheme = (t) => {
+        html.setAttribute('data-theme', t);
+        document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', t === 'dark'));
+        document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', t === 'light'));
+      };
+      const setTheme = (t) => { localStorage.setItem('theme', t); applyTheme(t); };
+      applyTheme(localStorage.getItem('theme') || 'light');
+
+      ['theme-toggle', 'drawer-theme-toggle'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          setTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        });
+      });
+
+      const applyDir = (d) => html.setAttribute('dir', d === 'ar' ? 'rtl' : 'ltr');
+      applyDir(localStorage.getItem('language') || 'en');
+      ['lang-icon', 'mobile-lang-icon-drawer'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          const next = (localStorage.getItem('language') === 'ar') ? 'en' : 'ar';
+          localStorage.setItem('language', next);
+          applyDir(next);
+        });
+      });
+
+      const drawer = document.getElementById('mobile-drawer');
+      const panel = document.getElementById('drawer-panel');
+      const backdrop = document.getElementById('drawer-backdrop');
+
+      const openDrawer = () => {
+        drawer.classList.remove('pointer-events-none');
+        panel.classList.remove('translate-y-[-100%]');
+        backdrop.classList.add('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeDrawer = () => {
+        panel.classList.add('translate-y-[-100%]');
+        backdrop.classList.remove('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = '';
+        setTimeout(() => drawer.classList.add('pointer-events-none'), 300);
+      };
+
+      document.getElementById('mobile-menu-open')?.addEventListener('click', openDrawer);
+      document.getElementById('mobile-menu-close')?.addEventListener('click', closeDrawer);
+      backdrop?.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+      const bindAccordion = (btnId, menuId, iconId) => {
+        const btn = document.getElementById(btnId);
+        const menu = document.getElementById(menuId);
+        const icon = document.getElementById(iconId);
+        btn?.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          icon.classList.toggle('rotate-180');
+        });
+      };
+      bindAccordion('mob-home-toggle', 'mob-home-menu', 'mob-home-icon');
+
+      const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const href = (link.getAttribute('href') || '').toLowerCase();
+        if (href === current) link.classList.add('is-active');
+      });
+      if (['index.html', 'home2.html'].includes(current)) {
+        document.getElementById('nav-home-btn')?.classList.add('is-active');
+      }
+    })();
+  </script>
+</body>
+</html>

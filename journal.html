@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="asserts/favicon_v2.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Caveat:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <title>Journal — SPICE ROUTE</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.js"></script>
+
+  <style>
+    :root, html[data-theme='light'] {
+      --bg:            #F5EFE3;
+      --bg-subtle:     #EDE4D2;
+      --surface:       #FFFDF8;
+      --text:          #1F1810;
+      --text-muted:    #56442F;
+      --text-subtle:   #857054;
+      --border:        #D8C8AE;
+      --border-strong: #BAA684;
+      --brand:         #8B2E08;
+      --brand-hover:   #6B2205;
+      --brand-soft:    #F2E0D2;
+      --ink:           #1A120A;
+      --olive:         #5A6B32;
+      --olive-soft:    #E6EAD4;
+      --amber:         #B45309;
+      --amber-soft:    #F2E2C9;
+      --nav-hover:     #EDE4D2;
+      --footer-bg:     #1F1810;
+      --footer-text:   #F5EDE6;
+      --footer-muted:  #A89074;
+    }
+    html[data-theme='dark'] {
+      --bg:            #14100A;
+      --bg-subtle:     #1D170F;
+      --surface:       #1D170F;
+      --text:          #F2E6D2;
+      --text-muted:    #B9A585;
+      --text-subtle:   #857054;
+      --border:        #302516;
+      --border-strong: #4A3924;
+      --brand:         #D67745;
+      --brand-hover:   #E28958;
+      --brand-soft:    #3A1E10;
+      --ink:           #F2E6D2;
+      --olive:         #A8B87A;
+      --olive-soft:    #2C3320;
+      --amber:         #E6A857;
+      --amber-soft:    #3A2E10;
+      --nav-hover:     #291E12;
+      --footer-bg:     #0A0603;
+      --footer-text:   #F2E6D2;
+      --footer-muted:  #8A7860;
+    }
+
+    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      background-image:
+        radial-gradient(circle at 25% 20%, rgba(139,46,8,0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 75%, rgba(90,107,50,0.03) 0%, transparent 45%);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', 'Plus Jakarta Sans', serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .t-text { color: var(--text); }
+    .t-muted { color: var(--text-muted); }
+    .t-subtle { color: var(--text-subtle); }
+    .t-brand { color: var(--brand); }
+    .t-olive { color: var(--olive); }
+    .bg-app { background-color: var(--bg); }
+    .bg-app-subtle { background-color: var(--bg-subtle); }
+    .bg-surface { background-color: var(--surface); }
+    .bg-nav-hover { background-color: var(--nav-hover); }
+    .bg-brand-soft { background-color: var(--brand-soft); }
+    .border-app { border-color: var(--border); }
+    .border-strong { border-color: var(--border-strong); }
+
+    .brand-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; transition: opacity 0.2s ease; }
+    .brand-lockup:hover { opacity: 0.85; }
+    .brand-mark {
+      position: relative; width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--brand) 0%, var(--brand-hover) 100%);
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 4px 14px -4px rgba(139, 46, 8, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .brand-mark::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, 0.4); }
+    .brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    .brand-wordmark { white-space: nowrap;
+      font-family: 'Playfair Display', serif; font-weight: 800; font-size: 22px;
+      letter-spacing: -0.02em; line-height: 1; color: var(--text);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .brand-wordmark .sub {
+      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 9px;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle);
+    }
+
+    #main-header {
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    html[data-theme='dark'] #main-header {
+      background: color-mix(in srgb, var(--bg) 84%, transparent);
+    }
+
+    .nav-link {
+      position: relative; display: inline-flex; align-items: center;
+      padding: 10px 18px; font-size: 15.5px; font-weight: 500; color: var(--text);
+      border-radius: 10px; text-decoration: none;
+      transition: color 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--brand); background: var(--nav-hover); }
+    .nav-link.is-active { color: var(--brand); font-weight: 600; }
+    .nav-link.is-active::after {
+      content: ''; position: absolute; left: 18px; right: 18px; bottom: 3px;
+      height: 2px; background: var(--brand); border-radius: 2px;
+    }
+
+    .dd { position: relative; }
+    .dd-menu {
+      position: absolute; top: calc(100% + 6px); left: 0; min-width: 180px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: 0 12px 32px -8px rgba(31, 24, 16, 0.2), 0 4px 12px -2px rgba(31, 24, 16, 0.08);
+      padding: 6px; opacity: 0; visibility: hidden; transform: translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 100;
+    }
+    .dd:hover .dd-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dd-menu a {
+      display: block; padding: 10px 14px; font-size: 14.5px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-radius: 8px;
+      transition: background 0.14s ease, color 0.14s ease; white-space: nowrap;
+    }
+    .dd-menu a:hover { background: var(--nav-hover); color: var(--brand); }
+    .dd-chevron { width: 12px; height: 12px; margin-left: 5px; transition: transform 0.2s ease; }
+    .dd:hover .dd-chevron { transform: rotate(180deg); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+      padding: 11px 24px; border-radius: 11px; border: 1px solid transparent;
+      cursor: pointer; text-decoration: none; transition: all 0.18s ease;
+      white-space: nowrap; line-height: 1;
+    }
+    .btn-primary {
+      background: var(--brand); color: #fff;
+      box-shadow: 0 1px 2px rgba(31, 24, 16, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    .btn-primary:hover {
+      background: var(--brand-hover);
+      box-shadow: 0 8px 20px -6px rgba(139, 46, 8, 0.5);
+      transform: translateY(-1px);
+    }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
+    .btn-ghost:hover { background: var(--nav-hover); border-color: var(--text-subtle); }
+    .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; border-radius: 11px; color: var(--text-muted);
+      background: transparent; border: 1px solid var(--border); cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .btn-icon:hover { background: var(--nav-hover); color: var(--brand); border-color: var(--border-strong); }
+    .btn-icon svg { width: 19px; height: 19px; }
+
+    #site-footer { background: var(--footer-bg); color: var(--footer-text); }
+    #site-footer .foot-brand-mark {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #D67745 0%, #8B2E08 100%);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px -4px rgba(214, 119, 69, 0.5); position: relative;
+    }
+    #site-footer .foot-brand-mark::before {
+      content: ''; position: absolute; inset: 6px; border-radius: 50%;
+      border: 1.5px dashed rgba(255, 255, 255, 0.4);
+    }
+    #site-footer .foot-brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
+    #site-footer .foot-wordmark {
+      font-family: 'Playfair Display', serif; font-weight: 800; font-size: 22px;
+      letter-spacing: -0.02em; color: #fff;
+    }
+    #site-footer .foot-tagline {
+      font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--footer-muted); font-weight: 500; margin-top: 4px;
+    }
+    .foot-heading {
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin-bottom: 20px;
+    }
+    .foot-link {
+      display: inline-block; font-size: 15px; font-weight: 400;
+      color: var(--footer-muted); text-decoration: none; padding: 6px 0;
+      transition: color 0.16s ease, transform 0.16s ease;
+    }
+    .foot-link:hover { color: #D67745; transform: translateX(3px); }
+    .foot-social {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 11px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #F5EDE6; font-size: 15px; text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .foot-social:hover { background: #D67745; border-color: #D67745; color: #fff; transform: translateY(-2px); }
+    #site-footer .foot-input {
+      width: 100%; padding: 12px 16px; font-size: 15px; color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 11px; outline: none;
+      transition: all 0.18s ease;
+    }
+    #site-footer .foot-input::placeholder { color: var(--footer-muted); }
+    #site-footer .foot-input:focus {
+      background: rgba(255, 255, 255, 0.08); border-color: #D67745;
+      box-shadow: 0 0 0 3px rgba(214, 119, 69, 0.15);
+    }
+    .foot-contact {
+      display: flex; align-items: center; gap: 12px; font-size: 14.5px;
+      color: var(--footer-muted); text-decoration: none; padding: 5px 0;
+      transition: color 0.16s ease;
+    }
+    .foot-contact:hover { color: #D67745; }
+    .foot-contact i { color: #D67745; width: 16px; font-size: 14px; }
+    .foot-bottom { border-top: 1px solid rgba(255, 255, 255, 0.07); }
+
+    #drawer-panel { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .mob-link {
+      display: block; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border);
+      transition: color 0.15s ease;
+    }
+    .mob-link:hover { color: var(--brand); }
+    .mob-accordion {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 100%; padding: 14px 0; font-size: 16px; font-weight: 500;
+      color: var(--text); background: none; border: none;
+      border-bottom: 1px solid var(--border); cursor: pointer; text-align: left;
+    }
+    .mob-accordion:hover { color: var(--brand); }
+
+    html { scroll-behavior: smooth; }
+
+    /* ══════════════ JOURNAL PAGE — LETTERPRESS STYLES ══════════════ */
+
+    .journal-body {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-size: 15.5px;
+    }
+    .journal-body strong { font-weight: 500; color: var(--text); }
+
+    .hand {
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+      color: var(--brand);
+      line-height: 1.1;
+    }
+
+    .small-caps {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+
+    /* Masthead serif */
+    .masthead {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.92;
+      color: var(--ink);
+    }
+
+    /* Drop cap */
+    .drop-cap::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      float: left;
+      font-size: 4.5rem;
+      line-height: 0.85;
+      padding: 6px 12px 0 0;
+      color: var(--brand);
+    }
+
+    /* Rules */
+    .rule-thin { height: 1px; background: var(--border); }
+    .rule-thick { height: 3px; background: var(--ink); }
+    .rule-double {
+      height: 5px;
+      background-image:
+        linear-gradient(to bottom, var(--ink) 0, var(--ink) 1px, transparent 1px, transparent 4px, var(--ink) 4px, var(--ink) 5px);
+    }
+    .rule-dotted {
+      height: 1px;
+      background-image: repeating-linear-gradient(90deg, var(--border-strong) 0 3px, transparent 3px 8px);
+    }
+
+    /* Kicker label */
+    .kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--brand);
+    }
+
+    /* Article card */
+    .article-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+    .article-card:hover {
+      border-color: var(--border-strong);
+      background: color-mix(in srgb, var(--surface) 85%, var(--brand-soft));
+    }
+
+    /* Article number */
+    .article-num {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--brand);
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    /* Column rule */
+    .col-rule {
+      border-right: 1px solid var(--border);
+      padding-right: 2rem;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.35rem;
+      line-height: 1.4;
+      color: var(--text);
+      padding: 24px 0 24px 32px;
+      border-left: 4px solid var(--brand);
+      margin: 32px 0;
+    }
+
+    /* Section head */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-head::before,
+    .section-head::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-strong);
+    }
+
+    /* Date stamp */
+    .date-stamp {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .date-stamp::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--text-subtle);
+    }
+
+    /* Ink stamp */
+    .ink-stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1.5px solid var(--brand);
+      color: var(--brand);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 13px;
+      border-radius: 4px;
+      transform: rotate(-1deg);
+      opacity: 0.85;
+    }
+
+    /* Column separator */
+    .col-sep {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 32px 0;
+    }
+    .col-sep::before,
+    .col-sep::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .col-sep span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--brand);
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <nav class="flex items-center justify-between h-[76px]">
+        <a href="index.html" class="brand-lockup" aria-label="SPICE ROUTE Home">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+
+        <div class="hidden xl:flex items-center gap-1">
+          <div class="dd">
+            <button class="nav-link" id="nav-home-btn">
+              Home 1
+              <svg class="dd-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="dd-menu">
+              <a href="index.html">Home 1</a>
+              <a href="home2.html">Home 2</a>
+            </div>
+          </div>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="recipes.html" class="nav-link">Recipes</a>
+          <a href="journal.html" class="nav-link">Journal</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="hidden xl:flex items-center gap-2.5">
+          <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme">
+            <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+          <button id="lang-icon" class="btn-icon" aria-label="Toggle direction">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+          </button>
+          <a href="login.html" class="btn btn-primary ml-2">Sign In</a>
+        </div>
+
+        <button id="mobile-menu-open" class="xl:hidden btn-icon" aria-label="Open menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="h-[76px]"></div>
+
+  <main class="flex-grow">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 1 — MASTHEAD
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="pt-10 pb-8 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-4">
+          <div class="small-caps">Vol. 04 · No. 42</div>
+          <div class="hand text-2xl">— today's paper —</div>
+          <div class="small-caps">Autumn · 2026</div>
+        </div>
+
+        <div class="rule-double mb-4"></div>
+
+        <div class="text-center py-6">
+          <p class="kicker mb-4">— The Spice Route Journal —</p>
+          <h1 class="masthead text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] mb-3">
+            The Larder
+          </h1>
+          <p class="small-caps">Field notes · Workshop diaries · Long-form</p>
+        </div>
+
+        <div class="rule-double mb-8"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1.7fr_1fr] gap-10 lg:gap-14">
+
+          <div class="lg:border-r lg:border-app lg:pr-14">
+            <div class="flex items-center gap-2 mb-5">
+              <span class="kicker">Cover Story</span>
+              <span class="h-px flex-1" style="background: var(--border-strong);"></span>
+              <span class="date-stamp">October 2026</span>
+            </div>
+
+            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[0.98] mb-6">
+              When the coriander
+              <span class="italic t-brand">failed</span>,
+              we started writing everything down.
+            </h2>
+
+            <p class="journal-body text-lg leading-relaxed mb-6 drop-cap">In the second week of what should have been our busiest month,
+              the coriander crop in Nellore came in half-weight and half-scent.
+              We had orders to fill. We had customers who knew exactly what our
+              blend should taste like. And for the first time in twenty-four
+              years, we didn't know what to do.
+            </p>
+
+            <p class="journal-body mb-6">
+              What followed was a week of phone calls, three trips to the
+              farm, and one very difficult letter to a customer in Mumbai.
+              It also produced the document that now sits on our workshop
+              wall — a hand-written field log that tells us, for every batch
+              we make, exactly what happened that season.
+            </p>
+
+            <p class="journal-body">
+              This is the story of how a bad harvest became the most useful
+              thing that ever happened to us.
+            </p>
+
+            <div class="pull-quote mt-8">
+              "We stopped trusting the recipe. We started trusting the field
+              log — and everything got better."
+            </div>
+
+            <div class="flex flex-wrap items-center gap-6 mt-8">
+              <img src="asserts/journal1.avif"
+                   alt="Coriander drying on a woven mat"
+                   class="w-16 h-16 object-cover"
+                   style="border: 1px solid var(--border);"
+                   onerror="this.style.display='none'">
+              <div>
+                <p class="text-sm font-semibold">Meera Nair</p>
+                <p class="small-caps mt-1">Long-form · 12 min read</p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="flex flex-col">
+
+            <div class="flex items-center gap-3 mb-5">
+              <span class="kicker">Also In This Issue</span>
+            </div>
+
+            <article class="pb-6 mb-6 border-b border-app">
+              <p class="small-caps mb-2">Field Notes · #12</p>
+              <h3 class="text-xl mb-2 leading-tight">The forty-eight-hour tomato</h3>
+              <p class="journal-body text-sm leading-relaxed">
+                What happens when you slow-cook San Marzano tomatoes for
+                two full days — and why we now do it that way.
+              </p>
+              <p class="small-caps mt-3">5 min read</p>
+            </article>
+
+            <article class="pb-6 mb-6 border-b border-app">
+              <p class="small-caps mb-2">Workshop Diary · #08</p>
+              <h3 class="text-xl mb-2 leading-tight">Two copper pots, one rule</h3>
+              <p class="journal-body text-sm leading-relaxed">
+                A short essay on why we never cook two batches in the same
+                pot on the same day — and the flavour difference it makes.
+              </p>
+              <p class="small-caps mt-3">4 min read</p>
+            </article>
+
+            <article>
+              <p class="small-caps mb-2">Letters · Reader Mail</p>
+              <h3 class="text-xl mb-2 leading-tight">"I added too much masala"</h3>
+              <p class="journal-body text-sm leading-relaxed">
+                A reader writes in about a mistake many of us have made —
+                and the fix that saved the dish.
+              </p>
+              <p class="small-caps mt-3">3 min read</p>
+            </article>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 2 — ARTICLE STACK (equal-height cards)
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-16 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="section-head mb-10">
+          <span class="small-caps">The Long Reads</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+
+          <!-- Article 1 -->
+          <article class="article-card flex flex-col">
+            <div class="flex items-baseline gap-4 mb-5">
+              <span class="article-num">i.</span>
+              <span class="small-caps">Essay · 9 min</span>
+            </div>
+            <h3 class="text-2xl mb-3 leading-tight">Why we don't sell ground blends older than a week</h3>
+            <p class="journal-body text-sm leading-relaxed mb-5">
+              A short, blunt explanation of what happens to ground spices
+              after seven days — and the freshness policy we'd rather
+              lose a sale than break.
+            </p>
+            <div class="rule-dotted mt-auto mb-4"></div>
+            <div class="flex items-center justify-between">
+              <span class="small-caps">By Arjun Nair</span>
+              <a href="#" class="text-sm font-semibold t-brand inline-flex items-center gap-1.5">
+                Read <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="article-card flex flex-col">
+            <div class="flex items-baseline gap-4 mb-5">
+              <span class="article-num">ii.</span>
+              <span class="small-caps">Dispatch · 11 min</span>
+            </div>
+            <h3 class="text-2xl mb-3 leading-tight">Twenty-four hours on the road with a spice buyer</h3>
+            <p class="journal-body text-sm leading-relaxed mb-5">
+              What it actually looks like when we go to Idukki to negotiate
+              a season's worth of green cardamom — from the 4 a.m. start to
+              the handshake at dusk.
+            </p>
+            <div class="rule-dotted mt-auto mb-4"></div>
+            <div class="flex items-center justify-between">
+              <span class="small-caps">By Meera Nair</span>
+              <a href="#" class="text-sm font-semibold t-brand inline-flex items-center gap-1.5">
+                Read <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="article-card flex flex-col">
+            <div class="flex items-baseline gap-4 mb-5">
+              <span class="article-num">iii.</span>
+              <span class="small-caps">Opinion · 6 min</span>
+            </div>
+            <h3 class="text-2xl mb-3 leading-tight">Against "authentic"</h3>
+            <p class="journal-body text-sm leading-relaxed mb-5">
+              A short argument against the word "authentic" — and why we
+              think flavour has always been a moving target, in every
+              kitchen, in every generation.
+            </p>
+            <div class="rule-dotted mt-auto mb-4"></div>
+            <div class="flex items-center justify-between">
+              <span class="small-caps">By Arjun Nair</span>
+              <a href="#" class="text-sm font-semibold t-brand inline-flex items-center gap-1.5">
+                Read <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3 — FIELD LOG
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-16 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16 items-start">
+
+          <div class="lg:sticky lg:top-28">
+            <span class="kicker block mb-3">Field Log</span>
+            <h2 class="text-3xl md:text-4xl leading-tight mb-5">
+              What we wrote down
+              <span class="italic t-brand">this week</span>.
+            </h2>
+            <div class="rule-thin mb-5"></div>
+            <p class="journal-body mb-6">
+              Notes taken directly from the workshop notebook. Short entries,
+              written in the moment, kept honest.
+            </p>
+            <div class="ink-stamp">
+              <i class="fa-solid fa-feather-pointed text-xs"></i>
+              From the ledger
+            </div>
+          </div>
+
+          <div class="flex flex-col">
+
+            <div class="grid grid-cols-[100px_1fr] gap-6 py-6 border-b border-app items-start">
+              <div class="text-center">
+                <p class="text-xs font-bold t-brand tracking-wider">WED</p>
+                <p class="text-2xl font-bold" style="font-family:'Playfair Display',serif;">12</p>
+                <p class="small-caps mt-1">Oct</p>
+              </div>
+              <div>
+                <h3 class="text-xl mb-2">Cardamom arrived from Idukki</h3>
+                <p class="journal-body text-sm">
+                  Second batch of the season. Latha sent it with a hand-written
+                  note — the pods are smaller this year because of the dry
+                  September, but the flavour is unusually concentrated.
+                  Adjusted the chai blend ratio.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-[100px_1fr] gap-6 py-6 border-b border-app items-start">
+              <div class="text-center">
+                <p class="text-xs font-bold t-brand tracking-wider">THU</p>
+                <p class="text-2xl font-bold" style="font-family:'Playfair Display',serif;">13</p>
+                <p class="small-caps mt-1">Oct</p>
+              </div>
+              <div>
+                <h3 class="text-xl mb-2">Reworked the Garuda Masala</h3>
+                <p class="journal-body text-sm">
+                  Ran three test batches with reduced coriander and higher
+                  black pepper. The second one is the right balance —
+                  sharper on the front palate, warmer on the finish. Batch
+                  041 is now in rest.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-[100px_1fr] gap-6 py-6 border-b border-app items-start">
+              <div class="text-center">
+                <p class="text-xs font-bold t-brand tracking-wider">FRI</p>
+                <p class="text-2xl font-bold" style="font-family:'Playfair Display',serif;">14</p>
+                <p class="small-caps mt-1">Oct</p>
+              </div>
+              <div>
+                <h3 class="text-xl mb-2">New customer walked in</h3>
+                <p class="journal-body text-sm">
+                  A chef from a restaurant in Fort Kochi. Wanted to taste the
+                  lemon pickle before committing to a wholesale order.
+                  Stayed for two hours. Bought two jars for himself.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-[100px_1fr] gap-6 py-6 items-start">
+              <div class="text-center">
+                <p class="text-xs font-bold t-brand tracking-wider">SAT</p>
+                <p class="text-2xl font-bold" style="font-family:'Playfair Display',serif;">15</p>
+                <p class="small-caps mt-1">Oct</p>
+              </div>
+              <div>
+                <h3 class="text-xl mb-2">Inked the lids</h3>
+                <p class="journal-body text-sm">
+                  Fifty-two jars from batch 043 (Haldi Mustard) sealed and
+                  numbered by hand. Took four hours, three cups of tea, and
+                  one small argument about the numbering sequence.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 4 — FROM THE ARCHIVE
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-16 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="section-head mb-10">
+          <span class="small-caps">From the Archive</span>
+        </div>
+
+        <p class="journal-body text-center max-w-2xl mx-auto mb-14 leading-relaxed">
+          A selection from four generations of writing. The full archive
+          lives in a wooden box under the workshop bench — but these are
+          the pieces we keep coming back to.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14">
+
+          <div class="md:col-rule">
+            <p class="kicker mb-4">1998 — 2005</p>
+            <div class="rule-thick mb-5"></div>
+            <ul class="flex flex-col gap-5">
+              <li>
+                <p class="small-caps mb-1">Nov 1998</p>
+                <h4 class="text-lg mb-1 leading-snug">The first market entry</h4>
+                <p class="journal-body text-sm">Cardamom. Nellore. Rs 24.</p>
+              </li>
+              <li>
+                <p class="small-caps mb-1">Apr 2001</p>
+                <h4 class="text-lg mb-1 leading-snug">A recipe from the neighbour</h4>
+                <p class="journal-body text-sm">The tomato chutney that started everything.</p>
+              </li>
+              <li>
+                <p class="small-caps mb-1">Aug 2003</p>
+                <h4 class="text-lg mb-1 leading-snug">The first real customer</h4>
+                <p class="journal-body text-sm">A restaurant in Cochin. Six jars a month.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="md:col-rule">
+            <p class="kicker mb-4">2006 — 2015</p>
+            <div class="rule-thick mb-5"></div>
+            <ul class="flex flex-col gap-5">
+              <li>
+                <p class="small-caps mb-1">Mar 2008</p>
+                <h4 class="text-lg mb-1 leading-snug">The copper pots arrive</h4>
+                <p class="journal-body text-sm">Two second-hand pots. Still in use.</p>
+              </li>
+              <li>
+                <p class="small-caps mb-1">Feb 2011</p>
+                <h4 class="text-lg mb-1 leading-snug">Cardamom from Idukki</h4>
+                <p class="journal-body text-sm">Latha's first shipment. Six kilos.</p>
+              </li>
+              <li>
+                <p class="small-caps mb-1">Sep 2015</p>
+                <h4 class="text-lg mb-1 leading-snug">Thirty-two farms</h4>
+                <p class="journal-body text-sm">The day we stopped buying from intermediaries.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="kicker mb-4">2016 — Today</p>
+            <div class="rule-thick mb-5"></div>
+            <ul class="flex flex-col gap-5">
+              <li>
+                <p class="small-caps mb-1">Jun 2018</p>
+                <h4 class="text-lg mb-1 leading-snug">The workshop opens</h4>
+                <p class="journal-body text-sm">12 Spice Market Lane. Doors still open.</p>
+              </li>
+              <li>
+                <p class="small-caps mb-1">Nov 2021</p>
+                <h4 class="text-lg mb-1 leading-snug">Online for the first time</h4>
+                <p class="journal-body text-sm">A website, built in one weekend.</p>
+              </li>
+              <li>
+                <p class="small-caps mb-1">Oct 2026</p>
+                <h4 class="text-lg mb-1 leading-snug">Batch 043 in rest</h4>
+                <p class="journal-body text-sm">You are reading the current entry.</p>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 5 — EDITORIAL LETTER
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-16 bg-app">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="max-w-2xl mx-auto">
+          <div class="text-center mb-10">
+            <span class="kicker">— Editorial —</span>
+            <h2 class="text-3xl md:text-4xl mt-4 leading-tight">
+              On keeping a paper notebook
+              <span class="italic t-brand">in 2026</span>.
+            </h2>
+            <div class="rule-thin mt-6"></div>
+          </div>
+
+          <div class="journal-body">
+            <p class="mb-6">
+              <strong>By Meera Nair</strong>
+            </p>
+
+            <p class="mb-6 drop-cap">We could have moved the entire ledger to a spreadsheet. We
+              were advised to, more than once, by people who know more about
+              software than we know about spice. The argument went like this:
+              you'd be able to search it, sort it, back it up, share it with
+              the team. All true.
+            </p>
+
+            <p class="mb-6">
+              And yet every Saturday, when the week's batches are sealed, we
+              still take out the same notebook our grandmother started in
+              1998 — the one whose spine has been re-taped twice — and write
+              the entries by hand.
+            </p>
+
+            <div class="col-sep">
+              <span>✦ ✦ ✦</span>
+            </div>
+
+            <p class="mb-6">
+              The reason, we've come to understand, is not nostalgia. It's
+              friction. Typing an entry takes ten seconds and can be undone.
+              Writing an entry by hand takes ninety seconds and cannot be
+              changed without a visible mark. That second constraint — the
+              impossibility of a silent correction — is what makes the
+              ledger useful.
+            </p>
+
+            <p class="mb-6">
+              When you know you can't quietly fix a mistake, you write more
+              carefully the first time. You think about what actually
+              happened, not what should have happened. You write down the
+              failed batch. You note the customer who walked away. You don't
+              sanitize the story.
+            </p>
+
+            <p class="mb-6">
+              Our notebook has two entries from the same week. One says "great
+              batch." The other says "this one went wrong — coriander ratio
+              was off, batch 038 discarded." Both are true. Both are useful.
+              A spreadsheet would have deleted the second one six months
+              ago to keep the columns clean.
+            </p>
+
+            <div class="pull-quote">
+              "A ledger you can't edit is a ledger you can trust."
+            </div>
+
+            <p class="mb-6">
+              So the notebook stays. Not because we're traditionalists, but
+              because the medium is doing work we can't get anywhere else.
+              If you're building something you plan to keep for a long
+              time — a business, a practice, a family — try writing the
+              important parts down by hand. The friction is the feature.
+            </p>
+
+            <div class="flex items-center justify-between pt-8 mt-8 border-t border-app">
+              <div>
+                <p class="small-caps">Written in the workshop</p>
+                <p class="hand text-3xl mt-1">Meera Nair</p>
+              </div>
+              <p class="small-caps">1,240 words</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 6 — SUBSCRIBE CTA
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="py-16 bg-app-subtle">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+
+        <div class="max-w-3xl mx-auto bg-surface border border-app p-10 sm:p-14 relative">
+
+          <span class="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2" style="border-color: var(--brand);"></span>
+          <span class="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2" style="border-color: var(--brand);"></span>
+          <span class="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2" style="border-color: var(--brand);"></span>
+          <span class="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2" style="border-color: var(--brand);"></span>
+
+          <div class="text-center mb-8">
+            <span class="kicker">— Subscribe —</span>
+            <h2 class="text-3xl md:text-4xl mt-4 mb-4 leading-tight">
+              Six issues a year.
+              <span class="italic t-brand">Paper</span> only.
+            </h2>
+            <div class="rule-dotted max-w-xs mx-auto mb-6"></div>
+            <p class="journal-body text-sm max-w-md mx-auto">
+              A printed journal, posted first-class, for anyone who'd
+              rather read slowly. $24/year, worldwide.
+            </p>
+          </div>
+
+          <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-6" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="your@email.com" required
+                   class="flex-1 px-4 py-3 text-sm bg-app border outline-none"
+                   style="border-color: var(--border-strong); color: var(--text);">
+            <button type="submit" class="btn btn-primary">
+              Subscribe
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+          </form>
+
+          <p class="text-center small-caps">Printed in Cochin · Posted worldwide</p>
+
+          <div class="flex items-center justify-center gap-3 mt-8 pt-8 border-t border-app">
+            <p class="hand text-2xl">— no digital version, on purpose —</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ MOBILE DRAWER ═══════════════════════ -->
+  <div id="mobile-drawer" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+    <div id="drawer-panel" class="absolute top-0 left-0 right-0 max-h-[90vh] overflow-y-auto p-6 shadow-2xl translate-y-[-100%] transition-transform duration-300 ease-out xl:hidden">
+
+      <div class="flex items-center justify-between pb-5 border-b border-app">
+        <a href="index.html" class="brand-lockup">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+              <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+              <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">
+            <span>SPICE ROUTE</span>
+            <span class="sub">Heritage Blends</span>
+          </span>
+        </a>
+        <button id="mobile-menu-close" class="btn-icon" aria-label="Close menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <nav class="mt-2">
+        <button class="mob-accordion" id="mob-home-toggle">
+          Home 1
+          <svg class="w-4 h-4 transition-transform duration-200" id="mob-home-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div id="mob-home-menu" class="hidden pl-4 py-1">
+          <a href="index.html" class="mob-link border-0 text-sm t-muted">Home 1</a>
+          <a href="home2.html" class="mob-link border-0 text-sm t-muted">Home 2</a>
+        </div>
+
+        <a href="about.html" class="mob-link">About Us</a>
+        <a href="products.html" class="mob-link">Products</a>
+        <a href="recipes.html" class="mob-link">Recipes</a>
+        <a href="journal.html" class="mob-link">Journal</a>
+        <a href="contact.html" class="mob-link">Contact</a>
+      </nav>
+
+      <div class="flex items-center justify-between mt-6 pt-5 border-t border-app">
+        <button id="drawer-theme-toggle" class="btn-icon" aria-label="Toggle theme">
+          <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+        <button id="mobile-lang-icon-drawer" class="btn-icon" aria-label="Toggle direction">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+        </button>
+      </div>
+
+      <div class="mt-5 flex justify-center">
+        <a href="login.html" class="btn btn-primary w-full max-w-[240px] justify-center">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer id="site-footer" class="pt-16">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14">
+
+        <div class="lg:col-span-4">
+          <a href="index.html" class="brand-lockup mb-5">
+            <span class="foot-brand-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2c-2 3-3 6-3 9a3 3 0 0 0 6 0c0-3-1-6-3-9z"/>
+                <path d="M8 17c-1.5 1-2.5 2.5-2.5 4h13c0-1.5-1-3-2.5-4"/>
+                <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span>
+              <span class="foot-wordmark">SPICE ROUTE</span>
+              <span class="foot-tagline block">Heritage Blends</span>
+            </span>
+          </a>
+          <p class="text-sm leading-relaxed max-w-sm" style="color: var(--footer-muted);">
+            Handcrafted spice blends and small-batch condiments from heirloom recipes —
+            sun-dried, stone-ground, and delivered to your kitchen.
+          </p>
+          <div class="flex gap-2 mt-6">
+            <a href="#" class="foot-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="foot-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="foot-social" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Company</h4>
+          <ul class="flex flex-col">
+            <li><a href="about.html" class="foot-link">About Us</a></li>
+            <li><a href="process.html" class="foot-link">Our Process</a></li>
+            <li><a href="journal.html" class="foot-link">Journal</a></li>
+            <li><a href="contact.html" class="foot-link">Contact</a></li>
+            <li><a href="recipes.html" class="foot-link">Recipes</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="foot-heading">Shop</h4>
+          <ul class="flex flex-col">
+            <li><a href="products.html" class="foot-link">Whole Spices</a></li>
+            <li><a href="products.html" class="foot-link">Ground Blends</a></li>
+            <li><a href="products.html" class="foot-link">Signature Mixes</a></li>
+            <li><a href="products.html" class="foot-link">Gift Sets</a></li>
+            <li><a href="products.html" class="foot-link">New Arrivals</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-4">
+          <h4 class="foot-heading">Get in Touch</h4>
+          <div class="flex flex-col gap-1 mb-6">
+            <a href="tel:+18005550199" class="foot-contact"><i class="fa-solid fa-phone"></i> +1 (800) 555-0199</a>
+            <a href="mailto:hello@spiceroute.com" class="foot-contact"><i class="fa-solid fa-envelope"></i> hello@spiceroute.com</a>
+            <span class="foot-contact"><i class="fa-solid fa-location-dot"></i> 12 Spice Market Lane, Cochin</span>
+          </div>
+
+          <h4 class="foot-heading">Newsletter</h4>
+          <form class="flex gap-2" onsubmit="event.preventDefault();">
+            <input type="email" class="foot-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary px-5">
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="foot-bottom py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs" style="color: var(--footer-muted);">
+          © 2026 SPICE ROUTE. All rights reserved.
+        </p>
+        <div class="flex items-center gap-6 text-xs" style="color: var(--footer-muted);">
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+          <a href="#" class="hover:text-white transition">Shipping</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+      const html = document.documentElement;
+
+      const applyTheme = (t) => {
+        html.setAttribute('data-theme', t);
+        document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', t === 'dark'));
+        document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', t === 'light'));
+      };
+      const setTheme = (t) => { localStorage.setItem('theme', t); applyTheme(t); };
+      applyTheme(localStorage.getItem('theme') || 'light');
+
+      ['theme-toggle', 'drawer-theme-toggle'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          setTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        });
+      });
+
+      const applyDir = (d) => html.setAttribute('dir', d === 'ar' ? 'rtl' : 'ltr');
+      applyDir(localStorage.getItem('language') || 'en');
+      ['lang-icon', 'mobile-lang-icon-drawer'].forEach(id => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          const next = (localStorage.getItem('language') === 'ar') ? 'en' : 'ar';
+          localStorage.setItem('language', next);
+          applyDir(next);
+        });
+      });
+
+      const drawer = document.getElementById('mobile-drawer');
+      const panel = document.getElementById('drawer-panel');
+      const backdrop = document.getElementById('drawer-backdrop');
+
+      const openDrawer = () => {
+        drawer.classList.remove('pointer-events-none');
+        panel.classList.remove('translate-y-[-100%]');
+        backdrop.classList.add('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeDrawer = () => {
+        panel.classList.add('translate-y-[-100%]');
+        backdrop.classList.remove('opacity-60', 'pointer-events-auto');
+        document.body.style.overflow = '';
+        setTimeout(() => drawer.classList.add('pointer-events-none'), 300);
+      };
+
+      document.getElementById('mobile-menu-open')?.addEventListener('click', openDrawer);
+      document.getElementById('mobile-menu-close')?.addEventListener('click', closeDrawer);
+      backdrop?.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+      const bindAccordion = (btnId, menuId, iconId) => {
+        const btn = document.getElementById(btnId);
+        const menu = document.getElementById(menuId);
+        const icon = document.getElementById(iconId);
+        btn?.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          icon.classList.toggle('rotate-180');
+        });
+      };
+      bindAccordion('mob-home-toggle', 'mob-home-menu', 'mob-home-icon');
+
+      const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const href = (link.getAttribute('href') || '').toLowerCase();
+        if (href === current) link.classList.add('is-active');
+      });
+      if (['index.html', 'home2.html'].includes(current)) {
+        document.getElementById('nav-home-btn')?.classList.add('is-active');
+      }
+    })();
+  </script>
+</body>
+</html>
