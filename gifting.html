@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="assets/fav.png" type="image/jpeg">
+  <link rel="icon" href="asserts/favicon_v2.png" type="image/jpeg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,9 +99,9 @@
     .brand-lockup:hover { opacity: 0.85; }
     .brand-mark {
       position: relative; width: 42px; height: 42px; border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, var(--brand) 0%, var(--brand-hover) 100%);
+      background: radial-gradient(circle at 35% 30%, #E05E2A 0%, #C1440E 100%);
       display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-      box-shadow: 0 4px 14px -4px rgba(193, 68, 14, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 14px -4px rgba(224, 94, 42, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
     .brand-mark::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, 0.4); }
     .brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
@@ -951,6 +951,13 @@
       gap: 12px;
       align-items: flex-start;
     }
+  
+    .mob-link.is-active, .mob-accordion.is-active {
+      color: var(--brand) !important;
+      font-weight: 600;
+      border-left: 3px solid var(--brand);
+      padding-left: 12px;
+    }
   </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
@@ -1428,7 +1435,7 @@
   
                   <div class="pt-2 lg:pt-32">
                     <p class="text-[10px] font-bold tracking-[0.24em] uppercase mb-3" style="color:#F0B25A; font-family:'Space Grotesk',sans-serif;">Stage 01</p>
-                    <h3 class="text-white text-xl lg:text-2xl mb-4" style="font-family:'Playfair Display',serif; font-weight:500;">Tell us the moment</h3>
+                    <h3 class="text-white text-xl lg:text-2xl mb-4 lg:min-h-[4rem]" style="font-family:'Playfair Display',serif; font-weight:500;">Tell us the moment</h3>
                     <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.62);">
                       Wedding, corporate, birthday, or a thank-you. Use the form below — we'll route it to the right person.
                     </p>
@@ -1446,7 +1453,7 @@
   
                   <div class="pt-2 lg:pt-32">
                     <p class="text-[10px] font-bold tracking-[0.24em] uppercase mb-3" style="color:#F0B25A; font-family:'Space Grotesk',sans-serif;">Stage 02</p>
-                    <h3 class="text-white text-xl lg:text-2xl mb-4" style="font-family:'Playfair Display',serif; font-weight:500;">We post samples</h3>
+                    <h3 class="text-white text-xl lg:text-2xl mb-4 lg:min-h-[4rem]" style="font-family:'Playfair Display',serif; font-weight:500;">We post samples</h3>
                     <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.62);">
                       For orders over 20 units we ship a free sample box so you can see and taste exactly what's going out.
                     </p>
@@ -1464,7 +1471,7 @@
   
                   <div class="pt-2 lg:pt-32">
                     <p class="text-[10px] font-bold tracking-[0.24em] uppercase mb-3" style="color:#F0B25A; font-family:'Space Grotesk',sans-serif;">Stage 03</p>
-                    <h3 class="text-white text-xl lg:text-2xl mb-4" style="font-family:'Playfair Display',serif; font-weight:500;">Custom labels &amp; cards</h3>
+                    <h3 class="text-white text-xl lg:text-2xl mb-4 lg:min-h-[4rem]" style="font-family:'Playfair Display',serif; font-weight:500;">Custom labels &amp; cards</h3>
                     <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.62);">
                       Add your brand, a monogram, or a personal note. Printed cards in any language you need.
                     </p>
@@ -1482,7 +1489,7 @@
   
                   <div class="pt-2 lg:pt-32">
                     <p class="text-[10px] font-bold tracking-[0.24em] uppercase mb-3" style="color:#F0B25A; font-family:'Space Grotesk',sans-serif;">Stage 04</p>
-                    <h3 class="text-white text-xl lg:text-2xl mb-4" style="font-family:'Playfair Display',serif; font-weight:500;">Packed &amp; posted</h3>
+                    <h3 class="text-white text-xl lg:text-2xl mb-4 lg:min-h-[4rem]" style="font-family:'Playfair Display',serif; font-weight:500;">Packed &amp; posted</h3>
                     <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.62);">
                       Jars wrapped in muslin, boxed in kraft, shipped with tracking. Worldwide delivery available.
                     </p>
@@ -2080,12 +2087,15 @@
       bindAccordion('mob-home-toggle', 'mob-home-menu', 'mob-home-icon');
 
       const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
-      document.querySelectorAll('.nav-link').forEach(link => {
+      document.querySelectorAll('.nav-link, .mob-link').forEach(link => {
         const href = (link.getAttribute('href') || '').toLowerCase();
-        if (href === current) link.classList.add('is-active');
+        if (href === current || href.replace('.html', '') === current.replace('.html', '')) {
+          link.classList.add('is-active');
+        }
       });
-      if (['index.html', 'home2.html'].includes(current)) {
+      if (['index.html', 'home2.html'].includes(current) || current === '' || current === 'home2') {
         document.getElementById('nav-home-btn')?.classList.add('is-active');
+        document.getElementById('mob-home-toggle')?.classList.add('is-active');
       }
 
       /* ── CONFIGURATOR ── */

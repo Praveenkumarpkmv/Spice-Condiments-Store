@@ -119,9 +119,9 @@
     .brand-lockup:hover { opacity: 0.85; }
     .brand-mark {
       position: relative; width: 44px; height: 44px; border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, var(--brand) 0%, var(--brand-hover) 100%);
+      background: radial-gradient(circle at 35% 30%, #E05E2A 0%, #C1440E 100%);
       display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-      box-shadow: 0 4px 12px -4px rgba(139, 46, 8, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 14px -4px rgba(224, 94, 42, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
     .brand-mark::before { content: ''; position: absolute; inset: 5px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, 0.4); }
     .brand-mark svg { position: relative; z-index: 1; width: 21px; height: 21px; color: #fff; }
@@ -411,6 +411,7 @@
       text-decoration: none;
     }
     .journal-footer a:hover { opacity: 0.75; }
+    .brand-wordmark > span:first-child, #site-footer .foot-wordmark { color: var(--brand) !important; }
   </style>
 </head>
 <body class="antialiased">

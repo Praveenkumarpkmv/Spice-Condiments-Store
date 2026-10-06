@@ -93,9 +93,9 @@
     .brand-lockup:hover { opacity: 0.85; }
     .brand-mark {
       position: relative; width: 42px; height: 42px; border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, var(--brand) 0%, var(--brand-hover) 100%);
+      background: radial-gradient(circle at 35% 30%, #E05E2A 0%, #C1440E 100%);
       display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-      box-shadow: 0 4px 14px -4px rgba(193, 68, 14, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 14px -4px rgba(224, 94, 42, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
     .brand-mark::before { content: ''; position: absolute; inset: 6px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, 0.4); }
     .brand-mark svg { position: relative; z-index: 1; width: 20px; height: 20px; color: #fff; }
@@ -287,6 +287,8 @@
     }
 
     .recipe-card {
+      display: flex;
+      flex-direction: column;
       position: relative;
       background: var(--surface);
       border: 1px solid var(--border);
@@ -460,6 +462,14 @@
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+  
+    .mob-link.is-active, .mob-accordion.is-active {
+      color: var(--brand) !important;
+      font-weight: 600;
+      border-left: 3px solid var(--brand);
+      padding-left: 12px;
+    }
+    .brand-wordmark > span:first-child, #site-footer .foot-wordmark { color: var(--brand) !important; }
   </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
@@ -1593,12 +1603,15 @@
       bindAccordion('mob-home-toggle', 'mob-home-menu', 'mob-home-icon');
 
       const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
-      document.querySelectorAll('.nav-link').forEach(link => {
+      document.querySelectorAll('.nav-link, .mob-link').forEach(link => {
         const href = (link.getAttribute('href') || '').toLowerCase();
-        if (href === current) link.classList.add('is-active');
+        if (href === current || href.replace('.html', '') === current.replace('.html', '')) {
+          link.classList.add('is-active');
+        }
       });
-      if (['index.html', 'home2.html'].includes(current)) {
+      if (['index.html', 'home2.html'].includes(current) || current === '' || current === 'home2') {
         document.getElementById('nav-home-btn')?.classList.add('is-active');
+        document.getElementById('mob-home-toggle')?.classList.add('is-active');
       }
 
       document.querySelectorAll('.filter-tab').forEach(tab => {
