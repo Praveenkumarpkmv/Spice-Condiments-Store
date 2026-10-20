@@ -121,28 +121,6 @@
     }
 
     
-    /* Brand lockup */
-    .brand-lockup { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; transition: opacity 0.2s ease; }
-    .brand-lockup:hover { opacity: 0.85; }
-    .brand-mark {
-      position: relative; width: 42px; height: 42px; border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #E05E2A 0%, #C1440E 100%);
-      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-      box-shadow: 0 4px 14px -4px rgba(224, 94, 42, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    }
-    .brand-mark::before { content: ''; position: absolute; inset: 5px; border-radius: 50%; border: 1.5px dashed rgba(255, 255, 255, 0.4); }
-    .brand-mark svg { position: relative; z-index: 1; width: 18px; height: 18px; color: #fff; }
-    .brand-wordmark { white-space: nowrap;
-      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px;
-      letter-spacing: -0.02em; line-height: 1; color: var(--text);
-      display: flex; flex-direction: column; gap: 4px;
-    }
-    .brand-wordmark .sub {
-      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 9px;
-      letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle);
-    }
-
-    
     /* Main page layout */
     .page {
       height: 100vh;

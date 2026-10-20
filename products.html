@@ -154,11 +154,23 @@
     .dd:hover .dd-chevron { transform: rotate(180deg); }
 
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
-      padding: 11px 24px; border-radius: 11px; border: 1px solid transparent;
-      cursor: pointer; text-decoration: none; transition: all 0.18s ease;
-      white-space: nowrap; line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      height: 42px;
+      padding: 0 24px;
+      border-radius: 11px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      line-height: 1;
+      box-sizing: border-box;
     }
     .btn-primary {
       background: var(--brand); color: #fff;
@@ -169,8 +181,29 @@
       box-shadow: 0 8px 20px -6px rgba(193, 68, 14, 0.5);
       transform: translateY(-1px);
     }
-    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
-    .btn-ghost:hover { background: var(--nav-hover); border-color: var(--text-subtle); }
+    .btn-ghost {
+      background: #FFFFFF;
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 1px 3px rgba(43, 30, 18, 0.06);
+    }
+    .btn-ghost:hover {
+      background: #FDF8F2;
+      border-color: var(--brand);
+      color: var(--brand);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px -2px rgba(43, 30, 18, 0.1);
+    }
+    html[data-theme='dark'] .btn-ghost {
+      background: #FFFFFF;
+      color: #2B1E12;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    html[data-theme='dark'] .btn-ghost:hover {
+      background: #FDF8F2;
+      border-color: var(--brand);
+      color: var(--brand);
+    }
     .btn-icon {
       display: inline-flex; align-items: center; justify-content: center;
       width: 42px; height: 42px; border-radius: 11px; color: var(--text-muted);
@@ -510,6 +543,61 @@
       padding-left: 12px;
     }
     .brand-wordmark > span:first-child, #site-footer .foot-wordmark { color: var(--brand) !important; }
+
+    /* Hero section standardization */
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      min-height: 580px;
+    }
+    @media (min-width: 1024px) {
+      .hero-section {
+        min-height: 620px;
+      }
+    }
+    .hero-bg-container {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-bg-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.32;
+      transition: opacity 0.3s ease;
+    }
+    html[data-theme='dark'] .hero-bg-image {
+      opacity: 0.20;
+    }
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, 
+        var(--bg-subtle, #FDF8F2) 0%, 
+        color-mix(in srgb, var(--bg-subtle, #FDF8F2) 90%, transparent) 45%, 
+        color-mix(in srgb, var(--bg-subtle, #FDF8F2) 35%, transparent) 100%
+      );
+    }
+    @media (max-width: 768px) {
+      .hero-bg-overlay {
+        background: linear-gradient(180deg, 
+          var(--bg-subtle, #FDF8F2) 0%, 
+          color-mix(in srgb, var(--bg-subtle, #FDF8F2) 88%, transparent) 50%, 
+          color-mix(in srgb, var(--bg-subtle, #FDF8F2) 40%, transparent) 100%
+        );
+      }
+    }
+    [dir='rtl'] .hero-bg-overlay {
+      background: linear-gradient(270deg, 
+        var(--bg-subtle, #FDF8F2) 0%, 
+        color-mix(in srgb, var(--bg-subtle, #FDF8F2) 90%, transparent) 45%, 
+        color-mix(in srgb, var(--bg-subtle, #FDF8F2) 35%, transparent) 100%
+      );
+    }
   </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
@@ -576,10 +664,16 @@
     <!-- ═══════════════════════════════════════════════════════════════
          SECTION 1 — HERO
     ═══════════════════════════════════════════════════════════════ -->
-    <section class="py-12 md:py-16 bg-app-subtle relative overflow-hidden">
-      <div class="absolute top-0 left-0 w-full h-1" style="background: linear-gradient(90deg, var(--brand) 0%, var(--amber) 50%, var(--olive) 100%);"></div>
+    <section class="hero-section py-16 md:py-20 bg-app-subtle relative overflow-hidden min-h-[580px] lg:min-h-[620px] flex items-center">
+      <div class="absolute top-0 left-0 w-full h-1 z-10" style="background: linear-gradient(90deg, var(--brand) 0%, var(--amber) 50%, var(--olive) 100%);"></div>
 
-      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10">
+      <!-- Background Image & Overlay -->
+      <div class="hero-bg-container">
+        <img src="asserts/products10.avif" alt="Coriander and cumin drying in the sun" class="hero-bg-image">
+        <div class="hero-bg-overlay"></div>
+      </div>
+
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10 w-full">
 
         <div class="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-16 items-end">
 
@@ -676,7 +770,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7">
 
           <!-- Feature 1 — wide -->
-          <a href="#" class="feature-tile md:col-span-2 min-h-[380px] p-8 sm:p-10">
+          <div class="feature-tile md:col-span-2 min-h-[380px] p-8 sm:p-10">
             <img class="tile-img"
                  src="asserts/products2.avif"
                  alt="Tomato and tamarind chutney"
@@ -687,25 +781,28 @@
             </div>
             <div class="texture"></div>
 
-            <!-- <div class="absolute top-6 right-6 w-16 h-16 rounded-full border-2 border-dashed flex items-center justify-center z-10" style="border-color: rgba(240,178,90,0.75); background: rgba(43,30,18,0.4); backdrop-filter: blur(6px);">
-              <span class="text-[10px] font-bold tracking-widest text-center leading-tight" style="color: #F0B25A;">№<br>041</span>
-            </div> -->
-
-            <div class="relative z-10">
+            <div class="relative z-10 mt-auto">
               <div class="flex items-center gap-3 mb-3 flex-wrap">
                 <span class="tag-pill" style="background: rgba(240,178,90,0.95); border-color: rgba(240,178,90,0.95); color: #2B1204;">New batch</span>
               </div>
               <h3 class="text-3xl sm:text-4xl mb-2 text-white" style="font-family:'Playfair Display',serif;">Tomato &amp; Tamarind</h3>
-              <p class="text-sm italic mb-4 text-white" style="font-family:'Playfair Display',serif;">sweet · tangy · 6 weeks aged</p>
-              <div class="flex items-center justify-between flex-wrap gap-3">
-                <span class="text-xs text-white uppercase tracking-wider">240g jar · Chutney shelf</span>
-                <span class="text-2xl font-bold" style="font-family:'Playfair Display',serif; color: #F0B25A;">$11.00</span>
+              <p class="text-sm italic mb-4 text-white/90" style="font-family:'Playfair Display',serif;">sweet · tangy · 6 weeks aged</p>
+              
+              <div class="flex items-center justify-between flex-wrap gap-4 pt-4 border-t border-white/20 mt-2">
+                <div>
+                  <span class="text-xs text-white/80 uppercase tracking-wider block mb-0.5">240g jar · Chutney shelf</span>
+                  <span class="text-3xl font-bold" style="font-family:'Playfair Display',serif; color: #F0B25A;">$11.00</span>
+                </div>
+                <button type="button" class="btn btn-primary add-to-cart-btn px-6 shadow-xl" data-product="Tomato &amp; Tamarind" data-price="$11.00" aria-label="Add Tomato &amp; Tamarind to cart">
+                  <i class="fa-solid fa-basket-shopping text-xs"></i>
+                  <span>Add to Cart</span>
+                </button>
               </div>
             </div>
-          </a>
+          </div>
 
           <!-- Feature 2 -->
-          <a href="#" class="feature-tile min-h-[380px] p-8">
+          <div class="feature-tile min-h-[380px] p-8">
             <img class="tile-img"
                  src="asserts/products3.avif"
                  alt="Lemon chili pickle"
@@ -716,18 +813,22 @@
             </div>
             <div class="texture"></div>
 
-            <div class="relative z-10">
-              <!-- <div class="flex items-center gap-3 mb-3 flex-wrap">
-                <span class="tag-pill" style="background: rgba(255,255,255,0.9); color: #2B1204; border-color: rgba(255,255,255,0.9);">No. 042</span>
-              </div> -->
+            <div class="relative z-10 mt-auto">
               <h3 class="text-3xl mb-2 text-white" style="font-family:'Playfair Display',serif;">Lemon Chili</h3>
-              <p class="text-sm italic mb-4 text-white" style="font-family:'Playfair Display',serif;">sharp · fiery</p>
-              <div class="flex items-center justify-between flex-wrap gap-3">
-                <span class="text-xs text-white uppercase tracking-wider">300g · Pickle shelf</span>
-                <span class="text-2xl font-bold" style="font-family:'Playfair Display',serif; color: #F0B25A;">$9.80</span>
+              <p class="text-sm italic mb-4 text-white/90" style="font-family:'Playfair Display',serif;">sharp · fiery</p>
+              
+              <div class="flex items-center justify-between flex-wrap gap-4 pt-4 border-t border-white/20 mt-2">
+                <div>
+                  <span class="text-xs text-white/80 uppercase tracking-wider block mb-0.5">300g · Pickle shelf</span>
+                  <span class="text-2xl font-bold" style="font-family:'Playfair Display',serif; color: #F0B25A;">$9.80</span>
+                </div>
+                <button type="button" class="btn btn-primary add-to-cart-btn px-5 shadow-xl" data-product="Lemon Chili" data-price="$9.80" aria-label="Add Lemon Chili to cart">
+                  <i class="fa-solid fa-basket-shopping text-xs"></i>
+                  <span>Add to Cart</span>
+                </button>
               </div>
             </div>
-          </a>
+          </div>
 
         </div>
       </div>
@@ -1370,7 +1471,7 @@
           <h4 class="foot-heading">Company</h4>
           <ul class="flex flex-col">
             <li><a href="about.html" class="foot-link">About Us</a></li>
-            <li><a href="process.html" class="foot-link">Our Process</a></li>
+            <li><a href="about.html#process" class="foot-link">Our Process</a></li>
             <li><a href="journal.html" class="foot-link">Journal</a></li>
             <li><a href="gifting.html" class="foot-link">Gifting</a></li>
             <li><a href="contact.html" class="foot-link">Contact</a></li>
@@ -1494,6 +1595,21 @@
         document.getElementById('nav-home-btn')?.classList.add('is-active');
         document.getElementById('mob-home-toggle')?.classList.add('is-active');
       }
+
+      // Add to cart interactive feedback
+      document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const origHtml = btn.innerHTML;
+          btn.innerHTML = '<i class="fa-solid fa-check text-xs"></i> <span>Added!</span>';
+          btn.classList.add('bg-emerald-700');
+          setTimeout(() => {
+            btn.innerHTML = origHtml;
+            btn.classList.remove('bg-emerald-700');
+          }, 1800);
+        });
+      });
 
       document.querySelectorAll('.filter-link').forEach(btn => {
         btn.addEventListener('click', () => {

@@ -154,11 +154,23 @@
     .dd:hover .dd-chevron { transform: rotate(180deg); }
 
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
-      padding: 11px 24px; border-radius: 11px; border: 1px solid transparent;
-      cursor: pointer; text-decoration: none; transition: all 0.18s ease;
-      white-space: nowrap; line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      height: 42px;
+      padding: 0 24px;
+      border-radius: 11px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      line-height: 1;
+      box-sizing: border-box;
     }
     .btn-primary {
       background: var(--brand); color: #fff;
@@ -169,8 +181,29 @@
       box-shadow: 0 8px 20px -6px rgba(193, 68, 14, 0.5);
       transform: translateY(-1px);
     }
-    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
-    .btn-ghost:hover { background: var(--nav-hover); border-color: var(--text-subtle); }
+    .btn-ghost {
+      background: #FFFFFF;
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 1px 3px rgba(43, 30, 18, 0.06);
+    }
+    .btn-ghost:hover {
+      background: #FDF8F2;
+      border-color: var(--brand);
+      color: var(--brand);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px -2px rgba(43, 30, 18, 0.1);
+    }
+    html[data-theme='dark'] .btn-ghost {
+      background: #FFFFFF;
+      color: #2B1E12;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    html[data-theme='dark'] .btn-ghost:hover {
+      background: #FDF8F2;
+      border-color: var(--brand);
+      color: var(--brand);
+    }
     .btn-icon {
       display: inline-flex; align-items: center; justify-content: center;
       width: 42px; height: 42px; border-radius: 11px; color: var(--text-muted);
@@ -301,15 +334,7 @@
       transform: translateY(-4px);
       box-shadow: 0 20px 40px -16px rgba(43, 30, 18, 0.25);
     }
-    .recipe-card::before {
-      content: '';
-      position: absolute;
-      top: 52px;
-      left: 20px;
-      right: 20px;
-      height: 1px;
-      background: var(--border);
-    }
+
     .recipe-card::after {
       content: '';
       position: absolute;
@@ -470,6 +495,61 @@
       padding-left: 12px;
     }
     .brand-wordmark > span:first-child, #site-footer .foot-wordmark { color: var(--brand) !important; }
+
+    /* Hero section standardization */
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      min-height: 580px;
+    }
+    @media (min-width: 1024px) {
+      .hero-section {
+        min-height: 620px;
+      }
+    }
+    .hero-bg-container {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-bg-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.32;
+      transition: opacity 0.3s ease;
+    }
+    html[data-theme='dark'] .hero-bg-image {
+      opacity: 0.20;
+    }
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, 
+        var(--bg, #FFFFFF) 0%, 
+        color-mix(in srgb, var(--bg, #FFFFFF) 90%, transparent) 45%, 
+        color-mix(in srgb, var(--bg, #FFFFFF) 35%, transparent) 100%
+      );
+    }
+    @media (max-width: 768px) {
+      .hero-bg-overlay {
+        background: linear-gradient(180deg, 
+          var(--bg, #FFFFFF) 0%, 
+          color-mix(in srgb, var(--bg, #FFFFFF) 88%, transparent) 50%, 
+          color-mix(in srgb, var(--bg, #FFFFFF) 40%, transparent) 100%
+        );
+      }
+    }
+    [dir='rtl'] .hero-bg-overlay {
+      background: linear-gradient(270deg, 
+        var(--bg, #FFFFFF) 0%, 
+        color-mix(in srgb, var(--bg, #FFFFFF) 90%, transparent) 45%, 
+        color-mix(in srgb, var(--bg, #FFFFFF) 35%, transparent) 100%
+      );
+    }
   </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
@@ -536,14 +616,19 @@
     <!-- ═══════════════════════════════════════════════════════════════
          SECTION 1 — HERO
     ═══════════════════════════════════════════════════════════════ -->
-    <section class="py-12 md:py-16 bg-app relative overflow-hidden">
+    <section class="hero-section py-16 md:py-20 bg-app relative overflow-hidden min-h-[580px] lg:min-h-[620px] flex items-center">
+      <!-- Background Image & Overlay -->
+      <div class="hero-bg-container">
+        <img src="asserts/recipes15.avif" alt="Stone grinding spices" class="hero-bg-image">
+        <div class="hero-bg-overlay"></div>
+      </div>
 
       <div class="absolute top-20 -left-24 w-96 h-96 rounded-full pointer-events-none opacity-30"
            style="background: radial-gradient(circle, rgba(193,68,14,0.28) 0%, transparent 70%); filter: blur(80px);"></div>
       <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none opacity-20"
            style="background: radial-gradient(circle, rgba(217,119,6,0.3) 0%, transparent 70%); filter: blur(90px);"></div>
 
-      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10 w-full">
 
         <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-center">
 
@@ -1323,7 +1408,7 @@
     <!-- ═══════════════════════════════════════════════════════════════
          SECTION 6 — CTA (Recipe kit)
     ═══════════════════════════════════════════════════════════════ -->
-    <section class="py-20 bg-app-subtle">
+    <section class="py-20 bg-app">
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8">
 
         <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-16 items-center">
@@ -1489,7 +1574,7 @@
           <h4 class="foot-heading">Company</h4>
           <ul class="flex flex-col">
             <li><a href="about.html" class="foot-link">About Us</a></li>
-            <li><a href="process.html" class="foot-link">Our Process</a></li>
+            <li><a href="about.html#process" class="foot-link">Our Process</a></li>
             <li><a href="journal.html" class="foot-link">Journal</a></li>
             <li><a href="gifting.html" class="foot-link">Gifting</a></li>
             <li><a href="contact.html" class="foot-link">Contact</a></li>

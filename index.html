@@ -208,7 +208,8 @@
       font-family: 'Inter', sans-serif;
       font-weight: 600;
       font-size: 15px;
-      padding: 11px 24px;
+      height: 42px;
+      padding: 0 24px;
       border-radius: 11px;
       border: 1px solid transparent;
       cursor: pointer;
@@ -216,6 +217,7 @@
       transition: all 0.18s ease;
       white-space: nowrap;
       line-height: 1;
+      box-sizing: border-box;
     }
     .btn-primary {
       background: var(--brand);
@@ -228,11 +230,28 @@
       transform: translateY(-1px);
     }
     .btn-ghost {
-      background: transparent;
+      background: #FFFFFF;
       color: var(--text);
-      border-color: var(--border-strong);
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 1px 3px rgba(43, 30, 18, 0.06);
     }
-    .btn-ghost:hover { background: var(--nav-hover); border-color: var(--text-subtle); }
+    .btn-ghost:hover {
+      background: #FDF8F2;
+      border-color: var(--brand);
+      color: var(--brand);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px -2px rgba(43, 30, 18, 0.1);
+    }
+    html[data-theme='dark'] .btn-ghost {
+      background: #FFFFFF;
+      color: #2B1E12;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    html[data-theme='dark'] .btn-ghost:hover {
+      background: #FDF8F2;
+      border-color: var(--brand);
+      color: var(--brand);
+    }
     .btn-icon {
       display: inline-flex;
       align-items: center;
@@ -411,6 +430,61 @@
       padding-left: 12px;
     }
     .brand-wordmark > span:first-child, #site-footer .foot-wordmark { color: var(--brand) !important; }
+
+    /* Hero section standardization */
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      min-height: 580px;
+    }
+    @media (min-width: 1024px) {
+      .hero-section {
+        min-height: 620px;
+      }
+    }
+    .hero-bg-container {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-bg-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.32;
+      transition: opacity 0.3s ease;
+    }
+    html[data-theme='dark'] .hero-bg-image {
+      opacity: 0.20;
+    }
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, 
+        var(--bg-subtle, #FDF8F2) 0%, 
+        color-mix(in srgb, var(--bg-subtle, #FDF8F2) 90%, transparent) 45%, 
+        color-mix(in srgb, var(--bg-subtle, #FDF8F2) 35%, transparent) 100%
+      );
+    }
+    @media (max-width: 768px) {
+      .hero-bg-overlay {
+        background: linear-gradient(180deg, 
+          var(--bg-subtle, #FDF8F2) 0%, 
+          color-mix(in srgb, var(--bg-subtle, #FDF8F2) 88%, transparent) 50%, 
+          color-mix(in srgb, var(--bg-subtle, #FDF8F2) 40%, transparent) 100%
+        );
+      }
+    }
+    [dir='rtl'] .hero-bg-overlay {
+      background: linear-gradient(270deg, 
+        var(--bg-subtle, #FDF8F2) 0%, 
+        color-mix(in srgb, var(--bg-subtle, #FDF8F2) 90%, transparent) 45%, 
+        color-mix(in srgb, var(--bg-subtle, #FDF8F2) 35%, transparent) 100%
+      );
+    }
   </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
@@ -477,8 +551,14 @@
     <!-- ═══════════════════════════════════════════════════════════════
          SECTION 1 — HERO (Signature Blend Showcase)
     ═══════════════════════════════════════════════════════════════ -->
-    <section class="spice-glow py-16 md:py-24 bg-app-subtle relative overflow-hidden">
-      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10">
+    <section class="hero-section spice-glow py-16 md:py-20 bg-app-subtle relative overflow-hidden min-h-[580px] lg:min-h-[620px] flex items-center">
+      <!-- Background Image & Overlay -->
+      <div class="hero-bg-container">
+        <img src="asserts/index1.avif" alt="Red chili and paprika spice blend close up" class="hero-bg-image">
+        <div class="hero-bg-overlay"></div>
+      </div>
+
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 relative z-10 w-full">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           <div class="max-w-xl">
@@ -588,7 +668,7 @@
                 Our flagship blend — nine spices roasted in small batches and stone-ground to
                 a deep amber powder. Built for slow-cooked curries and rich gravies.
               </p>
-              <div class="flex items-center justify-between pt-5 border-t border-app mt-auto">
+              <div class="flex items-center justify-between pt-2 mt-auto">
                 <span class="text-xs t-subtle uppercase tracking-wider">100g jar</span>
                 <span class="font-bold t-brand">$12.90</span>
               </div>
@@ -610,7 +690,7 @@
                 Single-origin turmeric from Alleppey, blended with black pepper and dried ginger
                 for a warm, grounding everyday mix. Brightens any dal or broth.
               </p>
-              <div class="flex items-center justify-between pt-5 border-t border-app mt-auto">
+              <div class="flex items-center justify-between pt-2 mt-auto">
                 <span class="text-xs t-subtle uppercase tracking-wider">80g jar</span>
                 <span class="font-bold t-brand">$10.50</span>
               </div>
@@ -632,7 +712,7 @@
                 Green cardamom, cinnamon bark, and clove — a chai blend that blooms when
                 simmered in milk. Our most-gifted jar, three years running.
               </p>
-              <div class="flex items-center justify-between pt-5 border-t border-app mt-auto">
+              <div class="flex items-center justify-between pt-2 mt-auto">
                 <span class="text-xs t-subtle uppercase tracking-wider">90g jar</span>
                 <span class="font-bold t-brand">$14.20</span>
               </div>
@@ -1012,7 +1092,7 @@
           <h4 class="foot-heading">Company</h4>
           <ul class="flex flex-col">
             <li><a href="about.html" class="foot-link">About Us</a></li>
-            <li><a href="process.html" class="foot-link">Our Process</a></li>
+            <li><a href="about.html#process" class="foot-link">Our Process</a></li>
             <li><a href="journal.html" class="foot-link">Journal</a></li>
             <li><a href="gifting.html" class="foot-link">Gifting</a></li>
             <li><a href="contact.html" class="foot-link">Contact</a></li>
